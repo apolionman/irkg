@@ -1,0 +1,9 @@
+deploy_to_local:
+  stage: deploy
+  only:
+    - main
+  script:
+    - echo "Deploying to local server..."
+    - ssh -v -o StrictHostKeyChecking=no dgx@192.168.1.58 "cd /home/dgx/dgx_irkg_be && git pull origin main && ./cleanup_uvicorn.sh"
+  environment:
+    name: development

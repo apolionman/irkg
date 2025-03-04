@@ -2,4 +2,3 @@ __pycache__/
 venv/
 TxGNN/
 .venv
-.gitlab-ci.yml
