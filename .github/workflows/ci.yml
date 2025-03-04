@@ -25,7 +25,7 @@ jobs:
       - name: Pull latest changes and run cleanup
         run: |
           echo "Pulling latest changes"
-          ssh -v -o StrictHostKeyChecking=no -o BatchMode=yes -p 20265 dgx@1.tcp.in.ngrok.io "cd /home/dgx/dgx_irkg_be && git pull origin main && ./cleanup_uvicorn.sh"
+          ssh -v -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null BatchMode=yes -p 20265 dgx@1.tcp.in.ngrok.io "cd /home/dgx/dgx_irkg_be && git pull origin main && ./cleanup_uvicorn.sh"
 
     environment:
       name: development  # This can be used to define environment-specific variables or settings
