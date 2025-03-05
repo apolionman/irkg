@@ -417,6 +417,14 @@
         "documentation": {}
     },
     {
+        "label": "status",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "authenticate_user",
         "importPath": "app.core.utils",
         "description": "app.core.utils",
