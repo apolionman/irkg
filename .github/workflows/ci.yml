@@ -28,7 +28,10 @@ jobs:
           echo "Pulling latest changes"
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -p 20265 dgx@1.tcp.in.ngrok.io << 'EOF'
             cd /home/dgx/dgx_irkg_be
-            git pull origin main
+            git status  # Check current status
+            git fetch --all  # Fetch latest updates
+            git reset --hard origin/main  # Force sync with the latest code
+            git pull origin main  # Pull latest changes
             
             # Install new pip packages
             source venv/bin/activate  # Activate virtual environment (if using one)
