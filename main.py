@@ -1,5 +1,5 @@
 import asyncio
-from fastapi import FastAPI, HTTPException, File, UploadFile, Form, Query
+from fastapi import FastAPI, Depends, HTTPException, File, UploadFile, Form, Query
 from jose import JWTError, jwt
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
