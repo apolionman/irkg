@@ -1,16 +1,20 @@
 import asyncio
 from fastapi import FastAPI, HTTPException, File, UploadFile, Form, Query
+from jose import JWTError, jwt
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from uuid import uuid4
 import shutil
 import aiofiles
-from ORFfinder import run_orffinder, parse_orf_result
+from app.scripts.ORFfinder import run_orffinder, parse_orf_result
 from clinvar_query_v1 import fetch_clinvar_variations, fetch_fasta
 from typing import Optional, List
-from txgnn_query import txgnn_query
-from schemas import *
+from app.scripts.txgnn_query import txgnn_query
+from app.schemas.schemas import *
+from app.core.config import SECRET_KEY, ALGORITHM, oauth2_scheme, fake_users_db
+from app.core.utils import get_user
+from app.routes.auth import router as auth_router
 import json
 
 
@@ -30,6 +34,30 @@ app.add_middleware(
 )
 
 os.environ["PATH"] = os.path.expanduser("~") + "/edirect:" + os.environ["PATH"]
+
+# Include authentication routes
+app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
+
+async def get_current_user(token: str = Depends(oauth2_scheme)):
+    """Validate JWT token and retrieve current user."""
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+        if username is None:
+            raise HTTPException(status_code=401, detail="Invalid token")
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Could not validate credentials")
+    
+    user = get_user(fake_users_db, username)
+    if user is None:
+        raise HTTPException(status_code=401, detail="User not found")
+    
+    return user
+
+@app.get("/users/me")
+async def read_users_me(current_user: dict = Depends(get_current_user)):
+    """Retrieve the authenticated user's information."""
+    return current_user
 
 @app.post("/run_orffinder/")
 async def run_orf(

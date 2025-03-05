@@ -1,5 +1,13 @@
 [
     {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -13,6 +21,63 @@
         "description": "datetime",
         "isExtraImport": true,
         "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "CryptContext",
+        "importPath": "passlib.context",
+        "description": "passlib.context",
+        "isExtraImport": true,
+        "detail": "passlib.context",
+        "documentation": {}
+    },
+    {
+        "label": "OAuth2PasswordBearer",
+        "importPath": "fastapi.security",
+        "description": "fastapi.security",
+        "isExtraImport": true,
+        "detail": "fastapi.security",
+        "documentation": {}
+    },
+    {
+        "label": "OAuth2PasswordRequestForm",
+        "importPath": "fastapi.security",
+        "description": "fastapi.security",
+        "isExtraImport": true,
+        "detail": "fastapi.security",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
         "documentation": {}
     },
     {
@@ -88,19 +153,123 @@
         "documentation": {}
     },
     {
-        "label": "CryptContext",
-        "importPath": "passlib.context",
-        "description": "passlib.context",
+        "label": "JWTError",
+        "importPath": "jose",
+        "description": "jose",
         "isExtraImport": true,
-        "detail": "passlib.context",
+        "detail": "jose",
         "documentation": {}
     },
     {
-        "label": "OAuth2PasswordBearer",
-        "importPath": "fastapi.security",
-        "description": "fastapi.security",
+        "label": "jwt",
+        "importPath": "jose",
+        "description": "jose",
         "isExtraImport": true,
-        "detail": "fastapi.security",
+        "detail": "jose",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "ALGORITHM",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "pwd_context",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "fake_users_db",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "ACCESS_TOKEN_EXPIRE_MINUTES",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "fake_users_db",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "ALGORITHM",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "oauth2_scheme",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "fake_users_db",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "UserInDB",
+        "importPath": "app.models.user",
+        "description": "app.models.user",
+        "isExtraImport": true,
+        "detail": "app.models.user",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.models.user",
+        "description": "app.models.user",
+        "isExtraImport": true,
+        "detail": "app.models.user",
+        "documentation": {}
+    },
+    {
+        "label": "UserInDB",
+        "importPath": "app.models.user",
+        "description": "app.models.user",
+        "isExtraImport": true,
+        "detail": "app.models.user",
         "documentation": {}
     },
     {
@@ -128,64 +297,35 @@
         "documentation": {}
     },
     {
-        "label": "os",
-        "kind": 6,
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
         "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
+        "detail": "fastapi",
         "documentation": {}
     },
     {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
         "isExtraImport": true,
-        "detail": "dotenv",
+        "detail": "fastapi",
         "documentation": {}
     },
     {
-        "label": "Enum",
-        "importPath": "enum",
-        "description": "enum",
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
         "isExtraImport": true,
-        "detail": "enum",
+        "detail": "fastapi",
         "documentation": {}
     },
     {
-        "label": "subprocess",
-        "kind": 6,
+        "label": "status",
+        "importPath": "fastapi",
+        "description": "fastapi",
         "isExtraImport": true,
-        "importPath": "subprocess",
-        "description": "subprocess",
-        "detail": "subprocess",
-        "documentation": {}
-    },
-    {
-        "label": "re",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "re",
-        "description": "re",
-        "detail": "re",
-        "documentation": {}
-    },
-    {
-        "label": "xml.etree.ElementTree",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "xml.etree.ElementTree",
-        "description": "xml.etree.ElementTree",
-        "detail": "xml.etree.ElementTree",
-        "documentation": {}
-    },
-    {
-        "label": "asyncio",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "asyncio",
-        "description": "asyncio",
-        "detail": "asyncio",
+        "detail": "fastapi",
         "documentation": {}
     },
     {
@@ -250,6 +390,74 @@
         "description": "fastapi",
         "isExtraImport": true,
         "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate_user",
+        "importPath": "app.core.utils",
+        "description": "app.core.utils",
+        "isExtraImport": true,
+        "detail": "app.core.utils",
+        "documentation": {}
+    },
+    {
+        "label": "create_access_token",
+        "importPath": "app.core.utils",
+        "description": "app.core.utils",
+        "isExtraImport": true,
+        "detail": "app.core.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_user",
+        "importPath": "app.core.utils",
+        "description": "app.core.utils",
+        "isExtraImport": true,
+        "detail": "app.core.utils",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "xml.etree.ElementTree",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "xml.etree.ElementTree",
+        "description": "xml.etree.ElementTree",
+        "detail": "xml.etree.ElementTree",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
         "documentation": {}
     },
     {
@@ -330,18 +538,18 @@
     },
     {
         "label": "*",
-        "importPath": "schemas",
-        "description": "schemas",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
         "isExtraImport": true,
-        "detail": "schemas",
+        "detail": "app.schemas.schemas",
         "documentation": {}
     },
     {
         "label": "*",
-        "importPath": "schemas",
-        "description": "schemas",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
         "isExtraImport": true,
-        "detail": "schemas",
+        "detail": "app.schemas.schemas",
         "documentation": {}
     },
     {
@@ -380,18 +588,18 @@
     },
     {
         "label": "run_orffinder",
-        "importPath": "ORFfinder",
-        "description": "ORFfinder",
+        "importPath": "app.scripts.ORFfinder",
+        "description": "app.scripts.ORFfinder",
         "isExtraImport": true,
-        "detail": "ORFfinder",
+        "detail": "app.scripts.ORFfinder",
         "documentation": {}
     },
     {
         "label": "parse_orf_result",
-        "importPath": "ORFfinder",
-        "description": "ORFfinder",
+        "importPath": "app.scripts.ORFfinder",
+        "description": "app.scripts.ORFfinder",
         "isExtraImport": true,
-        "detail": "ORFfinder",
+        "detail": "app.scripts.ORFfinder",
         "documentation": {}
     },
     {
@@ -412,37 +620,18 @@
     },
     {
         "label": "txgnn_query",
-        "importPath": "txgnn_query",
-        "description": "txgnn_query",
+        "importPath": "app.scripts.txgnn_query",
+        "description": "app.scripts.txgnn_query",
         "isExtraImport": true,
-        "detail": "txgnn_query",
+        "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
     {
-        "label": "Token",
-        "kind": 6,
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "peekOfCode": "class Token(BaseModel):\n    access_token: str\n    token_type: str\nclass User(BaseModel):\n    username: str\n    email: Optional[str] = None\n    full_name: Optional[str] = None\n    disabled: Optional[bool] = None\nclass UserInDB(User):\n    hashed_password: str",
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "kind": 6,
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "peekOfCode": "class User(BaseModel):\n    username: str\n    email: Optional[str] = None\n    full_name: Optional[str] = None\n    disabled: Optional[bool] = None\nclass UserInDB(User):\n    hashed_password: str",
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "UserInDB",
-        "kind": 6,
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "peekOfCode": "class UserInDB(User):\n    hashed_password: str",
-        "detail": "app.core.config",
+        "label": "router",
+        "importPath": "app.routes.auth",
+        "description": "app.routes.auth",
+        "isExtraImport": true,
+        "detail": "app.routes.auth",
         "documentation": {}
     },
     {
@@ -450,7 +639,7 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "SECRET_KEY = os.getenv('SECRET_KEY')\nALGORITHM = \"HS256\"\nACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing context\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 password bearer token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Fake database (Replace with actual database queries)\nfake_users_db = {\n    \"testuser\": {",
+        "peekOfCode": "SECRET_KEY = os.getenv('SECRET_KEY')\nALGORITHM = \"HS256\"\nACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing configuration\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"testuser\": {",
         "detail": "app.core.config",
         "documentation": {}
     },
@@ -459,7 +648,7 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "ALGORITHM = \"HS256\"\nACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing context\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 password bearer token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Fake database (Replace with actual database queries)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"testuser\",",
+        "peekOfCode": "ALGORITHM = \"HS256\"\nACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing configuration\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"admin_dgx\",",
         "detail": "app.core.config",
         "documentation": {}
     },
@@ -468,7 +657,7 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "ACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing context\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 password bearer token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Fake database (Replace with actual database queries)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"testuser\",\n        \"full_name\": \"Test User\",",
+        "peekOfCode": "ACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing configuration\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",",
         "detail": "app.core.config",
         "documentation": {}
     },
@@ -477,7 +666,7 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "pwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 password bearer token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Fake database (Replace with actual database queries)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"testuser\",\n        \"full_name\": \"Test User\",\n        \"email\": \"test@example.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),",
+        "peekOfCode": "pwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",\n        \"email\": \"info@dgx.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),",
         "detail": "app.core.config",
         "documentation": {}
     },
@@ -486,7 +675,7 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "oauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Fake database (Replace with actual database queries)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"testuser\",\n        \"full_name\": \"Test User\",\n        \"email\": \"test@example.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),\n        \"disabled\": False,\n    }",
+        "peekOfCode": "oauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",\n        \"email\": \"info@dgx.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),\n        \"disabled\": False,\n    }",
         "detail": "app.core.config",
         "documentation": {}
     },
@@ -495,8 +684,71 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "fake_users_db = {\n    \"testuser\": {\n        \"username\": \"testuser\",\n        \"full_name\": \"Test User\",\n        \"email\": \"test@example.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),\n        \"disabled\": False,\n    }\n}\n# User models",
+        "peekOfCode": "fake_users_db = {\n    \"testuser\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",\n        \"email\": \"info@dgx.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),\n        \"disabled\": False,\n    }\n}",
         "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "verify_password",
+        "kind": 2,
+        "importPath": "app.core.utils",
+        "description": "app.core.utils",
+        "peekOfCode": "def verify_password(plain_password, hashed_password):\n    \"\"\"Verify if a given password matches the hashed password.\"\"\"\n    return pwd_context.verify(plain_password, hashed_password)\ndef get_user(db, username: str):\n    \"\"\"Retrieve user from the database.\"\"\"\n    user = db.get(username)\n    if user:\n        return UserInDB(**user)\ndef authenticate_user(fake_db, username: str, password: str):\n    \"\"\"Authenticate user by checking username and password.\"\"\"",
+        "detail": "app.core.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_user",
+        "kind": 2,
+        "importPath": "app.core.utils",
+        "description": "app.core.utils",
+        "peekOfCode": "def get_user(db, username: str):\n    \"\"\"Retrieve user from the database.\"\"\"\n    user = db.get(username)\n    if user:\n        return UserInDB(**user)\ndef authenticate_user(fake_db, username: str, password: str):\n    \"\"\"Authenticate user by checking username and password.\"\"\"\n    user = get_user(fake_db, username)\n    if not user or not verify_password(password, user.hashed_password):\n        return False",
+        "detail": "app.core.utils",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate_user",
+        "kind": 2,
+        "importPath": "app.core.utils",
+        "description": "app.core.utils",
+        "peekOfCode": "def authenticate_user(fake_db, username: str, password: str):\n    \"\"\"Authenticate user by checking username and password.\"\"\"\n    user = get_user(fake_db, username)\n    if not user or not verify_password(password, user.hashed_password):\n        return False\n    return user\ndef create_access_token(data: dict, expires_delta: Optional[timedelta] = None):\n    \"\"\"Create a JWT token with an expiration time.\"\"\"\n    to_encode = data.copy()\n    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=15))",
+        "detail": "app.core.utils",
+        "documentation": {}
+    },
+    {
+        "label": "create_access_token",
+        "kind": 2,
+        "importPath": "app.core.utils",
+        "description": "app.core.utils",
+        "peekOfCode": "def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):\n    \"\"\"Create a JWT token with an expiration time.\"\"\"\n    to_encode = data.copy()\n    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=15))\n    to_encode.update({\"exp\": expire})\n    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)",
+        "detail": "app.core.utils",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "app.models.user",
+        "description": "app.models.user",
+        "peekOfCode": "class User(BaseModel):\n    username: str\n    email: Optional[str] = None\n    full_name: Optional[str] = None\n    disabled: Optional[bool] = None\nclass UserInDB(User):\n    hashed_password: str",
+        "detail": "app.models.user",
+        "documentation": {}
+    },
+    {
+        "label": "UserInDB",
+        "kind": 6,
+        "importPath": "app.models.user",
+        "description": "app.models.user",
+        "peekOfCode": "class UserInDB(User):\n    hashed_password: str",
+        "detail": "app.models.user",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "app.routes.auth",
+        "description": "app.routes.auth",
+        "peekOfCode": "router = APIRouter()\n@router.post(\"/token\")\nasync def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):\n    \"\"\"Login route to authenticate users and return an access token.\"\"\"\n    user = authenticate_user(fake_users_db, form_data.username, form_data.password)\n    if not user:\n        raise HTTPException(\n            status_code=status.HTTP_401_UNAUTHORIZED,\n            detail=\"Incorrect username or password\",\n            headers={\"WWW-Authenticate\": \"Bearer\"},",
+        "detail": "app.routes.auth",
         "documentation": {}
     },
     {
@@ -657,7 +909,7 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "os.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\n@app.post(\"/run_orffinder/\")\nasync def run_orf(\n    fasta_sequence: Optional[str] = Form(None),\n    file: Optional[UploadFile] = File(None)\n):\n    if not fasta_sequence and not file:\n        raise HTTPException(status_code=400, detail=\"Either 'fasta_sequence' or 'file' is required\")\n    input_filename = f\"input_{uuid4()}.fasta\"\n    output_filename = f\"output_{uuid4()}.txt\"",
+        "peekOfCode": "os.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\n# Include authentication routes\napp.include_router(auth_router, prefix=\"/auth\", tags=[\"Authentication\"])\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    \"\"\"Validate JWT token and retrieve current user.\"\"\"\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise HTTPException(status_code=401, detail=\"Invalid token\")",
         "detail": "main",
         "documentation": {}
     }

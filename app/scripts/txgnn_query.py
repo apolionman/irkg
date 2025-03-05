@@ -6,7 +6,7 @@ from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from txgnn import TxData, TxGNN, TxEval
 import json
-from schemas import *
+from app.schemas.schemas import *
 
 def get_node_id_by_name(input_name):
     df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/disease_sorted_nodes.csv', delimiter='\t', dtype=str)
