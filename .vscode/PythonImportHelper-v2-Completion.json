@@ -81,14 +81,6 @@
         "documentation": {}
     },
     {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
-        "documentation": {}
-    },
-    {
         "label": "Optional",
         "importPath": "typing",
         "description": "typing",
@@ -951,24 +943,6 @@
         "importPath": "main",
         "description": "main",
         "peekOfCode": "app = FastAPI()\n# origins = [\n#     \"http://localhost:5174\" # front-end domain\n# ]\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],  # Or specify [\"http://yourfrontend.com\"]\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "SECRET_KEY",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "SECRET_KEY = \"your_secret_key\"\nALGORITHM = \"HS256\"\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\n# Include authentication routes\napp.include_router(auth_router, prefix=\"/auth\", tags=[\"Authentication\"])\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"auth/token\")\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    \"\"\"Validate JWT token and retrieve current user.\"\"\"\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "ALGORITHM",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "ALGORITHM = \"HS256\"\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\n# Include authentication routes\napp.include_router(auth_router, prefix=\"/auth\", tags=[\"Authentication\"])\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"auth/token\")\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    \"\"\"Validate JWT token and retrieve current user.\"\"\"\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")",
         "detail": "main",
         "documentation": {}
     },

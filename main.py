@@ -18,10 +18,6 @@ from app.core.utils import get_user
 from app.routes.auth import router as auth_router
 import json
 
-import os
-from dotenv import load_dotenv
-load_dotenv(dotenv_path='./.env')
-
 # Create FastAPI instance
 app = FastAPI()
 
@@ -36,9 +32,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-SECRET_KEY = "your_secret_key"
-ALGORITHM = "HS256"
 
 os.environ["PATH"] = os.path.expanduser("~") + "/edirect:" + os.environ["PATH"]
 
