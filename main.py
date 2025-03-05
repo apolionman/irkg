@@ -62,7 +62,8 @@ async def read_users_me(current_user: dict = Depends(get_current_user)):
 @app.post("/run_orffinder/")
 async def run_orf(
     fasta_sequence: Optional[str] = Form(None),
-    file: Optional[UploadFile] = File(None)
+    file: Optional[UploadFile] = File(None),
+    current_user: dict = Depends(get_current_user)
 ):
     if not fasta_sequence and not file:
         raise HTTPException(status_code=400, detail="Either 'fasta_sequence' or 'file' is required")
@@ -103,14 +104,20 @@ async def run_orf(
 
 
 @app.post("/get_clinvar_data/")
-async def get_clinvar_data(request: GeneRequest):
+async def get_clinvar_data(
+        request: GeneRequest,
+        current_user: dict = Depends(get_current_user)
+    ):
     gene_name = request.gene
     result = await fetch_clinvar_variations(gene_name)  # Await the coroutine here
     return result
 
 
 @app.post("/nucleotide_fasta/")
-async def nucleotide_fasta(request: NucleotideReq):
+async def nucleotide_fasta(
+        request: NucleotideReq,
+        current_user: dict = Depends(get_current_user)
+    ):
     nucleotide_name = request.nucleotide
     loop = asyncio.get_event_loop()
     result = await loop.run_in_executor(None, fetch_fasta, nucleotide_name)
@@ -118,7 +125,11 @@ async def nucleotide_fasta(request: NucleotideReq):
 
 
 @app.get("/txgnn_query", response_model=DiseaseResponse)
-async def get_txgnn_results(disease_name: str, relation: RelationReq, _range: int):
+async def get_txgnn_results(
+        disease_name: str, 
+        relation: RelationReq, _range: int,
+        current_user: dict = Depends(get_current_user)
+    ):
     """
     API endpoint to query TxGNN for drug scores based on disease name.
     """

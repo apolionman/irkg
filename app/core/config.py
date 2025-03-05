@@ -17,7 +17,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 # Mock database (Replace with real database)
 fake_users_db = {
-    "testuser": {
+    "admin_dgx": {
         "username": "admin_dgx",
         "full_name": "I am Prepaire DGX",
         "email": "info@dgx.com",

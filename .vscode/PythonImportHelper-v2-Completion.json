@@ -647,7 +647,7 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "SECRET_KEY = os.getenv('SECRET_KEY')\nALGORITHM = \"HS256\"\nACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing configuration\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"testuser\": {",
+        "peekOfCode": "SECRET_KEY = os.getenv('SECRET_KEY')\nALGORITHM = \"HS256\"\nACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing configuration\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"admin_dgx\": {",
         "detail": "app.core.config",
         "documentation": {}
     },
@@ -656,7 +656,7 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "ALGORITHM = \"HS256\"\nACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing configuration\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"admin_dgx\",",
+        "peekOfCode": "ALGORITHM = \"HS256\"\nACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing configuration\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"admin_dgx\": {\n        \"username\": \"admin_dgx\",",
         "detail": "app.core.config",
         "documentation": {}
     },
@@ -665,7 +665,7 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "ACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing configuration\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",",
+        "peekOfCode": "ACCESS_TOKEN_EXPIRE_MINUTES = 60\n# Password hashing configuration\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"admin_dgx\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",",
         "detail": "app.core.config",
         "documentation": {}
     },
@@ -674,7 +674,7 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "pwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",\n        \"email\": \"info@dgx.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),",
+        "peekOfCode": "pwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n# OAuth2 Bearer Token\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"admin_dgx\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",\n        \"email\": \"info@dgx.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),",
         "detail": "app.core.config",
         "documentation": {}
     },
@@ -683,7 +683,7 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "oauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"testuser\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",\n        \"email\": \"info@dgx.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),\n        \"disabled\": False,\n    }",
+        "peekOfCode": "oauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n# Mock database (Replace with real database)\nfake_users_db = {\n    \"admin_dgx\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",\n        \"email\": \"info@dgx.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),\n        \"disabled\": False,\n    }",
         "detail": "app.core.config",
         "documentation": {}
     },
@@ -692,7 +692,7 @@
         "kind": 5,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "fake_users_db = {\n    \"testuser\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",\n        \"email\": \"info@dgx.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),\n        \"disabled\": False,\n    }\n}",
+        "peekOfCode": "fake_users_db = {\n    \"admin_dgx\": {\n        \"username\": \"admin_dgx\",\n        \"full_name\": \"I am Prepaire DGX\",\n        \"email\": \"info@dgx.com\",\n        \"hashed_password\": pwd_context.hash(\"password123\"),\n        \"disabled\": False,\n    }\n}",
         "detail": "app.core.config",
         "documentation": {}
     },
