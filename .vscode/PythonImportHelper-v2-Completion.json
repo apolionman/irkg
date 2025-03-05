@@ -612,18 +612,18 @@
     },
     {
         "label": "fetch_clinvar_variations",
-        "importPath": "clinvar_query_v1",
-        "description": "clinvar_query_v1",
+        "importPath": "app.scripts.clinvar_query_v1",
+        "description": "app.scripts.clinvar_query_v1",
         "isExtraImport": true,
-        "detail": "clinvar_query_v1",
+        "detail": "app.scripts.clinvar_query_v1",
         "documentation": {}
     },
     {
         "label": "fetch_fasta",
-        "importPath": "clinvar_query_v1",
-        "description": "clinvar_query_v1",
+        "importPath": "app.scripts.clinvar_query_v1",
+        "description": "app.scripts.clinvar_query_v1",
         "isExtraImport": true,
-        "detail": "clinvar_query_v1",
+        "detail": "app.scripts.clinvar_query_v1",
         "documentation": {}
     },
     {

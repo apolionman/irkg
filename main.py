@@ -8,7 +8,7 @@ from uuid import uuid4
 import shutil
 import aiofiles
 from app.scripts.ORFfinder import run_orffinder, parse_orf_result
-from clinvar_query_v1 import fetch_clinvar_variations, fetch_fasta
+from app.scripts.clinvar_query_v1 import fetch_clinvar_variations, fetch_fasta
 from typing import Optional, List
 from app.scripts.txgnn_query import txgnn_query
 from app.schemas.schemas import *
