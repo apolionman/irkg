@@ -98,9 +98,9 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
 
         limited_result = results.iloc[0]['Prediction'].copy()
         ranked_result = results.iloc[0]['Ranked List'].copy()
-        max_score = max(limited_result, key=lambda x: x[1])[1]
-        min_score = min(limited_result, key=lambda x: x[1])[1]
-
+        max_score = max(limited_result.items(), key=lambda x: x[1])[1]
+        min_score = min(limited_result.items(), key=lambda x: x[1])[1]
+        threshold = 47
         normalized_predictions = {
             drug: (float(score) - float(min_score)) / (float(max_score) - float(min_score))
             for drug, score in limited_result.items()
@@ -111,7 +111,9 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
         drugs_info = []
         for drug in ranked_range:
             print(get_drug_id(drug))
-            drugs_info.append(DrugInfo(drug=drug, score=normalized_predictions.get(get_drug_id(drug), None)))
+            score = normalized_predictions.get(get_drug_id(drug), None)
+            print(score)
+            drugs_info.append(DrugInfo(drug=drug, score=score))
 
         # Prepare the response object with the disease name and the list of drugs with scores
         response = DiseaseResponse(
@@ -152,7 +154,7 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
             drugs_info = []
             for drug, score in top_100_predictions:
                 percentage = (score / max_score) * 100
-                drugs_info.append(DrugInfo(drug=get_node_name(drug), score=percentage))
+                drugs_info.append(DrugInfo(drug=get_drug_name(drug), score=percentage))
             
             drugs_info_dict[r] = drugs_info
 
