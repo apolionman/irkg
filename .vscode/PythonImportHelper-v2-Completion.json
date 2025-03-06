@@ -80,11 +80,35 @@
         "documentation": {}
     },
     {
+        "label": "context",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
         "label": "sqlalchemy",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "engine_from_config",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "pool",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
         "detail": "sqlalchemy",
         "documentation": {}
     },
@@ -129,43 +153,11 @@
         "documentation": {}
     },
     {
-        "label": "engine",
-        "importPath": "app.core.database",
-        "description": "app.core.database",
+        "label": "fileConfig",
+        "importPath": "logging.config",
+        "description": "logging.config",
         "isExtraImport": true,
-        "detail": "app.core.database",
-        "documentation": {}
-    },
-    {
-        "label": "get_db",
-        "importPath": "app.core.database",
-        "description": "app.core.database",
-        "isExtraImport": true,
-        "detail": "app.core.database",
-        "documentation": {}
-    },
-    {
-        "label": "Base",
-        "importPath": "app.models.models",
-        "description": "app.models.models",
-        "isExtraImport": true,
-        "detail": "app.models.models",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "app.models.models",
-        "description": "app.models.models",
-        "isExtraImport": true,
-        "detail": "app.models.models",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "importPath": "app.models.models",
-        "description": "app.models.models",
-        "isExtraImport": true,
-        "detail": "app.models.models",
+        "detail": "logging.config",
         "documentation": {}
     },
     {
@@ -259,14 +251,6 @@
     },
     {
         "label": "create_async_engine",
-        "importPath": "sqlalchemy.ext.asyncio",
-        "description": "sqlalchemy.ext.asyncio",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.ext.asyncio",
-        "documentation": {}
-    },
-    {
-        "label": "AsyncSession",
         "importPath": "sqlalchemy.ext.asyncio",
         "description": "sqlalchemy.ext.asyncio",
         "isExtraImport": true,
@@ -700,6 +684,14 @@
         "documentation": {}
     },
     {
+        "label": "get_db",
+        "importPath": "app.core.database",
+        "description": "app.core.database",
+        "isExtraImport": true,
+        "detail": "app.core.database",
+        "documentation": {}
+    },
+    {
         "label": "Enum",
         "importPath": "enum",
         "description": "enum",
@@ -811,11 +803,19 @@
         "documentation": {}
     },
     {
-        "label": "select",
-        "importPath": "sqlalchemy.future",
-        "description": "sqlalchemy.future",
+        "label": "*",
+        "importPath": "app.models.models",
+        "description": "app.models.models",
         "isExtraImport": true,
-        "detail": "sqlalchemy.future",
+        "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "isExtraImport": true,
+        "detail": "app.models.models",
         "documentation": {}
     },
     {
@@ -1313,11 +1313,38 @@
         "documentation": {}
     },
     {
+        "label": "run_migrations_offline",
+        "kind": 2,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "def run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation\n    we don't even need a DBAPI to be available.\n    Calls to context.execute() here emit the given string to the\n    script output.\n    \"\"\"\n    url = config.get_main_option(\"sqlalchemy.url\")",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
         "label": "run_migrations_online",
         "kind": 2,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "def run_migrations_online():\n    connectable = engine\n    with connectable.connect() as connection:\n        context.configure(\n            connection=connection, target_metadata=Base.metadata\n        )\n        with context.begin_transaction():\n            context.run_migrations()",
+        "peekOfCode": "def run_migrations_online() -> None:\n    \"\"\"Run migrations in 'online' mode.\n    In this scenario we need to create an Engine\n    and associate a connection with the context.\n    \"\"\"\n    connectable = engine_from_config(\n        config.get_section(config.config_ini_section, {}),\n        prefix=\"sqlalchemy.\",\n        poolclass=pool.NullPool,\n    )",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "config = context.config\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\n# add your model's MetaData object here\n# for 'autogenerate' support\n# from myapp import mymodel\n# target_metadata = mymodel.Base.metadata\ntarget_metadata = None",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "target_metadata",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "target_metadata = None\n# other values from the config, defined by the needs of env.py,\n# can be acquired:\n# my_important_option = config.get_main_option(\"my_important_option\")\n# ... etc.\ndef run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation",
         "detail": "alembic.env",
         "documentation": {}
     },
@@ -1641,7 +1668,16 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def get_node_name(node_id):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_id'] == node_id]\n    if not result.empty:\n        return result['node_name'].iloc[0]\n    else:\n        return None\nasync def save_to_db(response: DiseaseResponse, db_session: AsyncSession):\n    # Create a new DiseaseDrugScore entry\n    disease_record = DiseaseDrugScore(disease_name=response.disease_name)",
+        "peekOfCode": "def get_node_name(node_id):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_id'] == node_id]\n    if not result.empty:\n        return result['node_name'].iloc[0]\n    else:\n        return None\n# def save_to_db(response: DiseaseResponse, db_session: Session):\n#     # Create a new DiseaseDrugScore entry\n#     disease_record = DiseaseDrugScore(disease_name=response.disease_name)",
+        "detail": "app.scripts.txgnn_query",
+        "documentation": {}
+    },
+    {
+        "label": "txgnn_query",
+        "kind": 2,
+        "importPath": "app.scripts.txgnn_query",
+        "description": "app.scripts.txgnn_query",
+        "peekOfCode": "def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:\n    TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\n    TxD.prepare_split(split='full_graph', seed=42)\n    TxG = TxGNN(data=TxD, \n                  weight_bias_track=False,\n                  proj_name='TxGNN',\n                  exp_name='TxGNN',\n                  device='cpu'\n                 )\n    TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
