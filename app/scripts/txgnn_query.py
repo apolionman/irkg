@@ -52,13 +52,12 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
                   exp_name='TxGNN',
                   device='cuda:0'
                  )
-    TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/TxGNNExplorer')
-    TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')
     
+    TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')
+    # TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')
     TxE = TxEval(model=TxG)
     disease_idx = get_node_id_by_name(disease_name)
-    # print(disease_idx)
-    # Run evaluation
+
     if relation != 'auto':
         save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'
         TxE.eval_disease_centric(disease_idxs=disease_idx, 
@@ -68,7 +67,7 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
                                     save_result=True,
                                     return_raw=False,
                                     save_name=save_path)
-	    
+
         # Load saved results
         with open(save_path, 'rb') as f:
             data = pickle.load(f)

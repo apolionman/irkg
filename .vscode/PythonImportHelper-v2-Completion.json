@@ -915,7 +915,7 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:\n    TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\n    TxD.prepare_split(split='full_graph', seed=42)\n    TxG = TxGNN(data=TxD, \n                  weight_bias_track=False,\n                  proj_name='TxGNN',\n                  exp_name='TxGNN',\n                  device='cuda:0'\n                 )\n    TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/TxGNNExplorer')",
+        "peekOfCode": "def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:\n    TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\n    TxD.prepare_split(split='full_graph', seed=42)\n    TxG = TxGNN(data=TxD, \n                  weight_bias_track=False,\n                  proj_name='TxGNN',\n                  exp_name='TxGNN',\n                  device='cuda:0'\n                 )\n    TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
