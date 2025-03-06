@@ -50,7 +50,7 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
                   weight_bias_track=False,
                   proj_name='TxGNN',
                   exp_name='TxGNN',
-                  device='cuda:0'
+                  device='cpu'
                  )
     
     TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')
