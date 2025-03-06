@@ -4,3 +4,4 @@ TxGNN/
 .venv
 alembic/
 alembic.ini
+requirements copy.txt

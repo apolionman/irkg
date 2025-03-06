@@ -29,13 +29,13 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     
     return user
 
-@router.get("/protected-route")
-def protected_route(username: str = Depends(get_current_user)):
-    return {"message": f"Hello, {username}! You're authorized."}
+# @router.get("/protected-route")
+# def protected_route(username: str = Depends(get_current_user)):
+#     return {"message": f"Hello, {username}! You're authorized."}
 
-@router.get("/users/me")
-async def read_users_me(current_user: dict = Depends(get_current_user)):
-    return current_user
+# @router.get("/users/me")
+# async def read_users_me(current_user: dict = Depends(get_current_user)):
+#     return current_user
 
 @router.post("/run_orffinder/")
 async def run_orf(
