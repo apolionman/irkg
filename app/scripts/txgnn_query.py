@@ -8,6 +8,7 @@ from txgnn import TxData, TxGNN, TxEval
 import json
 from app.schemas.schemas import *
 from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.models import *
 
 def get_node_id_by_name(input_name):
@@ -43,22 +44,24 @@ def get_node_name(node_id):
     else:
         return None
 
-def save_to_db(response: DiseaseResponse, db_session: Session):
+async def save_to_db(response: DiseaseResponse, db_session: AsyncSession):
     # Create a new DiseaseDrugScore entry
     disease_record = DiseaseDrugScore(disease_name=response.disease_name)
     db_session.add(disease_record)
-    db_session.commit()
+    await db_session.commit()  # Commit asynchronously
 
     for drug_info in response.drugs:
         drug_record = DrugInformation(drug=drug_info.drug, score=drug_info.score, disease_id=disease_record.id)
         db_session.add(drug_record)
 
-    db_session.commit()
+    await db_session.commit()  # Commit asynchronously
 
     return disease_record.id
 
-def txgnn_query(disease_name: List[str], relation: str, _range: int, db_session: Session) -> DiseaseResponse:
-    existing_disease = db_session.query(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == disease_name[0]).first()
+async def txgnn_query(disease_name: List[str], relation: str, _range: int, db_session: AsyncSession) -> DiseaseResponse:
+    # Use async session to query database
+    result = await db_session.execute(select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == disease_name[0]))
+    existing_disease = result.scalars().first()
 
     if existing_disease:
         # If the disease exists, get the associated drugs
@@ -83,7 +86,6 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int, db_session:
                  )
     
     TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')
-    # TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')
     TxE = TxEval(model=TxG)
     disease_idx = get_node_id_by_name(disease_name)
 
@@ -168,6 +170,7 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int, db_session:
             disease_name=disease_name[0] if isinstance(disease_name, list) else disease_name,
             drugs=final_drugs
         )		
-    disease_id = save_to_db(response, db_session)
-    # Return the dictionary representation of the response
+
+    disease_id = await save_to_db(response, db_session)  # Make sure this is asynchronous
+
     return response

@@ -282,6 +282,14 @@
         "documentation": {}
     },
     {
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
         "label": "sessionmaker",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
@@ -1625,25 +1633,7 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def get_node_name(node_id):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_id'] == node_id]\n    if not result.empty:\n        return result['node_name'].iloc[0]\n    else:\n        return None\ndef save_to_db(response: DiseaseResponse, db_session: Session):\n    # Create a new DiseaseDrugScore entry\n    disease_record = DiseaseDrugScore(disease_name=response.disease_name)",
-        "detail": "app.scripts.txgnn_query",
-        "documentation": {}
-    },
-    {
-        "label": "save_to_db",
-        "kind": 2,
-        "importPath": "app.scripts.txgnn_query",
-        "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def save_to_db(response: DiseaseResponse, db_session: Session):\n    # Create a new DiseaseDrugScore entry\n    disease_record = DiseaseDrugScore(disease_name=response.disease_name)\n    db_session.add(disease_record)\n    db_session.commit()\n    for drug_info in response.drugs:\n        drug_record = DrugInformation(drug=drug_info.drug, score=drug_info.score, disease_id=disease_record.id)\n        db_session.add(drug_record)\n    db_session.commit()\n    return disease_record.id",
-        "detail": "app.scripts.txgnn_query",
-        "documentation": {}
-    },
-    {
-        "label": "txgnn_query",
-        "kind": 2,
-        "importPath": "app.scripts.txgnn_query",
-        "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def txgnn_query(disease_name: List[str], relation: str, _range: int, db_session: Session) -> DiseaseResponse:\n    existing_disease = db_session.query(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == disease_name[0]).first()\n    if existing_disease:\n        # If the disease exists, get the associated drugs\n        drugs_info = [\n            DrugInfo(drug=drug.drug, score=drug.score)\n            for drug in existing_disease.drugs\n        ]\n        # Return the response from the database\n        return DiseaseResponse(",
+        "peekOfCode": "def get_node_name(node_id):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_id'] == node_id]\n    if not result.empty:\n        return result['node_name'].iloc[0]\n    else:\n        return None\nasync def save_to_db(response: DiseaseResponse, db_session: AsyncSession):\n    # Create a new DiseaseDrugScore entry\n    disease_record = DiseaseDrugScore(disease_name=response.disease_name)",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
