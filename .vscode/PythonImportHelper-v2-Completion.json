@@ -1,5 +1,61 @@
 [
     {
+        "label": "fileConfig",
+        "importPath": "logging.config",
+        "description": "logging.config",
+        "isExtraImport": true,
+        "detail": "logging.config",
+        "documentation": {}
+    },
+    {
+        "label": "engine_from_config",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "pool",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "context",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
         "label": "timedelta",
         "importPath": "datetime",
         "description": "datetime",
@@ -56,14 +112,6 @@
         "documentation": {}
     },
     {
-        "label": "OAuth2PasswordBearer",
-        "importPath": "fastapi.security",
-        "description": "fastapi.security",
-        "isExtraImport": true,
-        "detail": "fastapi.security",
-        "documentation": {}
-    },
-    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -78,6 +126,62 @@
         "description": "dotenv",
         "isExtraImport": true,
         "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "create_async_engine",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
         "documentation": {}
     },
     {
@@ -122,22 +226,6 @@
     },
     {
         "label": "Dict",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "List",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -249,14 +337,6 @@
         "documentation": {}
     },
     {
-        "label": "fake_users_db",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
         "label": "UserInDB",
         "importPath": "app.models.user",
         "description": "app.models.user",
@@ -278,14 +358,6 @@
         "description": "app.models.user",
         "isExtraImport": true,
         "detail": "app.models.user",
-        "documentation": {}
-    },
-    {
-        "label": "BaseModel",
-        "importPath": "pydantic",
-        "description": "pydantic",
-        "isExtraImport": true,
-        "detail": "pydantic",
         "documentation": {}
     },
     {
@@ -337,23 +409,7 @@
         "documentation": {}
     },
     {
-        "label": "FastAPI",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "FastAPI",
+        "label": "APIRouter",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
@@ -417,6 +473,30 @@
         "documentation": {}
     },
     {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "authenticate_user",
         "importPath": "app.core.utils",
         "description": "app.core.utils",
@@ -438,6 +518,88 @@
         "description": "app.core.utils",
         "isExtraImport": true,
         "detail": "app.core.utils",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "uuid4",
+        "importPath": "uuid",
+        "description": "uuid",
+        "isExtraImport": true,
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "aiofiles",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "aiofiles",
+        "description": "aiofiles",
+        "detail": "aiofiles",
+        "documentation": {}
+    },
+    {
+        "label": "run_orffinder",
+        "importPath": "app.scripts.ORFfinder",
+        "description": "app.scripts.ORFfinder",
+        "isExtraImport": true,
+        "detail": "app.scripts.ORFfinder",
+        "documentation": {}
+    },
+    {
+        "label": "parse_orf_result",
+        "importPath": "app.scripts.ORFfinder",
+        "description": "app.scripts.ORFfinder",
+        "isExtraImport": true,
+        "detail": "app.scripts.ORFfinder",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_clinvar_variations",
+        "importPath": "app.scripts.clinvar_query_v1",
+        "description": "app.scripts.clinvar_query_v1",
+        "isExtraImport": true,
+        "detail": "app.scripts.clinvar_query_v1",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_fasta",
+        "importPath": "app.scripts.clinvar_query_v1",
+        "description": "app.scripts.clinvar_query_v1",
+        "isExtraImport": true,
+        "detail": "app.scripts.clinvar_query_v1",
+        "documentation": {}
+    },
+    {
+        "label": "txgnn_query",
+        "importPath": "app.scripts.txgnn_query",
+        "description": "app.scripts.txgnn_query",
+        "isExtraImport": true,
+        "detail": "app.scripts.txgnn_query",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas.schemas",
         "documentation": {}
     },
     {
@@ -473,15 +635,6 @@
         "importPath": "xml.etree.ElementTree",
         "description": "xml.etree.ElementTree",
         "detail": "xml.etree.ElementTree",
-        "documentation": {}
-    },
-    {
-        "label": "asyncio",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "asyncio",
-        "description": "asyncio",
-        "detail": "asyncio",
         "documentation": {}
     },
     {
@@ -561,19 +714,19 @@
         "documentation": {}
     },
     {
-        "label": "*",
-        "importPath": "app.schemas.schemas",
-        "description": "app.schemas.schemas",
+        "label": "select",
+        "importPath": "sqlalchemy.future",
+        "description": "sqlalchemy.future",
         "isExtraImport": true,
-        "detail": "app.schemas.schemas",
+        "detail": "sqlalchemy.future",
         "documentation": {}
     },
     {
-        "label": "*",
-        "importPath": "app.schemas.schemas",
-        "description": "app.schemas.schemas",
+        "label": "User",
+        "importPath": "app.models.models",
+        "description": "app.models.models",
         "isExtraImport": true,
-        "detail": "app.schemas.schemas",
+        "detail": "app.models.models",
         "documentation": {}
     },
     {
@@ -585,77 +738,55 @@
         "documentation": {}
     },
     {
-        "label": "uuid4",
-        "importPath": "uuid",
-        "description": "uuid",
-        "isExtraImport": true,
-        "detail": "uuid",
-        "documentation": {}
-    },
-    {
-        "label": "shutil",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "shutil",
-        "description": "shutil",
-        "detail": "shutil",
-        "documentation": {}
-    },
-    {
-        "label": "aiofiles",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "aiofiles",
-        "description": "aiofiles",
-        "detail": "aiofiles",
-        "documentation": {}
-    },
-    {
-        "label": "run_orffinder",
-        "importPath": "app.scripts.ORFfinder",
-        "description": "app.scripts.ORFfinder",
-        "isExtraImport": true,
-        "detail": "app.scripts.ORFfinder",
-        "documentation": {}
-    },
-    {
-        "label": "parse_orf_result",
-        "importPath": "app.scripts.ORFfinder",
-        "description": "app.scripts.ORFfinder",
-        "isExtraImport": true,
-        "detail": "app.scripts.ORFfinder",
-        "documentation": {}
-    },
-    {
-        "label": "fetch_clinvar_variations",
-        "importPath": "app.scripts.clinvar_query_v1",
-        "description": "app.scripts.clinvar_query_v1",
-        "isExtraImport": true,
-        "detail": "app.scripts.clinvar_query_v1",
-        "documentation": {}
-    },
-    {
-        "label": "fetch_fasta",
-        "importPath": "app.scripts.clinvar_query_v1",
-        "description": "app.scripts.clinvar_query_v1",
-        "isExtraImport": true,
-        "detail": "app.scripts.clinvar_query_v1",
-        "documentation": {}
-    },
-    {
-        "label": "txgnn_query",
-        "importPath": "app.scripts.txgnn_query",
-        "description": "app.scripts.txgnn_query",
-        "isExtraImport": true,
-        "detail": "app.scripts.txgnn_query",
-        "documentation": {}
-    },
-    {
         "label": "router",
         "importPath": "app.routes.auth",
         "description": "app.routes.auth",
         "isExtraImport": true,
         "detail": "app.routes.auth",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "importPath": "app.routes.endpoints",
+        "description": "app.routes.endpoints",
+        "isExtraImport": true,
+        "detail": "app.routes.endpoints",
+        "documentation": {}
+    },
+    {
+        "label": "run_migrations_offline",
+        "kind": 2,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "def run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation\n    we don't even need a DBAPI to be available.\n    Calls to context.execute() here emit the given string to the\n    script output.\n    \"\"\"\n    url = config.get_main_option(\"sqlalchemy.url\")",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "run_migrations_online",
+        "kind": 2,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "def run_migrations_online() -> None:\n    \"\"\"Run migrations in 'online' mode.\n    In this scenario we need to create an Engine\n    and associate a connection with the context.\n    \"\"\"\n    connectable = engine_from_config(\n        config.get_section(config.config_ini_section, {}),\n        prefix=\"sqlalchemy.\",\n        poolclass=pool.NullPool,\n    )",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "config = context.config\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\n# add your model's MetaData object here\n# for 'autogenerate' support\n# from myapp import mymodel\n# target_metadata = mymodel.Base.metadata\ntarget_metadata = None",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "target_metadata",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "target_metadata = None\n# other values from the config, defined by the needs of env.py,\n# can be acquired:\n# my_important_option = config.get_main_option(\"my_important_option\")\n# ... etc.\ndef run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation",
+        "detail": "alembic.env",
         "documentation": {}
     },
     {
@@ -713,6 +844,33 @@
         "documentation": {}
     },
     {
+        "label": "DATABASE_URL",
+        "kind": 5,
+        "importPath": "app.core.database",
+        "description": "app.core.database",
+        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql+asyncpg://user:password@localhost:5432/irkg_db\")\n# Create async engine\nengine = create_async_engine(DATABASE_URL, echo=True)\n# Create session factory\nAsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\n# Dependency to get DB session\nasync def get_db():\n    async with AsyncSessionLocal() as session:",
+        "detail": "app.core.database",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "app.core.database",
+        "description": "app.core.database",
+        "peekOfCode": "engine = create_async_engine(DATABASE_URL, echo=True)\n# Create session factory\nAsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\n# Dependency to get DB session\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "detail": "app.core.database",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSessionLocal",
+        "kind": 5,
+        "importPath": "app.core.database",
+        "description": "app.core.database",
+        "peekOfCode": "AsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\n# Dependency to get DB session\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "detail": "app.core.database",
+        "documentation": {}
+    },
+    {
         "label": "verify_password",
         "kind": 2,
         "importPath": "app.core.utils",
@@ -751,6 +909,24 @@
     {
         "label": "User",
         "kind": 6,
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(Integer, primary_key=True, index=True)\n    name = Column(String, index=True)\n    email = Column(String, unique=True, index=True)\n    password = Column(String)",
+        "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 5,
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "peekOfCode": "Base = declarative_base()\nclass User(Base):\n    __tablename__ = \"users\"\n    id = Column(Integer, primary_key=True, index=True)\n    name = Column(String, index=True)\n    email = Column(String, unique=True, index=True)\n    password = Column(String)",
+        "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
         "importPath": "app.models.user",
         "description": "app.models.user",
         "peekOfCode": "class User(BaseModel):\n    username: str\n    email: Optional[str] = None\n    full_name: Optional[str] = None\n    disabled: Optional[bool] = None\nclass UserInDB(User):\n    hashed_password: str",
@@ -773,6 +949,24 @@
         "description": "app.routes.auth",
         "peekOfCode": "router = APIRouter()\n@router.post(\"/token\")\nasync def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):\n    \"\"\"Login route to authenticate users and return an access token.\"\"\"\n    user = authenticate_user(fake_users_db, form_data.username, form_data.password)\n    if not user:\n        raise HTTPException(\n            status_code=status.HTTP_401_UNAUTHORIZED,\n            detail=\"Incorrect username or password\",\n            headers={\"WWW-Authenticate\": \"Bearer\"},",
         "detail": "app.routes.auth",
+        "documentation": {}
+    },
+    {
+        "label": "protected_route",
+        "kind": 2,
+        "importPath": "app.routes.endpoints",
+        "description": "app.routes.endpoints",
+        "peekOfCode": "def protected_route(username: str = Depends(get_current_user)):\n    return {\"message\": f\"Hello, {username}! You're authorized.\"}\n@router.get(\"/users/me\")\nasync def read_users_me(current_user: dict = Depends(get_current_user)):\n    return current_user\n@router.post(\"/run_orffinder/\")\nasync def run_orf(\n    fasta_sequence: Optional[str] = Form(None),\n    file: Optional[UploadFile] = File(None),\n    current_user: dict = Depends(get_current_user)",
+        "detail": "app.routes.endpoints",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "app.routes.endpoints",
+        "description": "app.routes.endpoints",
+        "peekOfCode": "router = APIRouter()\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise HTTPException(status_code=401, detail=\"Invalid token\")\n    except JWTError:\n        raise HTTPException(status_code=401, detail=\"Could not validate credentials\")\n    user = get_user(username)",
+        "detail": "app.routes.endpoints",
         "documentation": {}
     },
     {
@@ -920,29 +1114,11 @@
         "documentation": {}
     },
     {
-        "label": "verify_token",
-        "kind": 2,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "def verify_token(token: str):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=\"Invalid token\")\n        return username\n    except JWTError:\n        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=\"Invalid token\")\n@app.get(\"/protected-route\")",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "protected_route",
-        "kind": 2,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "def protected_route(username: str = Depends(verify_token)):\n    return {\"message\": f\"Hello, {username}! You're authorized.\"}\n@app.get(\"/users/me\")\nasync def read_users_me(current_user: dict = Depends(get_current_user)):\n    \"\"\"Retrieve the authenticated user's information.\"\"\"\n    return current_user\n@app.post(\"/run_orffinder/\")\nasync def run_orf(\n    fasta_sequence: Optional[str] = Form(None),\n    file: Optional[UploadFile] = File(None),",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
         "label": "app",
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "app = FastAPI()\n# origins = [\n#     \"http://localhost:5174\" # front-end domain\n# ]\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],  # Or specify [\"http://yourfrontend.com\"]\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],",
+        "peekOfCode": "app = FastAPI()\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n# Include authentication routes\napp.include_router(auth_router, prefix=\"/auth\", tags=[\"Authentication\"])",
         "detail": "main",
         "documentation": {}
     },
@@ -951,16 +1127,7 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "os.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\n# Include authentication routes\napp.include_router(auth_router, prefix=\"/auth\", tags=[\"Authentication\"])\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"auth/token\")\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    \"\"\"Validate JWT token and retrieve current user.\"\"\"\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "oauth2_scheme",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "oauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"auth/token\")\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    \"\"\"Validate JWT token and retrieve current user.\"\"\"\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise HTTPException(status_code=401, detail=\"Invalid token\")\n    except JWTError:\n        raise HTTPException(status_code=401, detail=\"Could not validate credentials\")",
+        "peekOfCode": "os.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]",
         "detail": "main",
         "documentation": {}
     }
