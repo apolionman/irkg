@@ -31,15 +31,23 @@ def get_node_id_by_name(input_name):
         matched_name = best_match[0]
         # Return all node_ids for the best matched name
         node_ids = df[df['node_name'] == matched_name]['id'].tolist()
+        print('this is the node ids', node_ids)
         return node_ids
-    
     return None
 
-def get_node_name(node_id):
+def get_drug_name(node_id):
     df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')
     result = df[df['node_id'] == node_id]
     if not result.empty:
         return result['node_name'].iloc[0]
+    else:
+        return None
+
+def get_drug_id(node_name):
+    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')
+    result = df[df['node_name'] == node_name]
+    if not result.empty:
+        return result['node_id'].iloc[0]
     else:
         return None
 
@@ -62,11 +70,11 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
     TxD.prepare_split(split='full_graph', seed=42)
     
     TxG = TxGNN(data=TxD, 
-                  weight_bias_track=False,
-                  proj_name='TxGNN',
-                  exp_name='TxGNN',
-                  device='cpu'
-                 )
+                    weight_bias_track=False,
+                    proj_name='TxGNN',
+                    exp_name='TxGNN',
+                    device='cpu'
+                    )
     
     TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')
     # TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')
@@ -89,14 +97,20 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
         #     data = pickle.load(f)
 
         limited_result = results.iloc[0]['Prediction'].copy()
+        ranked_result = results.iloc[0]['Ranked List'].copy()
+        max_score = max(limited_result, key=lambda x: x[1])[1]
+        min_score = min(limited_result, key=lambda x: x[1])[1]
 
-        sorted_predictions = sorted(limited_result.items(), key=lambda x: x[1], reverse=True)
-        top_100_predictions = sorted_predictions[:_range]
-        max_score = max([score for drug, score in top_100_predictions])
+        normalized_predictions = {
+            drug: (score - min_score) / (max_score - min_score)
+            for drug, score in limited_result.items()
+        }
+
+        ranked_range = ranked_result[:_range]
+
         drugs_info = []
-        for drug, score in top_100_predictions:
-            percentage = (score / max_score) * 100
-            drugs_info.append(DrugInfo(drug=get_node_name(drug), score=percentage))
+        for drug in ranked_range:
+            drugs_info.append(DrugInfo(drug=drug, score=normalized_predictions.get(get_drug_id(drug), None)))
 
         # Prepare the response object with the disease name and the list of drugs with scores
         response = DiseaseResponse(
