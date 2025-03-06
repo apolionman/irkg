@@ -11,6 +11,8 @@ from app.scripts.txgnn_query import txgnn_query
 from app.schemas.schemas import *
 from app.core.config import SECRET_KEY, ALGORITHM, oauth2_scheme, fake_users_db
 from app.core.utils import get_user
+from app.core.database import get_db
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter()
 
@@ -86,10 +88,15 @@ async def nucleotide_fasta(request: NucleotideReq, current_user: dict = Depends(
     return result
 
 @router.get("/txgnn_query", response_model=DiseaseResponse)
-async def get_txgnn_results(disease_name: str, relation: RelationReq, _range: int, current_user: dict = Depends(get_current_user)):
+async def get_txgnn_results(
+    disease_name: str, 
+    relation: RelationReq, 
+    _range: int,
+    db: AsyncSession = Depends(get_db),
+    current_user: dict = Depends(get_current_user)):
     loop = asyncio.get_event_loop()
     try:
-        results = await loop.run_in_executor(None, txgnn_query, disease_name, relation, _range)
+        results = await loop.run_in_executor(None, txgnn_query, disease_name, relation, _range, db)
         return results
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
