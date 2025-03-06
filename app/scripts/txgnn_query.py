@@ -86,7 +86,7 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
         results = TxE.eval_disease_centric(disease_idxs=disease_idx, 
                                     relation=relation,
                                     show_plot=False, 
-                                    verbose=True, 
+                                    verbose=False,
                                     save_result=False,
                                     return_raw=False,
                                     # save_name=save_path
@@ -110,9 +110,9 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
 
         drugs_info = []
         for drug in ranked_range:
-            print(get_drug_id(drug))
+            # print(get_drug_id(drug))
             score = normalized_predictions.get(get_drug_id(drug), None)
-            print(score)
+            # print(score)
             drugs_info.append(DrugInfo(drug=drug, score=score))
 
         # Prepare the response object with the disease name and the list of drugs with scores
