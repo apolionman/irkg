@@ -117,7 +117,7 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
 
         # Prepare the response object with the disease name and the list of drugs with scores
         response = DiseaseResponse(
-            disease_name=disease_name[0] if isinstance(disease_name, list) else disease_name,
+            disease_name=results.iloc[0]['Name'] if isinstance(results.iloc[0]['Name'], list) else results.iloc[0]['Name'],
             drugs=drugs_info
         )
     else:
