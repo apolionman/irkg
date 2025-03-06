@@ -102,7 +102,7 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
         min_score = min(limited_result, key=lambda x: x[1])[1]
 
         normalized_predictions = {
-            drug: (score - min_score) / (max_score - min_score)
+            drug: (float(score) - float(min_score)) / (float(max_score) - float(min_score))
             for drug, score in limited_result.items()
         }
 
