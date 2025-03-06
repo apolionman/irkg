@@ -9,7 +9,7 @@ from app.scripts.ORFfinder import run_orffinder, parse_orf_result
 from app.scripts.clinvar_query_v1 import fetch_clinvar_variations, fetch_fasta
 from app.scripts.txgnn_query import txgnn_query
 from app.schemas.schemas import *
-from app.core.config import SECRET_KEY, ALGORITHM, oauth2_scheme
+from app.core.config import SECRET_KEY, ALGORITHM, oauth2_scheme, fake_users_db
 from app.core.utils import get_user
 
 router = APIRouter()
@@ -23,7 +23,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     except JWTError:
         raise HTTPException(status_code=401, detail="Could not validate credentials")
 
-    user = get_user(username)
+    user = get_user(fake_users_db, username)
     if user is None:
         raise HTTPException(status_code=401, detail="User not found")
     
