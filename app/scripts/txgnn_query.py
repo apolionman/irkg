@@ -64,23 +64,22 @@ def get_drug_id(node_name):
 #     db_session.commit()
 
 #     return disease_record.id
+    
+TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')
+TxD.prepare_split(split='full_graph', seed=42)
+
+TxG = TxGNN(data=TxD, 
+                weight_bias_track=False,
+                proj_name='TxGNN',
+                exp_name='TxGNN',
+                device='cpu'
+                )
+# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')
+TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')
+TxE = TxEval(model=TxG)
 
 def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:
-    TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')
-    TxD.prepare_split(split='full_graph', seed=42)
-    
-    TxG = TxGNN(data=TxD, 
-                    weight_bias_track=False,
-                    proj_name='TxGNN',
-                    exp_name='TxGNN',
-                    device='cpu'
-                    )
-    
-    TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')
-    # TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')
-    TxE = TxEval(model=TxG)
     disease_idx = get_node_id_by_name(disease_name)
-
     if relation != 'auto':
         save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'
         results = TxE.eval_disease_centric(disease_idxs=disease_idx, 
