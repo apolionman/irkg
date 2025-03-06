@@ -819,6 +819,14 @@
         "documentation": {}
     },
     {
+        "label": "select",
+        "importPath": "sqlalchemy.future",
+        "description": "sqlalchemy.future",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.future",
+        "documentation": {}
+    },
+    {
         "label": "CompareGOsCli",
         "importPath": "goatools.cli.compare_gos",
         "description": "goatools.cli.compare_gos",

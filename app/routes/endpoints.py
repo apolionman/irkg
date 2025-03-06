@@ -92,11 +92,17 @@ async def get_txgnn_results(
     disease_name: str, 
     relation: RelationReq, 
     _range: int,
-    db: AsyncSession = Depends(get_db),
+    # db: AsyncSession = Depends(get_db),
     current_user: dict = Depends(get_current_user)):
     loop = asyncio.get_event_loop()
     try:
-        results = await loop.run_in_executor(None, txgnn_query, disease_name, relation, _range, db)
+        results = await loop.run_in_executor(None, 
+                                             txgnn_query, 
+                                             disease_name, 
+                                             relation, 
+                                             _range, 
+                                            #  db
+                                             )
         return results
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

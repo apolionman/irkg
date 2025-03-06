@@ -9,6 +9,7 @@ import json
 from app.schemas.schemas import *
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
 from app.models.models import *
 
 def get_node_id_by_name(input_name):
@@ -58,11 +59,15 @@ async def save_to_db(response: DiseaseResponse, db_session: AsyncSession):
 
     return disease_record.id
 
-async def txgnn_query(disease_name: List[str], relation: str, _range: int, db_session: AsyncSession) -> DiseaseResponse:
+async def txgnn_query(
+        disease_name: List[str], 
+        relation: str, _range: int, 
+        # db_session: AsyncSession
+        ) -> DiseaseResponse:
     # Use async session to query database
-    result = await db_session.execute(select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == disease_name[0]))
-    existing_disease = result.scalars().first()
-
+    # result = await db_session.execute(select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == disease_name[0]))
+    # existing_disease = result.scalars().first()
+    existing_disease = None
     if existing_disease:
         # If the disease exists, get the associated drugs
         drugs_info = [
@@ -171,6 +176,6 @@ async def txgnn_query(disease_name: List[str], relation: str, _range: int, db_se
             drugs=final_drugs
         )		
 
-    disease_id = await save_to_db(response, db_session)  # Make sure this is asynchronous
+    # disease_id = await save_to_db(response, db_session)  # Make sure this is asynchronous
 
     return response
