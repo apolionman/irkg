@@ -75,19 +75,20 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
 
     if relation != 'auto':
         save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'
-        TxE.eval_disease_centric(disease_idxs=disease_idx, 
+        results = TxE.eval_disease_centric(disease_idxs=disease_idx, 
                                     relation=relation,
                                     show_plot=False, 
                                     verbose=True, 
-                                    save_result=True,
+                                    save_result=False,
                                     return_raw=False,
-                                    save_name=save_path)
+                                    # save_name=save_path
+                                    )
 
         # Load saved results
-        with open(save_path, 'rb') as f:
-            data = pickle.load(f)
+        # with open(save_path, 'rb') as f:
+        #     data = pickle.load(f)
 
-        limited_result = data.iloc[0]['Prediction'].copy()
+        limited_result = results.iloc[0]['Prediction'].copy()
 
         sorted_predictions = sorted(limited_result.items(), key=lambda x: x[1], reverse=True)
         top_100_predictions = sorted_predictions[:_range]
