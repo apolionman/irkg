@@ -1,6 +1,6 @@
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.models.models import User
+from app.models.models import *
 from app.scripts.txgnn_query import *
 
 async def get_user(db: AsyncSession, user_id: int):

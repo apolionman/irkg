@@ -835,7 +835,7 @@
         "documentation": {}
     },
     {
-        "label": "User",
+        "label": "*",
         "importPath": "app.models.models",
         "description": "app.models.models",
         "isExtraImport": true,
