@@ -258,6 +258,14 @@
         "documentation": {}
     },
     {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "declarative_base",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
@@ -279,6 +287,14 @@
         "description": "sqlalchemy.orm",
         "isExtraImport": true,
         "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "contextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
         "documentation": {}
     },
     {
@@ -645,6 +661,14 @@
     },
     {
         "label": "*",
+        "importPath": "app.scripts.txgnn_query",
+        "description": "app.scripts.txgnn_query",
+        "isExtraImport": true,
+        "detail": "app.scripts.txgnn_query",
+        "documentation": {}
+    },
+    {
+        "label": "*",
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
         "isExtraImport": true,
@@ -673,6 +697,22 @@
         "description": "sqlalchemy.ext.asyncio",
         "isExtraImport": true,
         "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.services.crud",
+        "description": "app.services.crud",
+        "isExtraImport": true,
+        "detail": "app.services.crud",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "app.core.database",
+        "description": "app.core.database",
+        "isExtraImport": true,
+        "detail": "app.core.database",
         "documentation": {}
     },
     {
@@ -1387,11 +1427,20 @@
         "documentation": {}
     },
     {
+        "label": "get_db",
+        "kind": 2,
+        "importPath": "app.core.database",
+        "description": "app.core.database",
+        "peekOfCode": "def get_db() -> Session:\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
+        "detail": "app.core.database",
+        "documentation": {}
+    },
+    {
         "label": "DATABASE_URL",
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql://admin_dgx:password123@localhost:5432/irkg_db\")\nengine = create_engine(DATABASE_URL, pool_pre_ping=True)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()",
+        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql://admin_dgx:password123@localhost:5432/irkg_db\")\nengine = create_engine(DATABASE_URL, pool_pre_ping=True)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\n# get_db function\n@contextmanager\ndef get_db() -> Session:\n    db = SessionLocal()\n    try:\n        yield db",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1400,7 +1449,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "engine = create_engine(DATABASE_URL, pool_pre_ping=True)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()",
+        "peekOfCode": "engine = create_engine(DATABASE_URL, pool_pre_ping=True)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\n# get_db function\n@contextmanager\ndef get_db() -> Session:\n    db = SessionLocal()\n    try:\n        yield db\n    finally:",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1409,7 +1458,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()",
+        "peekOfCode": "SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\n# get_db function\n@contextmanager\ndef get_db() -> Session:\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1418,7 +1467,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "Base = declarative_base()",
+        "peekOfCode": "Base = declarative_base()\n# get_db function\n@contextmanager\ndef get_db() -> Session:\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1670,7 +1719,7 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def get_drug_id(node_name):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_name'] == node_name]\n    if not result.empty:\n        return result['node_id'].iloc[0]\n    else:\n        return None\n# def save_to_db(response: DiseaseResponse, db_session: Session):\n#     # Create a new DiseaseDrugScore entry\n#     disease_record = DiseaseDrugScore(disease_name=response.disease_name)",
+        "peekOfCode": "def get_drug_id(node_name):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_name'] == node_name]\n    if not result.empty:\n        return result['node_id'].iloc[0]\n    else:\n        return None\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, ",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },

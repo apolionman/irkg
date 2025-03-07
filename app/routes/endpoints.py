@@ -12,6 +12,8 @@ from app.schemas.schemas import *
 from app.core.config import SECRET_KEY, ALGORITHM, oauth2_scheme, fake_users_db
 from app.core.utils import get_user
 from sqlalchemy.ext.asyncio import AsyncSession
+from app.services.crud import *
+from app.core.database import get_db
 
 router = APIRouter()
 
@@ -91,7 +93,7 @@ async def get_txgnn_results(
     disease_name: str, 
     relation: RelationReq, 
     _range: int,
-    # db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_db),
     current_user: dict = Depends(get_current_user)):
     loop = asyncio.get_event_loop()
     try:
@@ -102,6 +104,7 @@ async def get_txgnn_results(
                                              _range, 
                                             #  db
                                              )
-        return results
+        
+        return await save_txgnn(db, results)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

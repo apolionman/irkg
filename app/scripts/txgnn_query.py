@@ -50,20 +50,6 @@ def get_drug_id(node_name):
         return result['node_id'].iloc[0]
     else:
         return None
-
-# def save_to_db(response: DiseaseResponse, db_session: Session):
-#     # Create a new DiseaseDrugScore entry
-#     disease_record = DiseaseDrugScore(disease_name=response.disease_name)
-#     db_session.add(disease_record)
-#     db_session.commit()
-
-#     for drug_info in response.drugs:
-#         drug_record = DrugInformation(drug=drug_info.drug, score=drug_info.score, disease_id=disease_record.id)
-#         db_session.add(drug_record)
-
-#     db_session.commit()
-
-#     return disease_record.id
     
 TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')
 TxD.prepare_split(split='full_graph', seed=42)
