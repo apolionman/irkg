@@ -15,10 +15,13 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
     return new_user
 
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
+    print(DiseaseResponse)
     # Check if the disease_name already exists in the database
     query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
     result = await db.execute(query)
     existing_disease = result.scalars().first()
+
+    print(result)
 
     # If the disease exists, we can either skip or update it.
     if existing_disease:
