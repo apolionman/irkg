@@ -9,6 +9,7 @@ import json
 from app.schemas.schemas import *
 from sqlalchemy.orm import Session
 from app.models.models import *
+from app.services.crud import *
 
 def get_node_id_by_name(input_name):
     df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/disease_sorted_nodes.csv', delimiter='\t', dtype=str)
@@ -64,7 +65,7 @@ TxG = TxGNN(data=TxD,
 TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')
 TxE = TxEval(model=TxG)
 
-def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:
+def txgnn_query(disease_name: List[str], relation: str, _range: int, db: AsyncSession) -> DiseaseResponse:
     disease_idx = get_node_id_by_name(disease_name)
     if relation != 'auto':
         save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'
@@ -157,8 +158,6 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
             disease_name=disease_name[0] if isinstance(disease_name, list) else disease_name,
             drugs=final_drugs
         )
-    print(response.disease_name)
-    print(response.drugs)
-    # disease_id = save_to_db(response, db_session)
+    disease_id = save_txgnn(db, response)
     # Return the dictionary representation of the response
     return response
