@@ -1391,7 +1391,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql://username:password@localhost:5432/irkg_db\")\nengine = create_engine(DATABASE_URL, pool_pre_ping=True)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()",
+        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql://admin_dgx:password123@localhost:5432/irkg_db\")\nengine = create_engine(DATABASE_URL, pool_pre_ping=True)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()",
         "detail": "app.core.database",
         "documentation": {}
     },
