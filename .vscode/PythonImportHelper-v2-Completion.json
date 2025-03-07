@@ -290,7 +290,47 @@
         "documentation": {}
     },
     {
-        "label": "contextmanager",
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "create_async_engine",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "async_sessionmaker",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "asynccontextmanager",
         "importPath": "contextlib",
         "description": "contextlib",
         "isExtraImport": true,
@@ -681,22 +721,6 @@
         "description": "app.schemas.schemas",
         "isExtraImport": true,
         "detail": "app.schemas.schemas",
-        "documentation": {}
-    },
-    {
-        "label": "AsyncSession",
-        "importPath": "sqlalchemy.ext.asyncio",
-        "description": "sqlalchemy.ext.asyncio",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.ext.asyncio",
-        "documentation": {}
-    },
-    {
-        "label": "AsyncSession",
-        "importPath": "sqlalchemy.ext.asyncio",
-        "description": "sqlalchemy.ext.asyncio",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.ext.asyncio",
         "documentation": {}
     },
     {
@@ -1427,20 +1451,11 @@
         "documentation": {}
     },
     {
-        "label": "get_db",
-        "kind": 2,
-        "importPath": "app.core.database",
-        "description": "app.core.database",
-        "peekOfCode": "def get_db() -> Session:\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
-        "detail": "app.core.database",
-        "documentation": {}
-    },
-    {
         "label": "DATABASE_URL",
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql://admin_dgx:password123@localhost:5432/irkg_db\")\nengine = create_engine(DATABASE_URL, pool_pre_ping=True)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\n# get_db function\n@contextmanager\ndef get_db() -> Session:\n    db = SessionLocal()\n    try:\n        yield db",
+        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql://admin_dgx:password123@localhost:5432/irkg_db\")\nengine = create_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = async_sessionmaker(bind=engine, expire_on_commit=False)\nBase = declarative_base()\n@asynccontextmanager\nasync def get_db():\n    db = AsyncSessionLocal()\n    try:\n        yield db\n    finally:",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1449,16 +1464,16 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "engine = create_engine(DATABASE_URL, pool_pre_ping=True)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\n# get_db function\n@contextmanager\ndef get_db() -> Session:\n    db = SessionLocal()\n    try:\n        yield db\n    finally:",
+        "peekOfCode": "engine = create_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = async_sessionmaker(bind=engine, expire_on_commit=False)\nBase = declarative_base()\n@asynccontextmanager\nasync def get_db():\n    db = AsyncSessionLocal()\n    try:\n        yield db\n    finally:\n        await db.close()",
         "detail": "app.core.database",
         "documentation": {}
     },
     {
-        "label": "SessionLocal",
+        "label": "AsyncSessionLocal",
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\n# get_db function\n@contextmanager\ndef get_db() -> Session:\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
+        "peekOfCode": "AsyncSessionLocal = async_sessionmaker(bind=engine, expire_on_commit=False)\nBase = declarative_base()\n@asynccontextmanager\nasync def get_db():\n    db = AsyncSessionLocal()\n    try:\n        yield db\n    finally:\n        await db.close()",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1467,7 +1482,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "Base = declarative_base()\n# get_db function\n@contextmanager\ndef get_db() -> Session:\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
+        "peekOfCode": "Base = declarative_base()\n@asynccontextmanager\nasync def get_db():\n    db = AsyncSessionLocal()\n    try:\n        yield db\n    finally:\n        await db.close()",
         "detail": "app.core.database",
         "documentation": {}
     },

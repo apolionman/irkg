@@ -103,9 +103,7 @@ async def get_txgnn_results(
                                              relation, 
                                              _range, 
                                             #  db
-                                             )
-        print(results)
-        
+                                             )       
         return await save_txgnn(db, results)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
