@@ -124,4 +124,5 @@ async def get_txgnn_results(
         relation, 
         _range,
         )
-    return await results
+    
+    return results
