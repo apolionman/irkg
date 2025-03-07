@@ -18,5 +18,3 @@ app.add_middleware(
 app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 # Include API endpoints
 app.include_router(endpoints_router, prefix="/api", tags=["Endpoints"])
-
-os.environ["PATH"] = os.path.expanduser("~") + "/edirect:" + os.environ["PATH"]

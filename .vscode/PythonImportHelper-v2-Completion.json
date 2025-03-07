@@ -1606,7 +1606,16 @@
         "kind": 5,
         "importPath": "app.routes.endpoints",
         "description": "app.routes.endpoints",
-        "peekOfCode": "router = APIRouter()\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise HTTPException(status_code=401, detail=\"Invalid token\")\n    except JWTError:\n        raise HTTPException(status_code=401, detail=\"Could not validate credentials\")\n    user = get_user(fake_users_db, username)",
+        "peekOfCode": "router = APIRouter()\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise HTTPException(status_code=401, detail=\"Invalid token\")\n    except JWTError:\n        raise HTTPException(status_code=401, detail=\"Could not validate credentials\")",
+        "detail": "app.routes.endpoints",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": "app.routes.endpoints",
+        "description": "app.routes.endpoints",
+        "peekOfCode": "os.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise HTTPException(status_code=401, detail=\"Invalid token\")\n    except JWTError:\n        raise HTTPException(status_code=401, detail=\"Could not validate credentials\")\n    user = get_user(fake_users_db, username)",
         "detail": "app.routes.endpoints",
         "documentation": {}
     },
@@ -5306,15 +5315,6 @@
         "importPath": "main",
         "description": "main",
         "peekOfCode": "app = FastAPI()\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n# Include authentication routes\napp.include_router(auth_router, prefix=\"/auth\", tags=[\"Authentication\"])",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "os.environ[\"PATH\"]",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "os.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]",
         "detail": "main",
         "documentation": {}
     }
