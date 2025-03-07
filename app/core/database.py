@@ -4,6 +4,8 @@ from sqlalchemy.orm import sessionmaker, Session
 import os
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from contextlib import asynccontextmanager
+from dotenv import load_dotenv
+load_dotenv('.env')
 
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://admin_dgx:password123@localhost:5432/irkg_db")
 

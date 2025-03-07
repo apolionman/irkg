@@ -3,9 +3,13 @@ import subprocess
 from fastapi import FastAPI, HTTPException
 import xml.etree.ElementTree as ET
 import re
+import os
 import time
+from dotenv import load_dotenv
 
-API_KEY = "314d1e57cb7a1f3a8e4f6d7a7ec6634e8709"  # Replace with your actual NCBI API key
+load_dotenv('.env')
+
+API_KEY = os.getenv('API_KEY')
 
 async def fetch_clinvar_variations(gene_name: str):
 
