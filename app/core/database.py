@@ -7,7 +7,7 @@ from contextlib import asynccontextmanager
 
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://admin_dgx:password123@localhost:5432/irkg_db")
 
-engine = create_engine(DATABASE_URL, pool_pre_ping=True)
+engine = create_async_engine(DATABASE_URL, pool_pre_ping=True)
 
 AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 
