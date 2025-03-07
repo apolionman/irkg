@@ -732,7 +732,7 @@
         "documentation": {}
     },
     {
-        "label": "*",
+        "label": "save_txgnn",
         "importPath": "app.services.crud",
         "description": "app.services.crud",
         "isExtraImport": true,
