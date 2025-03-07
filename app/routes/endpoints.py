@@ -79,7 +79,7 @@ async def run_orf(
     else:
         raise HTTPException(status_code=500, detail="Error running ORFfinder")
 
-@router.get("/get_clinvar_data/")
+@router.get("/get_clinvar/")
 async def get_clinvar_data(request: GeneRequest, current_user: dict = Depends(get_current_user)):
     result = await fetch_clinvar_variations(request.gene)
     return result
