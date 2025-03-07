@@ -104,6 +104,7 @@ async def get_txgnn_results(
                                              _range, 
                                             #  db
                                              )
+        print(results)
         
         return await save_txgnn(db, results)
     except Exception as e:
