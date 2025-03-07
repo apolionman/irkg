@@ -123,5 +123,9 @@ async def get_txgnn_results(
         disease_name, 
         relation, 
         _range,
-        )       
-    return await save_txgnn(db, results)
+        )
+    try:  
+        return await save_txgnn(db, results)
+    except Exception as e:
+        return results
+        # raise HTTPException(status_code=500, detail=str(e))
