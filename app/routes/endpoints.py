@@ -11,7 +11,6 @@ from app.scripts.txgnn_query import txgnn_query
 from app.schemas.schemas import *
 from app.core.config import SECRET_KEY, ALGORITHM, oauth2_scheme, fake_users_db
 from app.core.utils import get_user
-from app.core.database import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter()
