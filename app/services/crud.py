@@ -21,18 +21,12 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
     result = await db.execute(query)
     existing_disease = result.scalars().first()
 
-    print(result)
-
-    # If the disease exists, we can either skip or update it.
     if existing_disease:
-        return existing_disease.id  # Return the existing disease ID
+        return existing_disease.id
 
-    # If not, create a new disease record
     disease_record = DiseaseDrugScore(disease_name=response.disease_name)
     db.add(disease_record)
-    await db.commit()
 
-    # Add the related drugs
     for drug_info in response.drugs:
         drug_record = DrugInformation(drug=drug_info.drug, score=drug_info.score, disease_id=disease_record.id)
         db.add(drug_record)
