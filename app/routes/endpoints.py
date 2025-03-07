@@ -124,4 +124,4 @@ async def get_txgnn_results(
         relation, 
         _range,
         )
-    return await save_txgnn(db, results)
+    return await results
