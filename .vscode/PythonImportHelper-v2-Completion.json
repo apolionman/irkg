@@ -306,6 +306,14 @@
         "documentation": {}
     },
     {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.ext.declarative",
+        "description": "sqlalchemy.ext.declarative",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.declarative",
+        "documentation": {}
+    },
+    {
         "label": "JWTError",
         "importPath": "jose",
         "description": "jose",
@@ -1407,7 +1415,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql+asyncpg://user:password@localhost:5432/irkg_db\")\n# Create async engine\nengine = create_async_engine(DATABASE_URL, echo=True)\n# Create session factory\nAsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\n# Dependency to get DB session\nasync def get_db():\n    async with AsyncSessionLocal() as session:",
+        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql+asyncpg://user:password@localhost:5432/irkg_db\")\n# Create async engine\nengine = create_async_engine(DATABASE_URL, echo=True)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1416,16 +1424,25 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "engine = create_async_engine(DATABASE_URL, echo=True)\n# Create session factory\nAsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\n# Dependency to get DB session\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "peekOfCode": "engine = create_async_engine(DATABASE_URL, echo=True)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()",
         "detail": "app.core.database",
         "documentation": {}
     },
     {
-        "label": "AsyncSessionLocal",
+        "label": "SessionLocal",
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "AsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\n# Dependency to get DB session\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "peekOfCode": "SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()",
+        "detail": "app.core.database",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 5,
+        "importPath": "app.core.database",
+        "description": "app.core.database",
+        "peekOfCode": "Base = declarative_base()",
         "detail": "app.core.database",
         "documentation": {}
     },
