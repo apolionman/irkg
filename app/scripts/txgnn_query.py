@@ -160,5 +160,6 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int, db: AsyncSe
             drugs=final_drugs
         )
     disease_id = save_txgnn(db, response)
+    print(disease_id)
     # Return the dictionary representation of the response
     return response

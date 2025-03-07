@@ -891,15 +891,6 @@
         "documentation": {}
     },
     {
-        "label": "logging",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "logging",
-        "description": "logging",
-        "detail": "logging",
-        "documentation": {}
-    },
-    {
         "label": "CompareGOsCli",
         "importPath": "goatools.cli.compare_gos",
         "description": "goatools.cli.compare_gos",
