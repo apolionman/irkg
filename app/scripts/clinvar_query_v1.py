@@ -2,6 +2,7 @@ import asyncio
 import subprocess
 from fastapi import FastAPI, HTTPException
 import xml.etree.ElementTree as ET
+from app.schemas.schemas import *
 import re
 import os
 import time
@@ -11,7 +12,7 @@ load_dotenv('.env')
 
 API_KEY = os.getenv('API_KEY')
 
-async def fetch_clinvar_variations(gene_name: str):
+async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
 
     try:
         esearch_command = (
