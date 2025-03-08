@@ -79,9 +79,17 @@ async def run_orf(
     else:
         raise HTTPException(status_code=500, detail="Error running ORFfinder")
 
-@router.post("/get_clinvar_data/")
-async def get_clinvar_data(request: GeneRequest, current_user: dict = Depends(get_current_user)):
-    result = await fetch_clinvar_variations(request.gene)
+@router.get("/get_clinvar_data/")
+async def get_clinvar_data(
+    gene: str, 
+    current_user: dict = Depends(get_current_user)
+    ):
+    loop = asyncio.get_event_loop()
+    result = await loop.run_in_executor(
+                None,
+                fetch_clinvar_variations,
+                gene
+            )
     return result
 
 @router.post("/nucleotide_fasta/")
@@ -96,7 +104,8 @@ async def get_txgnn_results(
     relation: RelationReq, 
     _range: int,
     db: AsyncSession = Depends(get_db),
-    current_user: dict = Depends(get_current_user)):
+    current_user: dict = Depends(get_current_user)
+    ):
     loop = asyncio.get_event_loop()
     try:
         results = await loop.run_in_executor(
