@@ -60,7 +60,9 @@ async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
         stdout_str = stdout.decode().strip()
         stderr_str = stderr.decode().strip()
         
-        
+        if stderr_str:
+            raise HTTPException(status_code=500, detail=f"NCBI query error: {stderr_str}")
+
         try:
             tree = ET.ElementTree(ET.fromstring(stdout_str))
             var_root = tree.getroot()
