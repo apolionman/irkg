@@ -85,11 +85,7 @@ async def get_clinvar_data(
     current_user: dict = Depends(get_current_user)
     ):
     loop = asyncio.get_event_loop()
-    result = await loop.run_in_executor(
-                None,
-                fetch_clinvar_variations,
-                gene
-            )
+    result = await fetch_clinvar_variations(gene)
     return result
 
 @router.post("/nucleotide_fasta/")
