@@ -29,14 +29,14 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
 
     disease_record = DiseaseDrugScore(disease_name=response.disease_name)
     db.add(disease_record)
-    await db.commit(disease_record)
-    await db.refresh(disease_record)
+    db.commit(disease_record)
+    db.refresh(disease_record)
 
     for drug_info in response.drugs:
         drug_record = DrugInformation(drug=drug_info.drug, score=drug_info.score, disease_id=disease_record.id)
         db.add(drug_record)
 
-    await db.commit(drug_record)
-    await db.refresh(drug_record)
+    db.commit(drug_record)
+    db.refresh(drug_record)
 
     return disease_record.id

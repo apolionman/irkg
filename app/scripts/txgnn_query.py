@@ -159,7 +159,5 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int, db: AsyncSe
             disease_name=disease_name[0] if isinstance(disease_name, list) else disease_name,
             drugs=final_drugs
         )
-    disease_id = save_txgnn(db, response)
-    print(disease_id)
     # Return the dictionary representation of the response
     return response
