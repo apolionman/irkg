@@ -18,6 +18,8 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
 
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
 
+    print('TESTING!!!!',response.disease_name)
+
     query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
     result = await db.execute(query)
     existing_disease = result.scalars().first()

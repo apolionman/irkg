@@ -29,3 +29,12 @@ class DrugInformation(Base):
 
     disease_id = Column(Integer, ForeignKey("disease_drug_score.id"))
     disease = relationship("DiseaseDrugScore", back_populates="drugs")
+
+class GeneProtein(Base):
+    __tablename__ = "gene_protein"
+
+    id = Column(Integer, primary_key=True, index=True)
+    gene_name = Column(String, index=True)
+
+    # Define a relationship with DrugInfo
+    drugs = relationship("DrugInformation", back_populates="disease", cascade="all, delete-orphan")
