@@ -314,6 +314,14 @@
         "documentation": {}
     },
     {
+        "label": "selectinload",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "AsyncSession",
         "importPath": "sqlalchemy.ext.asyncio",
         "description": "sqlalchemy.ext.asyncio",
@@ -1882,15 +1890,6 @@
         "description": "app.scripts.txgnn_query",
         "peekOfCode": "TxE = TxEval(model=TxG)\ndef txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    results = TxE.eval_disease_centric(disease_idxs=disease_idx, \n                                relation=relation,\n                                show_plot=False, \n                                verbose=False,\n                                save_result=False,",
         "detail": "app.scripts.txgnn_query",
-        "documentation": {}
-    },
-    {
-        "label": "get_variants_by_gene",
-        "kind": 2,
-        "importPath": "app.services.crud",
-        "description": "app.services.crud",
-        "peekOfCode": "def get_variants_by_gene(db: Session, gene_name: str) -> List[VariantInfo]:\n    return db.query(VariantInfo).join(variant_gene_association).join(Gene).filter(Gene.GeneSymbol == gene_name).all()",
-        "detail": "app.services.crud",
         "documentation": {}
     },
     {
