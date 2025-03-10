@@ -18,8 +18,7 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
     return new_user
 
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
-    # Ensure all operations are inside the context manager
-    async with db.begin():  # Start the transaction
+    async with db.begin():  # Start a transaction
         # Check if the disease already exists
         query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
         result = await db.execute(query)
@@ -33,10 +32,9 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
         db.add(disease_record)
 
         # Wait to commit until all operations are completed
-        # The commit will occur automatically when exiting the context manager
-
         # Refresh to get the generated ID of the disease record
-        await db.refresh(disease_record)
+        await db.commit()  # Explicit commit for disease record
+        await db.refresh(disease_record)  # Refresh the disease record to get the correct ID
 
         # Add the drug records, linking them to the newly created disease record
         for drug_info in response.drugs:
@@ -48,8 +46,8 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
             )
             db.add(drug_record)
 
-        # The commit is performed when exiting the context manager,
-        # so there's no need for an additional db.commit() here
+        # The commit is performed here to include drug records too
+        await db.commit()
 
     # Return the disease ID after committing everything
     return disease_record.id
