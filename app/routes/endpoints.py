@@ -123,9 +123,6 @@ async def run_csv_async(
         db: AsyncSession = Depends(get_db), 
         current_user: dict = Depends(get_current_user)
     ):
-    if task_id in running_tasks:
-        return {"message": f"Task '{task_id}' is already running."}
-    
     """Updating Gene Variant Database in DGX."""
     task =  asyncio.create_task(process_csv_and_store_variants('/home/dgx/dgx_irkg_be/app/input/gene_list.csv', db))
     running_tasks[task_id] = task

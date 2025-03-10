@@ -97,6 +97,7 @@ async def process_csv_and_store_variants(csv_path: str, db: AsyncSession):
 
     # Iterate over each gene_name
     for gene_name in df['node_name']:
+        print('Fetching Gene:', gene_name)
         try:
             # Fetch ClinVar variations for each gene
             response = await fetch_clinvar_variations(gene_name)
@@ -106,6 +107,7 @@ async def process_csv_and_store_variants(csv_path: str, db: AsyncSession):
                 for variation_entry in response['ClinVarSet']['ReferenceClinVarAssertion']:
                     variation_data = variation_entry['Variation']
                     # Store variation data in the database
+                    print('Saving clinvar data for GENE:', gene_name)
                     await create_variant(db, variation_data)
             else:
                 print(f"No variations found for gene {gene_name}")
