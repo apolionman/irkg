@@ -80,7 +80,7 @@ async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
             match = re.match(r"([A-Za-z0-9_.]+)", variation_title)
             if match:
                 nucleotide_id = match.group(1)
-            gene = variation.find(".//symbol").text
+            gene = [gene_elem.text for gene_elem in variation.findall(".//gene/symbol")]
             var_id = variation.find(".//Id").text
             protein_change = variation.find(".//protein_change").text if variation.find(".//ProteinChange") is not None else "N/A"
             pre_consequence = variation.find(".//molecular_consequence_list")
