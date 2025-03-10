@@ -62,11 +62,13 @@ async def create_variant(db: AsyncSession, variation_data: dict):
         Classification=variation_data['Classification'],
         ReviewStatus=variation_data['ReviewStatus'],
     )
-    
     db.add(variant_info)
     await db.commit()
     await db.refresh(variant_info)
-    
+
+    # Explicitly initialize genes relationship before modifying
+    await db.refresh(variant_info, attribute_names=['genes'])
+
     for gene_symbol in variation_data['Gene']['GeneSymbol']:
         result = await db.execute(select(Gene).filter(Gene.GeneSymbol == gene_symbol))
         gene = result.scalars().first()
@@ -78,6 +80,7 @@ async def create_variant(db: AsyncSession, variation_data: dict):
 
         variant_info.genes.append(gene)
 
+    # Similarly for consequences
     for consequence in variation_data['Consequence']:
         cons = Consequence(consequence=consequence, variant_id=variant_info.id)
         db.add(cons)

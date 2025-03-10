@@ -53,8 +53,8 @@ class VariantInfo(Base):
     ReviewStatus = Column(String)
 
     # Relationships
-    genes = relationship("Gene", secondary=variant_gene_association, back_populates="variants")
-    consequences = relationship("Consequence", back_populates="variant")
+    genes = relationship("Gene", secondary=variant_gene_association, lazy='selectin')
+    consequences = relationship("Consequence", lazy='selectin')
 
 
 class Gene(Base):
