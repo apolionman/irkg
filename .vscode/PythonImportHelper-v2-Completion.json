@@ -1648,7 +1648,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class SeqRequest(BaseModel):\n    fasta_sequence: Optional[str] = None\nclass GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\nclass DrugRange(BaseModel):",
+        "peekOfCode": "class SeqRequest(BaseModel):\n    fasta_sequence: Optional[str] = None\nclass GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -1657,7 +1657,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\nclass DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):",
+        "peekOfCode": "class GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):\n    _range: int",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -1666,7 +1666,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class NucleotideReq(BaseModel):\n    nucleotide: str\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\nclass DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):\n    disease_name: str\n    drugs: List[DrugInfo]",
+        "peekOfCode": "class NucleotideReq(BaseModel):\n    nucleotide: str\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):\n    disease_name: str",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -1675,7 +1675,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class DrugInfo(BaseModel):\n    drug: str\n    score: float\nclass DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):\n    disease_name: str\n    drugs: List[DrugInfo]\nclass RelationReq(str, Enum):\n    # auto = 'auto'",
+        "peekOfCode": "class DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):\n    disease_name: str\n    drugs: List[DrugInfo]\nclass RelationReq(str, Enum):",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },

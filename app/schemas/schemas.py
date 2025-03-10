@@ -15,6 +15,7 @@ class NucleotideReq(BaseModel):
 class DrugInfo(BaseModel):
     drug: str
     score: float
+    rank: int
 
 class DrugRange(BaseModel):
     _range: int
