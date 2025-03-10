@@ -33,7 +33,7 @@ def get_node_id_by_name(input_name):
         matched_name = best_match[0]
         # Return all node_ids for the best matched name
         node_ids = df[df['node_name'] == matched_name]['id'].tolist()
-        print('this is the node ids', node_ids)
+        # print('this is the node ids', node_ids)
         return node_ids
     return None
 

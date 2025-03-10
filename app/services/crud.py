@@ -40,12 +40,8 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
                 rank=drug_info.rank,
                 disease_id=disease_record.id
             )
-
-            disease_record.drugs.append(drug_record)  # Explicit association
             db.add(drug_record)
-
-        await db.commit()
-        
-        await db.refresh(disease_record)
+            await db.commit()
+            await db.refresh(disease_record)
         
     return disease_record.id
