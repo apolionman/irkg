@@ -89,13 +89,3 @@ async def create_variant(db: AsyncSession, variation_data: dict):
     await db.refresh(variant_info)
 
     return variant_info
-
-async def get_variants_by_gene(db: AsyncSession, gene_name: str):
-    result = await db.execute(
-        select(VariantInfo)
-        .join(variant_gene_association)
-        .join(Gene)
-        .filter(Gene.GeneSymbol == gene_name)
-        .options(selectinload(VariantInfo.genes), selectinload(VariantInfo.consequences))
-    )
-    return result.scalars().all()

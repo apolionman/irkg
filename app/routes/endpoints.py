@@ -92,14 +92,7 @@ async def get_clinvar_data(
             variation_data = variation["Variation"]
             await create_variant(db=db, variation_data=variation_data)
 
-    variants = await get_variants_by_gene(db=db, gene_name=gene)
-    if not variants:
-        raise HTTPException(status_code=404, detail="No variants found for the gene")
-    
-    # If 'variants' are SQLAlchemy models, serialize them explicitly with Pydantic:
-    serialized_variants = [VariantSchema.from_orm(variant) for variant in variants]
-
-    return {"variants": serialized_variants}
+    return result
 
 @router.post("/nucleotide_fasta/")
 async def nucleotide_fasta(request: NucleotideReq, current_user: dict = Depends(get_current_user)):
