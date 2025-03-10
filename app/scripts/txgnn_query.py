@@ -66,7 +66,7 @@ TxG = TxGNN(data=TxD,
 TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')
 TxE = TxEval(model=TxG)
 
-def txgnn_query(disease_name: List[str], relation: str, _range: int, db: AsyncSession) -> DiseaseResponse:
+def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:
     disease_idx = get_node_id_by_name(disease_name)
     # if relation != 'auto':
     save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'

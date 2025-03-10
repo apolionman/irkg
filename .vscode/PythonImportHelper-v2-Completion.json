@@ -1792,7 +1792,7 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def txgnn_query(disease_name: List[str], relation: str, _range: int, db: AsyncSession) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    results = TxE.eval_disease_centric(disease_idxs=disease_idx, \n                                relation=relation,\n                                show_plot=False, \n                                verbose=False,\n                                save_result=False,\n                                return_raw=False,",
+        "peekOfCode": "def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    results = TxE.eval_disease_centric(disease_idxs=disease_idx, \n                                relation=relation,\n                                show_plot=False, \n                                verbose=False,\n                                save_result=False,\n                                return_raw=False,",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -1810,7 +1810,7 @@
         "kind": 5,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\nTxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')\nTxE = TxEval(model=TxG)\ndef txgnn_query(disease_name: List[str], relation: str, _range: int, db: AsyncSession) -> DiseaseResponse:",
+        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\nTxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')\nTxE = TxEval(model=TxG)\ndef txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -1819,7 +1819,7 @@
         "kind": 5,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "TxE = TxEval(model=TxG)\ndef txgnn_query(disease_name: List[str], relation: str, _range: int, db: AsyncSession) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    results = TxE.eval_disease_centric(disease_idxs=disease_idx, \n                                relation=relation,\n                                show_plot=False, \n                                verbose=False,\n                                save_result=False,",
+        "peekOfCode": "TxE = TxEval(model=TxG)\ndef txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    results = TxE.eval_disease_centric(disease_idxs=disease_idx, \n                                relation=relation,\n                                show_plot=False, \n                                verbose=False,\n                                save_result=False,",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
