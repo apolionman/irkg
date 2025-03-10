@@ -1773,7 +1773,7 @@
         "kind": 5,
         "importPath": "app.scripts.clinvar_query_v1",
         "description": "app.scripts.clinvar_query_v1",
-        "peekOfCode": "API_KEY = os.getenv('API_KEY')\nasync def fetch_clinvar_variations(gene_name: str) -> GeneRequest:\n    try:\n        esearch_command = (\n        f'esearch -db clinvar -query \"(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])\" |'\n        f'efetch -format xml&api_key={API_KEY}'\n        )\n        process = await asyncio.create_subprocess_shell(\n            esearch_command,\n            stdout=asyncio.subprocess.PIPE,",
+        "peekOfCode": "API_KEY = os.getenv('API_KEY')\nasync def fetch_clinvar_variations(gene_name: str) -> GeneRequest:\n    try:\n        print(API_KEY)\n        esearch_command = (\n        f'esearch -db clinvar -query \"(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])\" |'\n        f'efetch -format xml&api_key=314d1e57cb7a1f3a8e4f6d7a7ec6634e8709'\n        )\n        process = await asyncio.create_subprocess_shell(\n            esearch_command,",
         "detail": "app.scripts.clinvar_query_v1",
         "documentation": {}
     },

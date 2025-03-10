@@ -15,9 +15,10 @@ API_KEY = os.getenv('API_KEY')
 async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
 
     try:
+        print(API_KEY)
         esearch_command = (
         f'esearch -db clinvar -query "(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])" |'
-        f'efetch -format xml&api_key={API_KEY}'
+        f'efetch -format xml&api_key=314d1e57cb7a1f3a8e4f6d7a7ec6634e8709'
         )
         
         process = await asyncio.create_subprocess_shell(
