@@ -17,44 +17,30 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
     return new_user
 
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
-    print('TESTING!!!!', response.disease_name)
+    async with db.begin():  # Using async session's context manager
+        query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
+        result = await db.execute(query)
+        existing_disease = result.scalars().first()
 
-    # Check if disease already exists
-    query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
-    result = await db.execute(query)
-    existing_disease = result.scalars().first()
+        if existing_disease:
+            return existing_disease.id
 
-    if existing_disease:
-        return existing_disease.id
-
-    # Create the disease record
-    disease_record = DiseaseDrugScore(disease_name=response.disease_name)
-    db.add(disease_record)
-    await db.commit()
-    await db.refresh(disease_record)
-
-    # Add each drug information
-    for drug_info in response.drugs:
-        drug_record = DrugInformation(
-            drug=drug_info.drug, 
-            score=drug_info.score,
-            rank=drug_info.rank, 
-            disease_id=disease_record.id  # Ensure the drug is linked to the disease
-        )
-        # This adds the drug record to the database session
-        db.add(drug_record)
-
-    try:
-        # Commit the drug records to the database
-        await db.commit()
-        # Refresh to get the latest values
+        disease_record = DiseaseDrugScore(disease_name=response.disease_name)
+        db.add(disease_record)
+        await db.commit()  # Ensure commit is awaited
         await db.refresh(disease_record)
-        print(f"Drugs for {response.disease_name} saved successfully.")
-    except Exception as e:
-        await db.rollback()  # Rollback if there is an error
-        print(f"Error saving drugs: {e}")
-        raise
 
-    # Return the disease record with associated drugs
-    drugs = [DrugInfo(drug=drug.drug, score=drug.score, rank=drug.rank) for drug in disease_record.drugs]
-    return DiseaseResponse(disease_name=disease_record.disease_name, drugs=drugs)
+        for drug_info in response.drugs:
+            drug_record = DrugInformation(
+                drug=drug_info.drug,
+                score=drug_info.score,
+                rank=drug_info.rank,
+                disease_id=disease_record.id
+            )
+            disease_record.drugs.append(drug_record)  # Explicit association
+            db.add(drug_record)
+
+        await db.commit()  # Commit all the changes at once
+        await db.refresh(disease_record)  # Refresh disease record after commit
+        
+    return disease_record.id
