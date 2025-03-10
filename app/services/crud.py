@@ -17,23 +17,26 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
     return new_user
 
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
-    async with db.begin():
-
+    async with db.begin():  # Start the transaction
+        # Query to check if the disease already exists
         query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
         result = await db.execute(query)
         existing_disease = result.scalars().first()
 
         if existing_disease:
-            return existing_disease.id
+            return existing_disease.id  # Return the existing disease ID if found
 
+        # Create a new disease record if not found
         disease_record = DiseaseDrugScore(disease_name=response.disease_name)
         db.add(disease_record)
 
-        await db.commit()
-        
-        await db.refresh(disease_record)
+        # Commit the transaction to save the disease record
+        await db.commit()  # Commit here, as the record is now added
+        await db.refresh(disease_record)  # Refresh to get the ID
 
+        # Add the drug records associated with this disease
         for drug_info in response.drugs:
+            print('Drug Name:==>', drug_info)
             drug_record = DrugInformation(
                 drug=drug_info.drug,
                 score=drug_info.score,
@@ -42,7 +45,8 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
             )
             print(drug_record)
             db.add(drug_record)
-            await db.commit()
-            await db.refresh(disease_record)
-        
-    return disease_record.id
+
+        # Commit the transaction for drugs as well
+        await db.commit()  # Commit here for the drug records
+
+    return disease_record.id  # Return the ID of the newly created disease
