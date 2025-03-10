@@ -692,6 +692,14 @@
         "documentation": {}
     },
     {
+        "label": "fetch_clinvar_variations",
+        "importPath": "app.scripts.clinvar_query_v1",
+        "description": "app.scripts.clinvar_query_v1",
+        "isExtraImport": true,
+        "detail": "app.scripts.clinvar_query_v1",
+        "documentation": {}
+    },
+    {
         "label": "txgnn_query",
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",

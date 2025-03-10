@@ -114,3 +114,8 @@ async def get_txgnn_results(
         return results
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+@router.post("/update-gene-variants-db")
+async def run_csv_async(db: AsyncSession = Depends(get_db)):
+    asyncio.create_task(process_csv_and_store_variants('genes.csv', db))
+    return {"message": "CSV processing started asynchronously"}

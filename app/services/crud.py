@@ -4,6 +4,7 @@ from sqlalchemy.orm import selectinload
 from app.models.models import *
 from app.scripts.txgnn_query import *
 from app.schemas.schemas import *
+from app.scripts.clinvar_query_v1 import fetch_clinvar_variations
 
 async def get_user(db: AsyncSession, user_id: int):
 
@@ -89,3 +90,24 @@ async def create_variant(db: AsyncSession, variation_data: dict):
     await db.refresh(variant_info)
 
     return variant_info
+
+async def process_csv_and_store_variants(csv_path: str, db: AsyncSession):
+    # Read CSV
+    df = pd.read_csv(csv_path)
+
+    # Iterate over each gene_name
+    for gene_name in df['node_name']:
+        try:
+            # Fetch ClinVar variations for each gene
+            response = await fetch_clinvar_variations(gene_name)
+            
+            # Check if variations exist in response
+            if 'ClinVarSet' in response:
+                for variation_entry in response['ClinVarSet']['ReferenceClinVarAssertion']:
+                    variation_data = variation_entry['Variation']
+                    # Store variation data in the database
+                    await create_variant(db, variation_data)
+            else:
+                print(f"No variations found for gene {gene_name}")
+        except Exception as e:
+            print(f"Error processing gene {gene_name}: {str(e)}")
