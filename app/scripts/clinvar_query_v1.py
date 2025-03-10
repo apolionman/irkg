@@ -18,7 +18,7 @@ async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
 
     try:
         esearch_command = (
-        f'pwd && esearch -db clinvar -query "(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])" |'
+        f'esearch -db clinvar -query "(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])" |'
         f'efetch -format xml&api_key={API_KEY}'
         )
         

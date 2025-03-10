@@ -1773,7 +1773,7 @@
         "kind": 5,
         "importPath": "app.scripts.clinvar_query_v1",
         "description": "app.scripts.clinvar_query_v1",
-        "peekOfCode": "API_KEY = os.getenv('API_KEY')\nos.environ[\"PATH\"] = \"/usr/bin:/bin:\" + os.environ[\"PATH\"]\nasync def fetch_clinvar_variations(gene_name: str) -> GeneRequest:\n    try:\n        esearch_command = (\n        f'pwd && esearch -db clinvar -query \"(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])\" |'\n        f'efetch -format xml&api_key={API_KEY}'\n        )\n        process = await asyncio.create_subprocess_shell(\n            esearch_command,",
+        "peekOfCode": "API_KEY = os.getenv('API_KEY')\nos.environ[\"PATH\"] = \"/usr/bin:/bin:\" + os.environ[\"PATH\"]\nasync def fetch_clinvar_variations(gene_name: str) -> GeneRequest:\n    try:\n        esearch_command = (\n        f'esearch -db clinvar -query \"(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])\" |'\n        f'efetch -format xml&api_key={API_KEY}'\n        )\n        process = await asyncio.create_subprocess_shell(\n            esearch_command,",
         "detail": "app.scripts.clinvar_query_v1",
         "documentation": {}
     },
@@ -1782,7 +1782,7 @@
         "kind": 5,
         "importPath": "app.scripts.clinvar_query_v1",
         "description": "app.scripts.clinvar_query_v1",
-        "peekOfCode": "os.environ[\"PATH\"] = \"/usr/bin:/bin:\" + os.environ[\"PATH\"]\nasync def fetch_clinvar_variations(gene_name: str) -> GeneRequest:\n    try:\n        esearch_command = (\n        f'pwd && esearch -db clinvar -query \"(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])\" |'\n        f'efetch -format xml&api_key={API_KEY}'\n        )\n        process = await asyncio.create_subprocess_shell(\n            esearch_command,\n            stdout=asyncio.subprocess.PIPE,",
+        "peekOfCode": "os.environ[\"PATH\"] = \"/usr/bin:/bin:\" + os.environ[\"PATH\"]\nasync def fetch_clinvar_variations(gene_name: str) -> GeneRequest:\n    try:\n        esearch_command = (\n        f'esearch -db clinvar -query \"(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])\" |'\n        f'efetch -format xml&api_key={API_KEY}'\n        )\n        process = await asyncio.create_subprocess_shell(\n            esearch_command,\n            stdout=asyncio.subprocess.PIPE,",
         "detail": "app.scripts.clinvar_query_v1",
         "documentation": {}
     },
