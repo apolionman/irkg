@@ -19,20 +19,11 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
 
 # Function to save disease record
 async def save_disease_record(db: AsyncSession, disease_name: str):
-    query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == disease_name)
-    result = await db.execute(query)
-    existing_disease = result.scalars().first()
-
-    if existing_disease:
-        return existing_disease.id
-
     disease_record = DiseaseDrugScore(disease_name=disease_name)
     db.add(disease_record)
     
     await db.commit()  # Commit to save the disease record
-    await db.refresh(disease_record)  # Refresh to get the ID
-
-    return disease_record
+    return disease_record.id
 
 # Function to save drug records
 async def save_drug_records(db: AsyncSession, drugs: list, disease_id: int):
@@ -49,12 +40,14 @@ async def save_drug_records(db: AsyncSession, drugs: list, disease_id: int):
 
 # Main function to orchestrate saving the disease and drug records
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
-    # Save disease record first
+    query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
+    result = await db.execute(query)
+    existing_disease = result.scalars().first()
+    if existing_disease:
+        return existing_disease.id
+
     disease_record = await save_disease_record(db, response.disease_name)
-
-    # Save drug records associated with the disease
     await save_drug_records(db, response.drugs, disease_record)
-
     return disease_record
 
 
