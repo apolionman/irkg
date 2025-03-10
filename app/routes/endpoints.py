@@ -3,7 +3,7 @@ import os
 import asyncio
 from uuid import uuid4
 import aiofiles
-from typing import Optional
+from typing import Optional, Dict
 from jose import JWTError, jwt
 from app.scripts.ORFfinder import run_orffinder, parse_orf_result
 from app.scripts.clinvar_query_v1 import fetch_clinvar_variations, fetch_fasta
@@ -114,9 +114,42 @@ async def get_txgnn_results(
         return results
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+running_tasks: Dict[str, asyncio.Task] = {}
+
+@router.post("/update-gene-variants-db/{task_id}")
+async def run_csv_async(
+        task_id: str,
+        db: AsyncSession = Depends(get_db), 
+        current_user: dict = Depends(get_current_user)
+    ):
+    if task_id in running_tasks:
+        return {"message": f"Task '{task_id}' is already running."}
     
-@router.post("/update-gene-variants-db")
-async def run_csv_async(db: AsyncSession = Depends(get_db), current_user: dict = Depends(get_current_user)):
     """Updating Gene Variant Database in DGX."""
-    asyncio.create_task(process_csv_and_store_variants('/home/dgx/dgx_irkg_be/app/input/gene_list.csv', db))
+    task =  asyncio.create_task(process_csv_and_store_variants('/home/dgx/dgx_irkg_be/app/input/gene_list.csv', db))
+    running_tasks[task_id] = task
+
     return {"message": "CSV processing started asynchronously"}
+
+@router.post("/cancel-task/{task_id}")
+async def cancel_task(
+        task_id: str,
+        current_user: dict = Depends(get_current_user)
+    ):
+    """Cancel process task."""
+    task = running_tasks.get(task_id)
+    
+    if not task:
+        return {"message": f"No task found with ID '{task_id}'."}
+    
+    task.cancel()
+    
+    try:
+        await task
+    except asyncio.CancelledError:
+        running_tasks.pop(task_id, None)
+        return {"message": f"Task '{task_id}' has been cancelled."}
+    
+    running_tasks.pop(task_id, None)
+    return {"message": f"Task '{task_id}' cancelled successfully."}
