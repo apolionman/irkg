@@ -104,7 +104,7 @@ async def get_txgnn_results(
     ):
     loop = asyncio.get_event_loop()
     # try:
-    results = await txgnn_query(disease_name, relation, _range)
+    results = txgnn_query(disease_name, relation, _range)
     disease_id = await save_txgnn(db, results)
     return results
     # except Exception as e:
