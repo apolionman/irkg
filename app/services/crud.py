@@ -17,36 +17,37 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
     return new_user
 
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
-    # Check if the disease already exists
-    query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
-    result = await db.execute(query)
-    existing_disease = result.scalars().first()
+    try:
+        # Check if the disease already exists
+        query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
+        result = await db.execute(query)
+        existing_disease = result.scalars().first()
 
-    if existing_disease:
-        return existing_disease.id  # Return existing ID if found
+        if existing_disease:
+            return existing_disease.id  # Return existing ID if found
 
-    # Create new disease record
-    disease_record = DiseaseDrugScore(disease_name=response.disease_name)
-    db.add(disease_record)
-    await db.commit()  # Commit to get the disease ID
-    await db.refresh(disease_record)
+        # Create new disease record
+        disease_record = DiseaseDrugScore(disease_name=response.disease_name)
+        db.add(disease_record)
+        await db.commit()  # Commit to get the disease ID
+        await db.refresh(disease_record)
 
-    # Add drug records
-    for drug_info in response.drugs:
-        print('Drug Name:==>', drug_info.drug)  # Debugging
-        drug_record = DrugInformation(
-            drug=drug_info.drug,
-            score=drug_info.score,
-            rank=drug_info.rank,
-            disease_id=disease_record.id
-        )
-        db.add(drug_record)
-        print('Drug Record Added:', drug_record)  # Debugging
-        disease_record.drugs.append(drug_record)  # Ensure proper relationship
-        print('Drug Record Appended to Disease:', disease_record.drugs)  # Debugging
+        # Add drug records
+        for drug_info in response.drugs:
+            print('Drug Name:==>', drug_info.drug)  # Debugging
+            drug_record = DrugInformation(
+                drug=drug_info.drug,
+                score=drug_info.score,
+                rank=drug_info.rank,
+                disease_id=disease_record.id
+            )
+            db.add(drug_record)
+            disease_record.drugs.append(drug_record)  # Ensure proper relationship
 
-    await db.flush()  # Ensure the session is aware of new objects
-    await db.commit()  # Commit drug records
-    await db.refresh(disease_record)
+        await db.commit()  # Commit drug records
+        await db.refresh(disease_record)
 
-    return disease_record.id
+        return disease_record.id
+    except Exception as e:
+        await db.rollback()  # Rollback in case of error
+        raise e
