@@ -18,7 +18,7 @@ async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
         print(API_KEY)
         esearch_command = (
         f'esearch -db clinvar -query "(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])" |'
-        f'efetch -format xml&api_key=314d1e57cb7a1f3a8e4f6d7a7ec6634e8709'
+        f'efetch -format xml&api_key={API_KEY}'
         )
         
         process = await asyncio.create_subprocess_shell(
@@ -30,6 +30,14 @@ async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
     
         stdout_str = stdout.decode().strip()
         stderr_str = stderr.decode().strip()
+
+        # Debug: Check the actual output
+        print(f"Stdout: {stdout_str}")
+        if stderr_str:
+            print(f"Stderr: {stderr_str}")
+
+        if stderr_str:
+            raise HTTPException(status_code=500, detail=f"NCBI query error: {stderr_str}")
         
         try:
             tree = ET.ElementTree(ET.fromstring(stdout_str))
@@ -37,9 +45,6 @@ async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
         except ET.ParseError as e:
             raise HTTPException(status_code=500, detail=f"Failed to parse XML: {str(e)} - Output: {stdout_str}")
 
-        # print("Variation IDs:", [e.text for e in root])
-
-        # If no variations are found
         if not variation_ids:
             return {"message": "No variations found for the given gene"}
 
