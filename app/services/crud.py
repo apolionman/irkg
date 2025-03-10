@@ -17,9 +17,6 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
     await db.refresh(new_user)
     return new_user
 
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.future import select
-
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
     async with db.begin():  # Start the transaction
         # Check if the disease already exists
@@ -34,21 +31,25 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
         disease_record = DiseaseDrugScore(disease_name=response.disease_name)
         db.add(disease_record)
 
-        # Add the drug records to the session
+        # Commit to ensure the disease ID is assigned
+        await db.commit()
+
+        # Refresh to get the generated ID of the disease record
+        await db.refresh(disease_record)
+
+        # Add the drug records, linking them to the newly created disease record
         for drug_info in response.drugs:
             drug_record = DrugInformation(
                 drug=drug_info.drug,
                 score=drug_info.score,
                 rank=drug_info.rank,
-                disease_id=disease_record.id
+                disease_id=disease_record.id  # Use the disease_record.id here
             )
-            print(drug_record)
             db.add(drug_record)
 
-        # Commit everything at once
+        # Commit everything at once (disease and drug records)
         await db.commit()
-        await db.refresh(disease_record)  # Refresh to get the updated disease_record with its ID
 
-    return disease_record.id  # Return the disease ID
+    return disease_record.id 
 
    
