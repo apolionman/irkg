@@ -35,7 +35,8 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
     for drug_info in response.drugs:
         drug_record = DrugInformation(
             drug=drug_info.drug, 
-            score=drug_info.score, 
+            score=drug_info.score,
+            rank=drug_info.rank, 
             disease_id=disease_record.id
         )
         disease_record.drugs.append(drug_record)  # Fix: explicitly associate

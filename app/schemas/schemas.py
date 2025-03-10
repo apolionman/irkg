@@ -24,7 +24,7 @@ class DiseaseResponse(BaseModel):
     drugs: List[DrugInfo]
 
 class RelationReq(str, Enum):
-    auto = 'auto'
+    # auto = 'auto'
     indication = 'indication'
     contraindication = 'contraindication'
     off_label = 'off-label use'
