@@ -668,6 +668,40 @@
         "documentation": {}
     },
     {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "sample",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "string",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "string",
+        "description": "string",
+        "detail": "string",
+        "documentation": {}
+    },
+    {
+        "label": "ascii_lowercase",
+        "importPath": "string",
+        "description": "string",
+        "isExtraImport": true,
+        "detail": "string",
+        "documentation": {}
+    },
+    {
         "label": "run_orffinder",
         "importPath": "app.scripts.ORFfinder",
         "description": "app.scripts.ORFfinder",
@@ -1155,14 +1189,6 @@
         "documentation": {}
     },
     {
-        "label": "sample",
-        "importPath": "random",
-        "description": "random",
-        "isExtraImport": true,
-        "detail": "random",
-        "documentation": {}
-    },
-    {
         "label": "defaultdict",
         "importPath": "collections",
         "description": "collections",
@@ -1339,23 +1365,6 @@
         "importPath": "urllib.request",
         "description": "urllib.request",
         "detail": "urllib.request",
-        "documentation": {}
-    },
-    {
-        "label": "string",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "string",
-        "description": "string",
-        "detail": "string",
-        "documentation": {}
-    },
-    {
-        "label": "ascii_lowercase",
-        "importPath": "string",
-        "description": "string",
-        "isExtraImport": true,
-        "detail": "string",
         "documentation": {}
     },
     {
@@ -1653,6 +1662,15 @@
         "documentation": {}
     },
     {
+        "label": "generate_task_id",
+        "kind": 2,
+        "importPath": "app.routes.endpoints",
+        "description": "app.routes.endpoints",
+        "peekOfCode": "def generate_task_id(length=6):\n    return ''.join(random.choices(string.ascii_uppercase, k=length))\n@router.post(\"/update-gene-variants-db/{task_id}\")\nasync def run_csv_async(\n        task_id: str,\n        db: AsyncSession = Depends(get_db), \n        current_user: dict = Depends(get_current_user)\n    ):\n    \"\"\"Updating Gene Variant Database in DGX.\"\"\"\n    task_id = generate_task_id()",
+        "detail": "app.routes.endpoints",
+        "documentation": {}
+    },
+    {
         "label": "router",
         "kind": 5,
         "importPath": "app.routes.endpoints",
@@ -1667,6 +1685,15 @@
         "importPath": "app.routes.endpoints",
         "description": "app.routes.endpoints",
         "peekOfCode": "os.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise HTTPException(status_code=401, detail=\"Invalid token\")\n    except JWTError:\n        raise HTTPException(status_code=401, detail=\"Could not validate credentials\")\n    user = get_user(fake_users_db, username)",
+        "detail": "app.routes.endpoints",
+        "documentation": {}
+    },
+    {
+        "label": "running_tasks",
+        "kind": 5,
+        "importPath": "app.routes.endpoints",
+        "description": "app.routes.endpoints",
+        "peekOfCode": "running_tasks = {}\ndef generate_task_id(length=6):\n    return ''.join(random.choices(string.ascii_uppercase, k=length))\n@router.post(\"/update-gene-variants-db/{task_id}\")\nasync def run_csv_async(\n        task_id: str,\n        db: AsyncSession = Depends(get_db), \n        current_user: dict = Depends(get_current_user)\n    ):\n    \"\"\"Updating Gene Variant Database in DGX.\"\"\"",
         "detail": "app.routes.endpoints",
         "documentation": {}
     },

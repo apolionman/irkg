@@ -3,6 +3,8 @@ import os
 import asyncio
 from uuid import uuid4
 import aiofiles
+import random
+import string
 from typing import Optional, Dict
 from jose import JWTError, jwt
 from app.scripts.ORFfinder import run_orffinder, parse_orf_result
@@ -115,7 +117,10 @@ async def get_txgnn_results(
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-running_tasks: Dict[str, asyncio.Task] = {}
+running_tasks = {}
+
+def generate_task_id(length=6):
+    return ''.join(random.choices(string.ascii_uppercase, k=length))
 
 @router.post("/update-gene-variants-db/{task_id}")
 async def run_csv_async(
@@ -124,10 +129,12 @@ async def run_csv_async(
         current_user: dict = Depends(get_current_user)
     ):
     """Updating Gene Variant Database in DGX."""
-    task =  asyncio.create_task(process_csv_and_store_variants('/home/dgx/dgx_irkg_be/app/input/gene_list.csv', db))
+    task_id = generate_task_id()
+    task = asyncio.create_task(
+        process_csv_and_store_variants('/home/dgx/dgx_irkg_be/app/input/gene_list.csv', db)
+    )
     running_tasks[task_id] = task
-
-    return {"message": "CSV processing started asynchronously"}
+    return {"message": f"CSV processing started asynchronously", "task_id": task_id}
 
 @router.post("/cancel-task/{task_id}")
 async def cancel_task(
