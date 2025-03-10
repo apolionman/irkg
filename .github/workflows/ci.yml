@@ -82,6 +82,12 @@ jobs:
             # Install new pip packages
             source venv/bin/activate  # Activate virtual environment (if using one)
             pip install --no-cache-dir -r requirements.txt
+
+            # Generate a timestamp
+            TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+
+            # Migrate new changes in model
+            alembic revision --autogenerate -m "Migration on $TIMESTAMP"
             
             # Run migrations (Add this step for your DB migration)
             alembic upgrade head  # If you're using Alembic for migrations

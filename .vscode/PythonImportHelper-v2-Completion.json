@@ -1585,7 +1585,7 @@
         "kind": 6,
         "importPath": "app.models.models",
         "description": "app.models.models",
-        "peekOfCode": "class DrugInformation(Base):\n    __tablename__ = \"drug_info\"\n    id = Column(Integer, primary_key=True, index=True)\n    drug = Column(String, index=True)\n    score = Column(Float)\n    disease_id = Column(Integer, ForeignKey(\"disease_drug_score.id\"))\n    disease = relationship(\"DiseaseDrugScore\", back_populates=\"drugs\")\n# class GeneProtein(Base):\n#     __tablename__ = \"gene_protein\"\n#     id = Column(Integer, primary_key=True, index=True)",
+        "peekOfCode": "class DrugInformation(Base):\n    __tablename__ = \"drug_info\"\n    id = Column(Integer, primary_key=True, index=True)\n    drug = Column(String, index=True)\n    score = Column(Float)\n    rank = Column(Integer, index=True)\n    disease_id = Column(Integer, ForeignKey(\"disease_drug_score.id\"))\n    disease = relationship(\"DiseaseDrugScore\", back_populates=\"drugs\")\n# class GeneProtein(Base):\n#     __tablename__ = \"gene_protein\"",
         "detail": "app.models.models",
         "documentation": {}
     },

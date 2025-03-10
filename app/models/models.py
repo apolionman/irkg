@@ -26,6 +26,7 @@ class DrugInformation(Base):
     id = Column(Integer, primary_key=True, index=True)
     drug = Column(String, index=True)
     score = Column(Float)
+    rank = Column(Integer, index=True)
 
     disease_id = Column(Integer, ForeignKey("disease_drug_score.id"))
     disease = relationship("DiseaseDrugScore", back_populates="drugs")
