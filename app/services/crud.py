@@ -21,7 +21,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
-    async with db.begin():
+    async with db.begin():  # Start the transaction
+        # Check if the disease already exists
         query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
         result = await db.execute(query)
         existing_disease = result.scalars().first()
@@ -29,15 +30,12 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
         if existing_disease:
             return existing_disease.id
         
+        # Create and add the disease record
         disease_record = DiseaseDrugScore(disease_name=response.disease_name)
         db.add(disease_record)
 
-        await db.commit()
-        await db.refresh(disease_record)
-
-    async with db.begin():
+        # Add the drug records to the session
         for drug_info in response.drugs:
-            # print('Drug Name:==>', drug_info)
             drug_record = DrugInformation(
                 drug=drug_info.drug,
                 score=drug_info.score,
@@ -47,8 +45,10 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
             print(drug_record)
             db.add(drug_record)
 
+        # Commit everything at once
         await db.commit()
+        await db.refresh(disease_record)  # Refresh to get the updated disease_record with its ID
 
-    return disease_record.id 
+    return disease_record.id  # Return the disease ID
 
    
