@@ -757,6 +757,14 @@
     },
     {
         "label": "*",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "*",
         "importPath": "app.services.crud",
         "description": "app.services.crud",
         "isExtraImport": true,
