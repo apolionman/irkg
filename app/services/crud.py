@@ -40,8 +40,10 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
             rank=drug_info.rank,
             disease_id=disease_record.id
         )
-        disease_record.drugs.append(drug_record)  # Ensure proper relationship
         db.add(drug_record)
+        print('Drug Record Added:', drug_record)  # Debugging
+        disease_record.drugs.append(drug_record)  # Ensure proper relationship
+        print('Drug Record Appended to Disease:', disease_record.drugs)  # Debugging
 
     await db.flush()  # Ensure the session is aware of new objects
     await db.commit()  # Commit drug records
