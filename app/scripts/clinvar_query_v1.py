@@ -12,15 +12,12 @@ load_dotenv('.env')
 
 API_KEY = os.getenv('API_KEY')
 
-os.environ["PATH"] = os.path.expanduser("~") + "/edirect:" + os.environ["PATH"]
-
 async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
 
     try:
-        print(API_KEY)
         esearch_command = (
-        f'/home/dgx/edirect/esearch -db clinvar -query "(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])" |'
-        f'/home/dgx/edirect/efetch -format xml&api_key={API_KEY}'
+        f'pwd && esearch -db clinvar -query "(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])" |'
+        f'efetch -format xml&api_key={API_KEY}'
         )
         
         process = await asyncio.create_subprocess_shell(
