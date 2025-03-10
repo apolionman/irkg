@@ -1,18 +1,16 @@
 #!/bin/bash
 
-# Find the PID of the uvicorn process using port 8000 and kill it
+# Find the PID of the uvicorn process using port 8001 and kill it
 pm2 stop fastapi
-
-pid=$(lsof -t -i:8000 -sTCP:LISTEN)
+sleep 2
+pid=$(lsof -t -i:8001 -sTCP:LISTEN)
 if [ -n "$pid" ]; then
-    echo "Killing process with PID $pid on port 8000..."
+    echo "Killing process with PID $pid on port 8001..."
     kill -9 $pid
+    sleep 3
 else
-    echo "No process found on port 8000."
+    echo "No process found on port 8001."
 fi
-
-
-sleep 5
 
 pm2 restart fastapi
 

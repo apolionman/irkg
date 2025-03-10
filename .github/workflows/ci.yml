@@ -93,7 +93,7 @@ jobs:
             alembic upgrade head  # If you're using Alembic for migrations
             
             # Restart application (modify this based on your setup)
-            ./cleanup_uvicorn.sh
+            # ./cleanup_uvicorn.sh
           EOF
 
     environment:

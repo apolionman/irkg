@@ -1495,7 +1495,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql://admin_dgx:password123@localhost:5432/irkg_db\")\nengine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)\nBase = declarative_base()\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql://admin_dgx:password123@localhost:5432/irkg_db\")\nengine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = sessionmaker(\n    bind=engine, \n    class_=AsyncSession, \n    expire_on_commit=False\n)\nBase = declarative_base()\nasync def get_db():\n    async with AsyncSessionLocal() as session:",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1504,7 +1504,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "engine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)\nBase = declarative_base()\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "peekOfCode": "engine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = sessionmaker(\n    bind=engine, \n    class_=AsyncSession, \n    expire_on_commit=False\n)\nBase = declarative_base()\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1513,7 +1513,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)\nBase = declarative_base()\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "peekOfCode": "AsyncSessionLocal = sessionmaker(\n    bind=engine, \n    class_=AsyncSession, \n    expire_on_commit=False\n)\nBase = declarative_base()\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
         "detail": "app.core.database",
         "documentation": {}
     },

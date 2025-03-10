@@ -11,7 +11,11 @@ DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://admin_dgx:password123@loc
 
 engine = create_async_engine(DATABASE_URL, pool_pre_ping=True)
 
-AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
+AsyncSessionLocal = sessionmaker(
+    bind=engine, 
+    class_=AsyncSession, 
+    expire_on_commit=False
+)
 
 Base = declarative_base()
 
