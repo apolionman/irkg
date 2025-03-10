@@ -12,7 +12,7 @@ else
 fi
 
 
-sleep 3
+sleep 5
 
 pm2 restart fastapi
 
