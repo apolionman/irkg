@@ -35,8 +35,9 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
         await db.commit()
         await db.refresh(disease_record)
 
+    async with db.begin():
         for drug_info in response.drugs:
-            print('Drug Name:==>', drug_info)
+            # print('Drug Name:==>', drug_info)
             drug_record = DrugInformation(
                 drug=drug_info.drug,
                 score=drug_info.score,
@@ -45,7 +46,9 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
             )
             print(drug_record)
             db.add(drug_record)
+
         await db.commit()
-    return disease_record.id
+
+    return disease_record.id 
 
    
