@@ -69,7 +69,7 @@ TxE = TxEval(model=TxG)
 def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:
     disease_idx = get_node_id_by_name(disease_name)
     # if relation != 'auto':
-    save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'
+    # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'
     results = TxE.eval_disease_centric(disease_idxs=disease_idx, 
                                 relation=relation,
                                 show_plot=False, 
@@ -78,10 +78,6 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
                                 return_raw=False,
                                 # save_name=save_path
                                 )
-
-    # Load saved results
-    # with open(save_path, 'rb') as f:
-    #     data = pickle.load(f)
 
     limited_result = results.iloc[0]['Prediction'].copy()
     ranked_result = results.iloc[0]['Ranked List'].copy()
@@ -111,57 +107,4 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseR
         disease_name=results.iloc[0]['Name'] if isinstance(results.iloc[0]['Name'], list) else results.iloc[0]['Name'],
         drugs=sorted_drugs_info
     )
-    # else:
-    #     relation = ['indication', 'contraindication', 'off-label use']
-
-    #     save_paths = {
-    #         'indication': '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval_indi.pkl',
-    #         'contraindication': '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval_contrindi.pkl',
-    #         'off-label use': '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval_offlabel.pkl'
-    #     }
-
-    #     drugs_info_dict = {}
-
-    #     for r in relation:
-    #         TxE.eval_disease_centric(
-    #             disease_idxs=disease_idx, 
-    #             relation=r,
-    #             show_plot=False, 
-    #             verbose=True, 
-    #             save_result=True,
-    #             return_raw=False,
-    #             save_name=save_paths[r]
-    #         )
-
-    #     for r in relation:
-    #         with open(save_paths[r], 'rb') as f:
-    #             data = pickle.load(f)
-
-    #         limited_result = data.iloc[0]['Prediction'].copy()
-    #         sorted_predictions = sorted(limited_result.items(), key=lambda x: x[1], reverse=True)
-    #         top_100_predictions = sorted_predictions[:_range]
-    #         max_score = max([score for drug, score in top_100_predictions])
-
-    #         drugs_info = []
-    #         for drug, score in top_100_predictions:
-    #             percentage = (score / max_score) * 100
-    #             drugs_info.append(DrugInfo(drug=get_drug_name(drug), score=percentage))
-            
-    #         drugs_info_dict[r] = drugs_info
-
-    #     # Combine indication and off-label use, then remove contraindications
-    #     combined_drugs = {d.drug: d for d in drugs_info_dict['indication']}
-    #     for d in drugs_info_dict['off-label use']:
-    #         if d.drug not in combined_drugs:
-    #             combined_drugs[d.drug] = d
-
-    #     # Remove drugs found in contraindication
-    #     contraindicated_drugs = {d.drug for d in drugs_info_dict['contraindication']}
-    #     final_drugs = [d for d in combined_drugs.values() if d.drug not in contraindicated_drugs]
-
-    #     response = DiseaseResponse(
-    #         disease_name=disease_name[0] if isinstance(disease_name, list) else disease_name,
-    #         drugs=final_drugs
-    #     )
-    # Return the dictionary representation of the response
     return response

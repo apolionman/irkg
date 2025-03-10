@@ -17,34 +17,35 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
     await db.refresh(new_user)
     return new_user
 
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
-    
-    try:
-        # Check if the disease already exists
+    async with db.begin():
         query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
         result = await db.execute(query)
         existing_disease = result.scalars().first()
-        if existing_disease:
-            return existing_disease.id 
-    except Exception as e:
-        raise e
-    
-    disease_record = DiseaseDrugScore(disease_name=response.disease_name)
-    db.add(disease_record)
-    await db.commit()
-    await db.refresh(disease_record)
 
-    for drug_info in response.drugs:
-        print('Drug Name:==>', drug_info.drug)
-        drug_record = DrugInformation(
-            drug=drug_info.drug,
-            score=drug_info.score,
-            rank=drug_info.rank,
-            disease_id=disease_record.id
-        )
-        db.add(drug_record)
-        disease_record.drugs.append(drug_record)  # Ensure proper relationship
-    await db.commit()  # Ensure this is awaited
-    await db.refresh(disease_record)
+        if existing_disease:
+            return existing_disease.id
+        
+        disease_record = DiseaseDrugScore(disease_name=response.disease_name)
+        db.add(disease_record)
+
+        # await db.commit()
+        # await db.refresh(disease_record)
+
+        for drug_info in response.drugs:
+            print('Drug Name:==>', drug_info)
+            drug_record = DrugInformation(
+                drug=drug_info.drug,
+                score=drug_info.score,
+                rank=drug_info.rank,
+                disease_id=disease_record.id
+            )
+            print(drug_record)
+            db.add(drug_record)
+        await db.commit()
     return disease_record.id
+
    
