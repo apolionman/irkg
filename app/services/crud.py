@@ -17,10 +17,20 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
     return new_user
 
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
+
+    print('TESTING!!!!', response.disease_name)
+
+    query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
+    result = await db.execute(query)
+    existing_disease = result.scalars().first()
+
+    if existing_disease:
+        return existing_disease.id
+
     disease_record = DiseaseDrugScore(disease_name=response.disease_name)
     db.add(disease_record)
-    await db.commit()
-    await db.refresh(disease_record)
+    await db.commit()  # Fix: await commit
+    await db.refresh(disease_record)  # Fix: await refresh
 
     for drug_info in response.drugs:
         drug_record = DrugInformation(
@@ -28,9 +38,14 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
             score=drug_info.score, 
             disease_id=disease_record.id
         )
+        disease_record.drugs.append(drug_record)  # Fix: explicitly associate
         db.add(drug_record)
 
-    await db.commit()
-    await db.refresh(drug_record)
-    print("DEBUG: Successfully inserted data!")
+    try:
+        await db.commit()  # Fix: await commit
+        await db.refresh(drug_record)  # Fix: await refresh
+    except:
+        await db.rollback()
+        raise
+
     return disease_record.id
