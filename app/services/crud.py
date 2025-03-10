@@ -49,7 +49,3 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
     disease_record = await save_disease_record(db, response.disease_name)
     await save_drug_records(db, response.drugs, disease_record)
     return disease_record
-
-
-
-   

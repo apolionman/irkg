@@ -84,7 +84,6 @@ async def get_clinvar_data(
     gene: str, 
     current_user: dict = Depends(get_current_user)
     ):
-    loop = asyncio.get_event_loop()
     result = await fetch_clinvar_variations(gene)
     return result
 

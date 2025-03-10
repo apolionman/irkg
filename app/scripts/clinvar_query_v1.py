@@ -15,6 +15,7 @@ API_KEY = os.getenv('API_KEY')
 async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
 
     try:
+        print(gene_name)
         esearch_command = (
         f'esearch -db clinvar -query "(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])" |'
         # f'esearch -db clinvar -query "{gene_name}[Gene] AND Homo sapiens[Organism]" |'
