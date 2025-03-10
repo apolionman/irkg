@@ -17,7 +17,8 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
     return new_user
 
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
-    async with db.begin():  # Using async session's context manager
+    async with db.begin():
+
         query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
         result = await db.execute(query)
         existing_disease = result.scalars().first()
@@ -27,7 +28,9 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
 
         disease_record = DiseaseDrugScore(disease_name=response.disease_name)
         db.add(disease_record)
-        await db.commit()  # Ensure commit is awaited
+
+        await db.commit()
+        
         await db.refresh(disease_record)
 
         for drug_info in response.drugs:
@@ -37,10 +40,12 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
                 rank=drug_info.rank,
                 disease_id=disease_record.id
             )
+
             disease_record.drugs.append(drug_record)  # Explicit association
             db.add(drug_record)
 
-        await db.commit()  # Commit all the changes at once
-        await db.refresh(disease_record)  # Refresh disease record after commit
+        await db.commit()
+        
+        await db.refresh(disease_record)
         
     return disease_record.id
