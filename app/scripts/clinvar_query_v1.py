@@ -33,7 +33,7 @@ async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
         stderr_str = stderr.decode().strip()
 
         # Debug: Check the actual output
-        print(f"Stdout: {stdout_str}")
+        # print(f"Stdout: {stdout_str}") # activate only when debugging
         if stderr_str:
             print(f"Stderr: {stderr_str}")
 

@@ -1593,16 +1593,34 @@
         "kind": 6,
         "importPath": "app.models.models",
         "description": "app.models.models",
-        "peekOfCode": "class DrugInformation(Base):\n    __tablename__ = \"drug_info\"\n    id = Column(Integer, primary_key=True, index=True)\n    drug = Column(String, index=True)\n    score = Column(Float)\n    rank = Column(Integer, index=True)\n    disease_id = Column(Integer, ForeignKey(\"disease_drug_score.id\"))\n    disease = relationship(\"DiseaseDrugScore\", back_populates=\"drugs\")\nclass GeneProtein(Base):\n    __tablename__ = \"gene_protein\"",
+        "peekOfCode": "class DrugInformation(Base):\n    __tablename__ = \"drug_info\"\n    id = Column(Integer, primary_key=True, index=True)\n    drug = Column(String, index=True)\n    score = Column(Float)\n    rank = Column(Integer, index=True)\n    disease_id = Column(Integer, ForeignKey(\"disease_drug_score.id\"))\n    disease = relationship(\"DiseaseDrugScore\", back_populates=\"drugs\")\n# Association table for many-to-many relationship between VariantInfo and Gene\nvariant_gene_association = Table(",
         "detail": "app.models.models",
         "documentation": {}
     },
     {
-        "label": "GeneProtein",
+        "label": "VariantInfo",
         "kind": 6,
         "importPath": "app.models.models",
         "description": "app.models.models",
-        "peekOfCode": "class GeneProtein(Base):\n    __tablename__ = \"gene_protein\"\n    id = Column(Integer, primary_key=True, index=True)\n    gene_name = Column(String, index=True)\n    # Define a relationship with DrugInfo\n    drugs = relationship(\"DrugInformation\", back_populates=\"disease\", cascade=\"all, delete-orphan\")",
+        "peekOfCode": "class VariantInfo(Base):\n    __tablename__ = \"gene_variant\"\n    id = Column(Integer, primary_key=True, index=True)\n    variationTitle = Column(String, index=True)\n    NucleotideID = Column(String, index=True)\n    VariationID = Column(String, index=True)\n    ProteinChange = Column(String)\n    Type = Column(String)\n    Condition = Column(String)\n    Classification = Column(String)",
+        "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "Gene",
+        "kind": 6,
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "peekOfCode": "class Gene(Base):\n    __tablename__ = \"gene\"\n    id = Column(Integer, primary_key=True, index=True)\n    GeneSymbol = Column(String, unique=True, index=True)\n    # Relationship\n    variants = relationship(\"VariantInfo\", secondary=variant_gene_association, back_populates=\"genes\")\nclass Consequence(Base):\n    __tablename__ = \"consequence\"\n    id = Column(Integer, primary_key=True, index=True)\n    consequence = Column(String, index=True)",
+        "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "Consequence",
+        "kind": 6,
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "peekOfCode": "class Consequence(Base):\n    __tablename__ = \"consequence\"\n    id = Column(Integer, primary_key=True, index=True)\n    consequence = Column(String, index=True)\n    variant_id = Column(Integer, ForeignKey(\"gene_variant.id\"))\n    # Relationship\n    variant = relationship(\"VariantInfo\", back_populates=\"consequences\")",
         "detail": "app.models.models",
         "documentation": {}
     },
@@ -1612,6 +1630,15 @@
         "importPath": "app.models.models",
         "description": "app.models.models",
         "peekOfCode": "Base = declarative_base()\nclass User(Base):\n    __tablename__ = \"users\"\n    id = Column(Integer, primary_key=True, index=True)\n    name = Column(String, index=True)\n    email = Column(String, unique=True, index=True)\n    password = Column(String)\nclass DiseaseDrugScore(Base):\n    __tablename__ = \"disease_drug_score\"\n    id = Column(Integer, primary_key=True, index=True)",
+        "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "variant_gene_association",
+        "kind": 5,
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "peekOfCode": "variant_gene_association = Table(\n    \"variant_gene_association\",\n    Base.metadata,\n    Column(\"variant_id\", Integer, ForeignKey(\"gene_variant.id\"), primary_key=True),\n    Column(\"gene_id\", Integer, ForeignKey(\"gene.id\"), primary_key=True),\n)\nclass VariantInfo(Base):\n    __tablename__ = \"gene_variant\"\n    id = Column(Integer, primary_key=True, index=True)\n    variationTitle = Column(String, index=True)",
         "detail": "app.models.models",
         "documentation": {}
     },
@@ -1847,6 +1874,15 @@
         "description": "app.scripts.txgnn_query",
         "peekOfCode": "TxE = TxEval(model=TxG)\ndef txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    results = TxE.eval_disease_centric(disease_idxs=disease_idx, \n                                relation=relation,\n                                show_plot=False, \n                                verbose=False,\n                                save_result=False,",
         "detail": "app.scripts.txgnn_query",
+        "documentation": {}
+    },
+    {
+        "label": "get_variants_by_gene",
+        "kind": 2,
+        "importPath": "app.services.crud",
+        "description": "app.services.crud",
+        "peekOfCode": "def get_variants_by_gene(db: Session, gene_name: str) -> List[VariantInfo]:\n    return db.query(VariantInfo).join(variant_gene_association).join(Gene).filter(Gene.GeneSymbol == gene_name).all()",
+        "detail": "app.services.crud",
         "documentation": {}
     },
     {

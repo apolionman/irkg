@@ -49,3 +49,45 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
     disease_record = await save_disease_record(db, response.disease_name)
     await save_drug_records(db, response.drugs, disease_record)
     return disease_record
+
+# Create a function to add a variation into the database
+async def create_variant(db: Session, variation_data: dict):
+    # Create the VariantInfo object
+    variant_info = VariantInfo(
+        variationTitle=variation_data['VariationTitle'],
+        NucleotideID=variation_data['NucleotideID'],
+        VariationID=variation_data['VariationID'],
+        ProteinChange=variation_data['ProteinChange'],
+        Type=variation_data['Type'],
+        Condition=variation_data['Condition'],
+        Classification=variation_data['Classification'],
+        ReviewStatus=variation_data['ReviewStatus'],
+    )
+    
+    db.add(variant_info)
+    db.commit()
+    db.refresh(variant_info)
+    
+    # Add the genes to the relationship
+    for gene_symbol in variation_data['Gene']['GeneSymbol']:
+        gene = db.query(Gene).filter(Gene.GeneSymbol == gene_symbol).first()
+        if not gene:
+            gene = Gene(GeneSymbol=gene_symbol)
+            db.add(gene)
+            db.commit()
+            db.refresh(gene)
+        
+        variant_info.genes.append(gene)
+
+    # Add the consequences
+    for consequence in variation_data['Consequence']:
+        cons = Consequence(consequence=consequence, variant_id=variant_info.id)
+        db.add(cons)
+
+    db.commit()
+    return variant_info
+
+
+# Create function to retrieve all variations for a given gene
+def get_variants_by_gene(db: Session, gene_name: str) -> List[VariantInfo]:
+    return db.query(VariantInfo).join(variant_gene_association).join(Gene).filter(Gene.GeneSymbol == gene_name).all()
