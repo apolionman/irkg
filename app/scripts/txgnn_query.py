@@ -97,15 +97,16 @@ def txgnn_query(disease_name: List[str], relation: str, _range: int, db: AsyncSe
 
     drugs_info = []
     for drug in ranked_range:
-        # print(get_drug_id(drug))
         score = normalized_predictions.get(get_drug_id(drug), None)
-        # print(score)
-        drugs_info.append(DrugInfo(drug=drug, score=score))
-    
+        # Append drug with the rank and score
+        drugs_info.append(DrugInfo(drug=drug, score=score, rank=None))  # Temporary 'None' for rank
+
+    # Sort drugs by score in descending order and assign ranks
     sorted_drugs_info = sorted(drugs_info, key=lambda x: x.score, reverse=True)
     for i, drug in enumerate(sorted_drugs_info):
-        drug.rank = i + 1
+        drug.rank = i + 1  # Rank starts from 1
 
+    # Prepare the response object with the disease name and the list of drugs with scores and ranks
     response = DiseaseResponse(
         disease_name=results.iloc[0]['Name'] if isinstance(results.iloc[0]['Name'], list) else results.iloc[0]['Name'],
         drugs=sorted_drugs_info
