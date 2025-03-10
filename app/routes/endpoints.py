@@ -103,11 +103,11 @@ async def get_txgnn_results(
     current_user: dict = Depends(get_current_user)
     ):
     loop = asyncio.get_event_loop()
-    try:
-        results = await txgnn_query(disease_name, relation, _range, db)
-        return save_txgnn(db, results)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    # try:
+    results = txgnn_query(disease_name, relation, _range, db)
+    return await save_txgnn(db, results)
+    # except Exception as e:
+    #     raise HTTPException(status_code=500, detail=str(e))
     
 # @router.get("/txgnn_query", response_model=DiseaseResponse)
 # async def get_txgnn_results(
