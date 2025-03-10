@@ -113,14 +113,6 @@
         "documentation": {}
     },
     {
-        "label": "create_engine",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
         "label": "Column",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
@@ -266,23 +258,47 @@
         "documentation": {}
     },
     {
-        "label": "declarative_base",
-        "importPath": "sqlalchemy.ext.declarative",
-        "description": "sqlalchemy.ext.declarative",
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
         "isExtraImport": true,
-        "detail": "sqlalchemy.ext.declarative",
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "create_async_engine",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
         "documentation": {}
     },
     {
         "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
         "isExtraImport": true,
@@ -319,62 +335,6 @@
         "description": "sqlalchemy.orm",
         "isExtraImport": true,
         "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "AsyncSession",
-        "importPath": "sqlalchemy.ext.asyncio",
-        "description": "sqlalchemy.ext.asyncio",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.ext.asyncio",
-        "documentation": {}
-    },
-    {
-        "label": "create_async_engine",
-        "importPath": "sqlalchemy.ext.asyncio",
-        "description": "sqlalchemy.ext.asyncio",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.ext.asyncio",
-        "documentation": {}
-    },
-    {
-        "label": "async_sessionmaker",
-        "importPath": "sqlalchemy.ext.asyncio",
-        "description": "sqlalchemy.ext.asyncio",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.ext.asyncio",
-        "documentation": {}
-    },
-    {
-        "label": "AsyncSession",
-        "importPath": "sqlalchemy.ext.asyncio",
-        "description": "sqlalchemy.ext.asyncio",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.ext.asyncio",
-        "documentation": {}
-    },
-    {
-        "label": "AsyncSession",
-        "importPath": "sqlalchemy.ext.asyncio",
-        "description": "sqlalchemy.ext.asyncio",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.ext.asyncio",
-        "documentation": {}
-    },
-    {
-        "label": "AsyncSession",
-        "importPath": "sqlalchemy.ext.asyncio",
-        "description": "sqlalchemy.ext.asyncio",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.ext.asyncio",
-        "documentation": {}
-    },
-    {
-        "label": "asynccontextmanager",
-        "importPath": "contextlib",
-        "description": "contextlib",
-        "isExtraImport": true,
-        "detail": "contextlib",
         "documentation": {}
     },
     {
@@ -1519,7 +1479,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql://admin_dgx:password123@localhost:5432/irkg_db\")\nengine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)\nBase = declarative_base()\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "peekOfCode": "DATABASE_URL = os.getenv(\n    \"DATABASE_URL\",\n    \"postgresql+asyncpg://admin_dgx:password123@localhost:5432/irkg_db\"\n)\nengine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\nasync def get_db() -> AsyncSession:\n    async with AsyncSessionLocal() as session:",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1528,7 +1488,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "engine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)\nBase = declarative_base()\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "peekOfCode": "engine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\nasync def get_db() -> AsyncSession:\n    async with AsyncSessionLocal() as session:\n        yield session",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1537,16 +1497,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "AsyncSessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)\nBase = declarative_base()\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
-        "detail": "app.core.database",
-        "documentation": {}
-    },
-    {
-        "label": "Base",
-        "kind": 5,
-        "importPath": "app.core.database",
-        "description": "app.core.database",
-        "peekOfCode": "Base = declarative_base()\nasync def get_db():\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "peekOfCode": "AsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\nasync def get_db() -> AsyncSession:\n    async with AsyncSessionLocal() as session:\n        yield session",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1762,7 +1713,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass ModeEnum(str, Enum):\n    indication = \"indication\"\n    contradiction = \"contradiction\"",
+        "peekOfCode": "class RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass ModeEnum(str, Enum):\n    indication = \"indication\"\n    contradiction = \"contradiction\"\nclass VariantSchema(BaseModel):\n    id: int",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -1771,7 +1722,16 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class ModeEnum(str, Enum):\n    indication = \"indication\"\n    contradiction = \"contradiction\"",
+        "peekOfCode": "class ModeEnum(str, Enum):\n    indication = \"indication\"\n    contradiction = \"contradiction\"\nclass VariantSchema(BaseModel):\n    id: int\n    variationTitle: str\n    ProteinChange: str\n    Type: str\n    Condition: str\n    Classification: str",
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "VariantSchema",
+        "kind": 6,
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "peekOfCode": "class VariantSchema(BaseModel):\n    id: int\n    variationTitle: str\n    ProteinChange: str\n    Type: str\n    Condition: str\n    Classification: str\n    ReviewStatus: str\n    class Config:\n        orm_mode = True",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },

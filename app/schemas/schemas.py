@@ -33,3 +33,15 @@ class RelationReq(str, Enum):
 class ModeEnum(str, Enum):
     indication = "indication"
     contradiction = "contradiction"
+
+class VariantSchema(BaseModel):
+    id: int
+    variationTitle: str
+    ProteinChange: str
+    Type: str
+    Condition: str
+    Classification: str
+    ReviewStatus: str
+
+    class Config:
+        orm_mode = True

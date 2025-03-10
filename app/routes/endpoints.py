@@ -83,24 +83,23 @@ async def run_orf(
 async def get_clinvar_data(
     gene: str, 
     current_user: dict = Depends(get_current_user),
-    db: Session = Depends(get_db)
+    db: AsyncSession = Depends(get_db)
 ):
-    # Fetch the ClinVar data (this can be from an API or database)
     result = await fetch_clinvar_variations(gene)
     
-    # You may add this data to your database if necessary
     if result.get("ClinVarSet"):
         for variation in result["ClinVarSet"]["ReferenceClinVarAssertion"]:
             variation_data = variation["Variation"]
-            create_variant(db=db, variation_data=variation_data)
+            await create_variant(db=db, variation_data=variation_data)
 
-    # Get the variants from the database
-    variants = get_variants_by_gene(db=db, gene_name=gene)
+    variants = await get_variants_by_gene(db=db, gene_name=gene)
     if not variants:
         raise HTTPException(status_code=404, detail="No variants found for the gene")
     
-    # Return the retrieved variants
-    return {"variants": variants}
+    # If 'variants' are SQLAlchemy models, serialize them explicitly with Pydantic:
+    serialized_variants = [VariantSchema.from_orm(variant) for variant in variants]
+
+    return {"variants": serialized_variants}
 
 @router.post("/nucleotide_fasta/")
 async def nucleotide_fasta(request: NucleotideReq, current_user: dict = Depends(get_current_user)):
