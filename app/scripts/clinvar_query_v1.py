@@ -12,6 +12,8 @@ load_dotenv('.env')
 
 API_KEY = os.getenv('API_KEY')
 
+os.environ["PATH"] = os.path.expanduser("~") + "/edirect:" + os.environ["PATH"]
+
 async def fetch_clinvar_variations(gene_name: str) -> GeneRequest:
 
     try:
