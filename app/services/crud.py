@@ -17,40 +17,45 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
     await db.refresh(new_user)
     return new_user
 
+# Function to save disease record
+async def save_disease_record(db: AsyncSession, disease_name: str):
+    query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == disease_name)
+    result = await db.execute(query)
+    existing_disease = result.scalars().first()
+
+    if existing_disease:
+        return existing_disease.id
+
+    disease_record = DiseaseDrugScore(disease_name=disease_name)
+    db.add(disease_record)
+    
+    await db.commit()  # Commit to save the disease record
+    await db.refresh(disease_record)  # Refresh to get the ID
+
+    return disease_record
+
+# Function to save drug records
+async def save_drug_records(db: AsyncSession, drugs: list, disease_id: int):
+    for drug_info in drugs:
+        drug_record = DrugInformation(
+            drug=drug_info.drug,
+            score=drug_info.score,
+            rank=drug_info.rank,
+            disease_id=disease_id  # Link drug to the disease record
+        )
+        db.add(drug_record)
+
+    await db.commit()  # Commit to save all drug records
+
+# Main function to orchestrate saving the disease and drug records
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
-    # First transaction to add the disease record
-    async with db.begin():  # Start a transaction for disease record
-        # Check if the disease already exists
-        query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
-        result = await db.execute(query)
-        existing_disease = result.scalars().first()
+    # Save disease record first
+    disease_record = await save_disease_record(db, response.disease_name)
 
-        if existing_disease:
-            return existing_disease.id
+    # Save drug records associated with the disease
+    await save_drug_records(db, response.drugs, disease_record)
 
-        # Create and add the disease record
-        disease_record = DiseaseDrugScore(disease_name=response.disease_name)
-        db.add(disease_record)
-
-        # Commit to save the disease record
-        await db.commit()
-        await db.refresh(disease_record)  # Refresh to get the ID for the disease record
-
-    # Second transaction to add drug records
-    async with db.begin():  # Start a separate transaction for drug records
-        for drug_info in response.drugs:
-            drug_record = DrugInformation(
-                drug=drug_info.drug,
-                score=drug_info.score,
-                rank=drug_info.rank,
-                disease_id=disease_record.id  # Link the drug to the disease record
-            )
-            db.add(drug_record)
-
-        # Commit to save the drug records
-        await db.commit()
-
-    return disease_record.id
+    return disease_record
 
 
 
