@@ -18,7 +18,8 @@ async def create_user(db: AsyncSession, name: str, email: str, password: str):
     return new_user
 
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
-    async with db.begin():  # Start a transaction
+    # First transaction to add the disease record
+    async with db.begin():  # Start a transaction for disease record
         # Check if the disease already exists
         query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
         result = await db.execute(query)
@@ -26,31 +27,31 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
 
         if existing_disease:
             return existing_disease.id
-        
+
         # Create and add the disease record
         disease_record = DiseaseDrugScore(disease_name=response.disease_name)
         db.add(disease_record)
 
-        # Wait to commit until all operations are completed
-        # Refresh to get the generated ID of the disease record
-        await db.commit()  # Explicit commit for disease record
-        await db.refresh(disease_record)  # Refresh the disease record to get the correct ID
+        # Commit to save the disease record
+        await db.commit()
+        await db.refresh(disease_record)  # Refresh to get the ID for the disease record
 
-        # Add the drug records, linking them to the newly created disease record
+    # Second transaction to add drug records
+    async with db.begin():  # Start a separate transaction for drug records
         for drug_info in response.drugs:
             drug_record = DrugInformation(
                 drug=drug_info.drug,
                 score=drug_info.score,
                 rank=drug_info.rank,
-                disease_id=disease_record.id  # Link drug record with disease_id
+                disease_id=disease_record.id  # Link the drug to the disease record
             )
             db.add(drug_record)
 
-        # The commit is performed here to include drug records too
+        # Commit to save the drug records
         await db.commit()
 
-    # Return the disease ID after committing everything
     return disease_record.id
+
 
 
    
