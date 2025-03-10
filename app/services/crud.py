@@ -40,6 +40,7 @@ async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
                 rank=drug_info.rank,
                 disease_id=disease_record.id
             )
+            print(drug_record)
             db.add(drug_record)
             await db.commit()
             await db.refresh(disease_record)
