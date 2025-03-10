@@ -124,7 +124,6 @@ def generate_task_id(length=6):
 
 @router.post("/update-gene-variants-db/{task_id}")
 async def run_csv_async(
-        task_id: str,
         db: AsyncSession = Depends(get_db), 
         current_user: dict = Depends(get_current_user)
     ):
