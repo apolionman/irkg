@@ -266,6 +266,14 @@
         "documentation": {}
     },
     {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "AsyncSession",
         "importPath": "sqlalchemy.ext.asyncio",
         "description": "sqlalchemy.ext.asyncio",
@@ -814,6 +822,22 @@
         "documentation": {}
     },
     {
+        "label": "*",
+        "importPath": "scripts.faiss",
+        "description": "scripts.faiss",
+        "isExtraImport": true,
+        "detail": "scripts.faiss",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "scripts.exec_layer",
+        "description": "scripts.exec_layer",
+        "isExtraImport": true,
+        "detail": "scripts.exec_layer",
+        "documentation": {}
+    },
+    {
         "label": "Enum",
         "importPath": "enum",
         "description": "enum",
@@ -855,6 +879,50 @@
         "importPath": "time",
         "description": "time",
         "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "faiss",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "faiss",
+        "description": "faiss",
+        "detail": "faiss",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "openai",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "openai",
+        "description": "openai",
+        "detail": "openai",
+        "documentation": {}
+    },
+    {
+        "label": "OpenAIEmbeddings",
+        "importPath": "langchain.embeddings.openai",
+        "description": "langchain.embeddings.openai",
+        "isExtraImport": true,
+        "detail": "langchain.embeddings.openai",
         "documentation": {}
     },
     {
@@ -913,15 +981,6 @@
         "description": "txgnn",
         "isExtraImport": true,
         "detail": "txgnn",
-        "documentation": {}
-    },
-    {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
         "documentation": {}
     },
     {
@@ -1143,15 +1202,6 @@
         "description": "networkx",
         "isExtraImport": true,
         "detail": "networkx",
-        "documentation": {}
-    },
-    {
-        "label": "numpy",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "numpy",
-        "description": "numpy",
-        "detail": "numpy",
         "documentation": {}
     },
     {
@@ -1779,6 +1829,15 @@
         "documentation": {}
     },
     {
+        "label": "UserQuery",
+        "kind": 6,
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "peekOfCode": "class UserQuery(BaseModel):\n    query: str",
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
         "label": "parse_orf_result",
         "kind": 2,
         "importPath": "app.scripts.ORFfinder",
@@ -1830,6 +1889,69 @@
         "description": "app.scripts.clinvar_query_v1",
         "peekOfCode": "os.environ[\"PATH\"] = \"/usr/bin:/bin:\" + os.environ[\"PATH\"]\nasync def fetch_clinvar_variations(gene_name: str) -> GeneRequest:\n    try:\n        esearch_command = (\n        f'esearch -db clinvar -query \"(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])\" |'\n        f'efetch -format xml&api_key={API_KEY}'\n        )\n        process = await asyncio.create_subprocess_shell(\n            esearch_command,\n            stdout=asyncio.subprocess.PIPE,",
         "detail": "app.scripts.clinvar_query_v1",
+        "documentation": {}
+    },
+    {
+        "label": "store_feedback",
+        "kind": 2,
+        "importPath": "app.scripts.faiss",
+        "description": "app.scripts.faiss",
+        "peekOfCode": "def store_feedback(action: str, result: str):\n    \"\"\" Stores feedback locally in FAISS \"\"\"\n    feedback_text = f\"Action: {action}\\nResult: {result}\"\n    # Convert feedback to embedding\n    feedback_vector = embeddings.embed_query(feedback_text)\n    # Convert to numpy array and add to FAISS\n    vector_np = np.array([feedback_vector], dtype=np.float32)\n    index.add(vector_np)\n    # Store corresponding feedback text\n    feedback_id = len(feedback_data)",
+        "detail": "app.scripts.faiss",
+        "documentation": {}
+    },
+    {
+        "label": "retrieve_past_feedback",
+        "kind": 2,
+        "importPath": "app.scripts.faiss",
+        "description": "app.scripts.faiss",
+        "peekOfCode": "def retrieve_past_feedback(query: str, top_k=3):\n    \"\"\" Retrieves top-k similar feedback from FAISS \"\"\"\n    # Convert query to embedding\n    query_vector = np.array([embeddings.embed_query(query)], dtype=np.float32)\n    # Search FAISS for similar vectors\n    D, I = index.search(query_vector, top_k)\n    # Retrieve corresponding feedback texts\n    similar_feedbacks = [feedback_data.get(i, \"No relevant feedback\") for i in I[0] if i in feedback_data]\n    return similar_feedbacks\nasync def decision_making_layer(query: str):",
+        "detail": "app.scripts.faiss",
+        "documentation": {}
+    },
+    {
+        "label": "embeddings",
+        "kind": 5,
+        "importPath": "app.scripts.faiss",
+        "description": "app.scripts.faiss",
+        "peekOfCode": "embeddings = OpenAIEmbeddings()\n# FAISS Index File\nFAISS_INDEX_FILE = \"feedback_index.faiss\"\nFAISS_DATA_FILE = \"feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\nif os.path.exists(FAISS_INDEX_FILE):\n    faiss.read_index(FAISS_INDEX_FILE)",
+        "detail": "app.scripts.faiss",
+        "documentation": {}
+    },
+    {
+        "label": "FAISS_INDEX_FILE",
+        "kind": 5,
+        "importPath": "app.scripts.faiss",
+        "description": "app.scripts.faiss",
+        "peekOfCode": "FAISS_INDEX_FILE = \"feedback_index.faiss\"\nFAISS_DATA_FILE = \"feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\nif os.path.exists(FAISS_INDEX_FILE):\n    faiss.read_index(FAISS_INDEX_FILE)\nif os.path.exists(FAISS_DATA_FILE):\n    with open(FAISS_DATA_FILE, \"r\") as f:",
+        "detail": "app.scripts.faiss",
+        "documentation": {}
+    },
+    {
+        "label": "FAISS_DATA_FILE",
+        "kind": 5,
+        "importPath": "app.scripts.faiss",
+        "description": "app.scripts.faiss",
+        "peekOfCode": "FAISS_DATA_FILE = \"feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\nif os.path.exists(FAISS_INDEX_FILE):\n    faiss.read_index(FAISS_INDEX_FILE)\nif os.path.exists(FAISS_DATA_FILE):\n    with open(FAISS_DATA_FILE, \"r\") as f:\n        feedback_data = json.load(f)",
+        "detail": "app.scripts.faiss",
+        "documentation": {}
+    },
+    {
+        "label": "dimension",
+        "kind": 5,
+        "importPath": "app.scripts.faiss",
+        "description": "app.scripts.faiss",
+        "peekOfCode": "dimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\nif os.path.exists(FAISS_INDEX_FILE):\n    faiss.read_index(FAISS_INDEX_FILE)\nif os.path.exists(FAISS_DATA_FILE):\n    with open(FAISS_DATA_FILE, \"r\") as f:\n        feedback_data = json.load(f)\nelse:\n    feedback_data = {}",
+        "detail": "app.scripts.faiss",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 5,
+        "importPath": "app.scripts.faiss",
+        "description": "app.scripts.faiss",
+        "peekOfCode": "index = faiss.IndexFlatL2(dimension)\n# Load previous stored data\nif os.path.exists(FAISS_INDEX_FILE):\n    faiss.read_index(FAISS_INDEX_FILE)\nif os.path.exists(FAISS_DATA_FILE):\n    with open(FAISS_DATA_FILE, \"r\") as f:\n        feedback_data = json.load(f)\nelse:\n    feedback_data = {}\ndef store_feedback(action: str, result: str):",
+        "detail": "app.scripts.faiss",
         "documentation": {}
     },
     {

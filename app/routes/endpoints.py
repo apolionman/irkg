@@ -16,6 +16,8 @@ from app.core.utils import get_user
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.services.crud import *
 from app.core.database import get_db
+from scripts.faiss import *
+from scripts.exec_layer import *
 
 router = APIRouter()
 
@@ -156,3 +158,22 @@ async def cancel_task(
     
     running_tasks.pop(task_id, None)
     return {"message": f"Task '{task_id}' cancelled successfully."}
+
+@router.post("/lam/")
+async def lam_entry(input_data: UserQuery):
+    query = input_data.query
+
+    # Decision Making with Memory
+    decision = await decision_making_layer(query)
+
+    # Execute Action
+    execution_result = await execution_layer(decision)
+
+    # Store Feedback Locally
+    feedback = store_feedback(decision, execution_result)
+
+    return {
+        "decision": decision, 
+        "execution_result": execution_result, 
+        "feedback": feedback
+    }
