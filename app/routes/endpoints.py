@@ -171,7 +171,7 @@ async def process_request(
     if files:
         file_responses = []
         for file in files:
-            file_location = f"uploads/{file.filename}"
+            file_location = f"/home/dgx/dgx_irkg_be/files/{file.filename}"
             with open(file_location, "wb") as f:
                 f.write(await file.read())
 
