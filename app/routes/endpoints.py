@@ -182,6 +182,9 @@ async def process_request(
     # Handle user query
     if request.query:
         decision = await decision_making_layer(request.query)
+        execution_result = await execution_layer(decision)  # Run the action
+
         responses["workflow_action"] = decision
+        responses["execution_result"] = execution_result
 
     return responses

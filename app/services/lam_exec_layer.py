@@ -7,7 +7,8 @@ async def execution_layer(action: str):
         return result.stdout
 
     elif "run_sql_query" in action:
-        return None
+        # Example: Run a dummy SQL query (replace with actual DB connection)
+        return "Executed SQL query successfully."
 
     else:
         return "No matching action found."

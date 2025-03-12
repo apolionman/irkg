@@ -1,4 +1,4 @@
-from lam_feedback_layer import *
+from app.services.lam_feedback_layer import *
 import os
 from dotenv import load_dotenv
 from openai import OpenAI

@@ -839,6 +839,14 @@
     },
     {
         "label": "*",
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
+        "isExtraImport": true,
+        "detail": "app.services.lam_feedback_layer",
+        "documentation": {}
+    },
+    {
+        "label": "*",
         "importPath": "app.services.lam_exec_layer",
         "description": "app.services.lam_exec_layer",
         "isExtraImport": true,
@@ -986,14 +994,6 @@
         "description": "sqlalchemy.future",
         "isExtraImport": true,
         "detail": "sqlalchemy.future",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "lam_feedback_layer",
-        "description": "lam_feedback_layer",
-        "isExtraImport": true,
-        "detail": "lam_feedback_layer",
         "documentation": {}
     },
     {
