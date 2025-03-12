@@ -831,18 +831,26 @@
     },
     {
         "label": "*",
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
         "isExtraImport": true,
-        "detail": "app.scripts.faiss",
+        "detail": "app.services.lam_feedback_layer",
         "documentation": {}
     },
     {
         "label": "*",
-        "importPath": "app.scripts.exec_layer",
-        "description": "app.scripts.exec_layer",
+        "importPath": "app.services.lam_exec_layer",
+        "description": "app.services.lam_exec_layer",
         "isExtraImport": true,
-        "detail": "app.scripts.exec_layer",
+        "detail": "app.services.lam_exec_layer",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.services.lam_decision_layer",
+        "description": "app.services.lam_decision_layer",
+        "isExtraImport": true,
+        "detail": "app.services.lam_decision_layer",
         "documentation": {}
     },
     {
@@ -890,63 +898,12 @@
         "documentation": {}
     },
     {
-        "label": "faiss",
+        "label": "pickle",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "faiss",
-        "description": "faiss",
-        "detail": "faiss",
-        "documentation": {}
-    },
-    {
-        "label": "fitz",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "fitz",
-        "description": "fitz",
-        "detail": "fitz",
-        "documentation": {}
-    },
-    {
-        "label": "numpy",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "numpy",
-        "description": "numpy",
-        "detail": "numpy",
-        "documentation": {}
-    },
-    {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
-        "label": "BeautifulSoup",
-        "importPath": "bs4",
-        "description": "bs4",
-        "isExtraImport": true,
-        "detail": "bs4",
-        "documentation": {}
-    },
-    {
-        "label": "Presentation",
-        "importPath": "pptx",
-        "description": "pptx",
-        "isExtraImport": true,
-        "detail": "pptx",
-        "documentation": {}
-    },
-    {
-        "label": "OpenAI",
-        "importPath": "openai",
-        "description": "openai",
-        "isExtraImport": true,
-        "detail": "openai",
+        "importPath": "pickle",
+        "description": "pickle",
+        "detail": "pickle",
         "documentation": {}
     },
     {
@@ -956,32 +913,6 @@
         "importPath": "pandas",
         "description": "pandas",
         "detail": "pandas",
-        "documentation": {}
-    },
-    {
-        "label": "docx",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "docx",
-        "description": "docx",
-        "detail": "docx",
-        "documentation": {}
-    },
-    {
-        "label": "OpenAIEmbeddings",
-        "importPath": "langchain.embeddings.openai",
-        "description": "langchain.embeddings.openai",
-        "isExtraImport": true,
-        "detail": "langchain.embeddings.openai",
-        "documentation": {}
-    },
-    {
-        "label": "pickle",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "pickle",
-        "description": "pickle",
-        "detail": "pickle",
         "documentation": {}
     },
     {
@@ -1025,6 +956,15 @@
         "documentation": {}
     },
     {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
         "label": "*",
         "importPath": "app.models.models",
         "description": "app.models.models",
@@ -1046,6 +986,82 @@
         "description": "sqlalchemy.future",
         "isExtraImport": true,
         "detail": "sqlalchemy.future",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "lam_feedback_layer",
+        "description": "lam_feedback_layer",
+        "isExtraImport": true,
+        "detail": "lam_feedback_layer",
+        "documentation": {}
+    },
+    {
+        "label": "OpenAI",
+        "importPath": "openai",
+        "description": "openai",
+        "isExtraImport": true,
+        "detail": "openai",
+        "documentation": {}
+    },
+    {
+        "label": "faiss",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "faiss",
+        "description": "faiss",
+        "detail": "faiss",
+        "documentation": {}
+    },
+    {
+        "label": "fitz",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "fitz",
+        "description": "fitz",
+        "detail": "fitz",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "BeautifulSoup",
+        "importPath": "bs4",
+        "description": "bs4",
+        "isExtraImport": true,
+        "detail": "bs4",
+        "documentation": {}
+    },
+    {
+        "label": "Presentation",
+        "importPath": "pptx",
+        "description": "pptx",
+        "isExtraImport": true,
+        "detail": "pptx",
+        "documentation": {}
+    },
+    {
+        "label": "docx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "docx",
+        "description": "docx",
+        "detail": "docx",
+        "documentation": {}
+    },
+    {
+        "label": "OpenAIEmbeddings",
+        "importPath": "langchain.embeddings.openai",
+        "description": "langchain.embeddings.openai",
+        "isExtraImport": true,
+        "detail": "langchain.embeddings.openai",
         "documentation": {}
     },
     {
@@ -1933,114 +1949,6 @@
         "documentation": {}
     },
     {
-        "label": "extract_text_from_file",
-        "kind": 2,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "def extract_text_from_file(file_path):\n    \"\"\" Extracts text from various file types \"\"\"\n    file_ext = file_path.split(\".\")[-1].lower()\n    text = \"\"\n    if file_ext == \"pdf\":\n        doc = fitz.open(file_path)\n        text = \"\\n\".join([page.get_text(\"text\") for page in doc])\n    elif file_ext in [\"doc\", \"docx\"]:\n        doc = docx.Document(file_path)\n        text = \"\\n\".join([para.text for para in doc.paragraphs])",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
-        "label": "chunk_text",
-        "kind": 2,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "def chunk_text(text, chunk_size=500):\n    \"\"\" Splits text into smaller chunks for vectorization \"\"\"\n    words = text.split()\n    return [\" \".join(words[i:i+chunk_size]) for i in range(0, len(words), chunk_size)]\ndef store_file_in_faiss(file_path):\n    \"\"\" Extracts text, converts to embeddings, and stores in FAISS \"\"\"\n    text = extract_text_from_file(file_path)\n    if not text:\n        return \"No text found in the document.\"\n    chunks = chunk_text(text)",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
-        "label": "store_file_in_faiss",
-        "kind": 2,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "def store_file_in_faiss(file_path):\n    \"\"\" Extracts text, converts to embeddings, and stores in FAISS \"\"\"\n    text = extract_text_from_file(file_path)\n    if not text:\n        return \"No text found in the document.\"\n    chunks = chunk_text(text)\n    for i, chunk in enumerate(chunks):\n        vector = embeddings.embed_query(chunk)\n        vector_np = np.array([vector], dtype=np.float32)\n        index.add(vector_np)",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
-        "label": "retrieve_relevant_context",
-        "kind": 2,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "def retrieve_relevant_context(query: str, top_k=3):\n    \"\"\" Searches FAISS for similar document text chunks \"\"\"\n    query_vector = np.array([embeddings.embed_query(query)], dtype=np.float32)\n    # Search FAISS for similar vectors\n    _, matches = index.search(query_vector, top_k)\n    # Retrieve corresponding text chunks\n    relevant_contexts = [document_data.get(i, \"No relevant context\") for i in matches[0] if i in document_data]\n    return relevant_contexts\nasync def decision_making_layer(query: str):\n    \"\"\" Uses LLM with retrieved feedback to decide an action \"\"\"",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
-        "label": "client",
-        "kind": 5,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "client = OpenAI()\nfrom langchain.embeddings.openai import OpenAIEmbeddings\nfrom dotenv import load_dotenv\nload_dotenv('/home/dgx/dgx_irkg_be/.env')\nOPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\n# Initialize OpenAI Embeddings\nembeddings = OpenAIEmbeddings()\n# FAISS Index File\nINDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nDATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
-        "label": "OPEN_AI_KEY",
-        "kind": 5,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "OPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\n# Initialize OpenAI Embeddings\nembeddings = OpenAIEmbeddings()\n# FAISS Index File\nINDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nDATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
-        "label": "embeddings",
-        "kind": 5,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "embeddings = OpenAIEmbeddings()\n# FAISS Index File\nINDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nDATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
-        "label": "INDEX_FILE",
-        "kind": 5,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "INDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nDATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
-        "label": "DATA_FILE",
-        "kind": 5,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "DATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):\n    with open(DATA_FILE, \"r\") as f:",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
-        "label": "dimension",
-        "kind": 5,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "dimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):\n    with open(DATA_FILE, \"r\") as f:\n        document_data = json.load(f)\ndef extract_text_from_file(file_path):",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
-        "label": "index",
-        "kind": 5,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "index = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):\n    with open(DATA_FILE, \"r\") as f:\n        document_data = json.load(f)\ndef extract_text_from_file(file_path):\n    \"\"\" Extracts text from various file types \"\"\"",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
-        "label": "document_data",
-        "kind": 5,
-        "importPath": "app.scripts.faiss",
-        "description": "app.scripts.faiss",
-        "peekOfCode": "document_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):\n    with open(DATA_FILE, \"r\") as f:\n        document_data = json.load(f)\ndef extract_text_from_file(file_path):\n    \"\"\" Extracts text from various file types \"\"\"\n    file_ext = file_path.split(\".\")[-1].lower()\n    text = \"\"",
-        "detail": "app.scripts.faiss",
-        "documentation": {}
-    },
-    {
         "label": "get_node_id_by_name",
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
@@ -2101,6 +2009,114 @@
         "description": "app.scripts.txgnn_query",
         "peekOfCode": "TxE = TxEval(model=TxG)\ndef txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    results = TxE.eval_disease_centric(disease_idxs=disease_idx, \n                                relation=relation,\n                                show_plot=False, \n                                verbose=False,\n                                save_result=False,",
         "detail": "app.scripts.txgnn_query",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "app.services.lam_decision_layer",
+        "description": "app.services.lam_decision_layer",
+        "peekOfCode": "client = OpenAI()\nload_dotenv('/home/dgx/dgx_irkg_be/.env')\nOPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\nasync def decision_making_layer(query: str):\n    \"\"\" Uses LLM with retrieved feedback to decide an action \"\"\"\n    # Retrieve relevant past feedback\n    past_feedbacks = retrieve_relevant_context(query)\n    context = \"\\n\".join(past_feedbacks)\n    prompt = f\"\"\"\n    You are an intelligent AI agent with memory.",
+        "detail": "app.services.lam_decision_layer",
+        "documentation": {}
+    },
+    {
+        "label": "OPEN_AI_KEY",
+        "kind": 5,
+        "importPath": "app.services.lam_decision_layer",
+        "description": "app.services.lam_decision_layer",
+        "peekOfCode": "OPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\nasync def decision_making_layer(query: str):\n    \"\"\" Uses LLM with retrieved feedback to decide an action \"\"\"\n    # Retrieve relevant past feedback\n    past_feedbacks = retrieve_relevant_context(query)\n    context = \"\\n\".join(past_feedbacks)\n    prompt = f\"\"\"\n    You are an intelligent AI agent with memory.\n    Here is past feedback related to this query:\n    {context}",
+        "detail": "app.services.lam_decision_layer",
+        "documentation": {}
+    },
+    {
+        "label": "extract_text_from_file",
+        "kind": 2,
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
+        "peekOfCode": "def extract_text_from_file(file_path):\n    \"\"\" Extracts text from various file types \"\"\"\n    file_ext = file_path.split(\".\")[-1].lower()\n    text = \"\"\n    if file_ext == \"pdf\":\n        doc = fitz.open(file_path)\n        text = \"\\n\".join([page.get_text(\"text\") for page in doc])\n    elif file_ext in [\"doc\", \"docx\"]:\n        doc = docx.Document(file_path)\n        text = \"\\n\".join([para.text for para in doc.paragraphs])",
+        "detail": "app.services.lam_feedback_layer",
+        "documentation": {}
+    },
+    {
+        "label": "chunk_text",
+        "kind": 2,
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
+        "peekOfCode": "def chunk_text(text, chunk_size=500):\n    \"\"\" Splits text into smaller chunks for vectorization \"\"\"\n    words = text.split()\n    return [\" \".join(words[i:i+chunk_size]) for i in range(0, len(words), chunk_size)]\ndef store_file_in_faiss(file_path):\n    \"\"\" Extracts text, converts to embeddings, and stores in FAISS \"\"\"\n    text = extract_text_from_file(file_path)\n    if not text:\n        return \"No text found in the document.\"\n    chunks = chunk_text(text)",
+        "detail": "app.services.lam_feedback_layer",
+        "documentation": {}
+    },
+    {
+        "label": "store_file_in_faiss",
+        "kind": 2,
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
+        "peekOfCode": "def store_file_in_faiss(file_path):\n    \"\"\" Extracts text, converts to embeddings, and stores in FAISS \"\"\"\n    text = extract_text_from_file(file_path)\n    if not text:\n        return \"No text found in the document.\"\n    chunks = chunk_text(text)\n    for i, chunk in enumerate(chunks):\n        vector = embeddings.embed_query(chunk)\n        vector_np = np.array([vector], dtype=np.float32)\n        index.add(vector_np)",
+        "detail": "app.services.lam_feedback_layer",
+        "documentation": {}
+    },
+    {
+        "label": "retrieve_relevant_context",
+        "kind": 2,
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
+        "peekOfCode": "def retrieve_relevant_context(query: str, top_k=3):\n    \"\"\" Searches FAISS for similar document text chunks \"\"\"\n    query_vector = np.array([embeddings.embed_query(query)], dtype=np.float32)\n    # Search FAISS for similar vectors\n    _, matches = index.search(query_vector, top_k)\n    # Retrieve corresponding text chunks\n    relevant_contexts = [document_data.get(i, \"No relevant context\") for i in matches[0] if i in document_data]\n    return relevant_contexts",
+        "detail": "app.services.lam_feedback_layer",
+        "documentation": {}
+    },
+    {
+        "label": "embeddings",
+        "kind": 5,
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
+        "peekOfCode": "embeddings = OpenAIEmbeddings()\n# FAISS Index File\nINDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nDATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):",
+        "detail": "app.services.lam_feedback_layer",
+        "documentation": {}
+    },
+    {
+        "label": "INDEX_FILE",
+        "kind": 5,
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
+        "peekOfCode": "INDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nDATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):",
+        "detail": "app.services.lam_feedback_layer",
+        "documentation": {}
+    },
+    {
+        "label": "DATA_FILE",
+        "kind": 5,
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
+        "peekOfCode": "DATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):\n    with open(DATA_FILE, \"r\") as f:",
+        "detail": "app.services.lam_feedback_layer",
+        "documentation": {}
+    },
+    {
+        "label": "dimension",
+        "kind": 5,
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
+        "peekOfCode": "dimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):\n    with open(DATA_FILE, \"r\") as f:\n        document_data = json.load(f)\ndef extract_text_from_file(file_path):",
+        "detail": "app.services.lam_feedback_layer",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 5,
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
+        "peekOfCode": "index = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):\n    with open(DATA_FILE, \"r\") as f:\n        document_data = json.load(f)\ndef extract_text_from_file(file_path):\n    \"\"\" Extracts text from various file types \"\"\"",
+        "detail": "app.services.lam_feedback_layer",
+        "documentation": {}
+    },
+    {
+        "label": "document_data",
+        "kind": 5,
+        "importPath": "app.services.lam_feedback_layer",
+        "description": "app.services.lam_feedback_layer",
+        "peekOfCode": "document_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):\n    with open(DATA_FILE, \"r\") as f:\n        document_data = json.load(f)\ndef extract_text_from_file(file_path):\n    \"\"\" Extracts text from various file types \"\"\"\n    file_ext = file_path.split(\".\")[-1].lower()\n    text = \"\"",
+        "detail": "app.services.lam_feedback_layer",
         "documentation": {}
     },
     {

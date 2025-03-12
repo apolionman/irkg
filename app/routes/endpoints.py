@@ -16,8 +16,9 @@ from app.core.utils import get_user
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.services.crud import *
 from app.core.database import get_db
-from app.scripts.faiss import *
-from app.scripts.exec_layer import *
+from app.services.lam_feedback_layer import *
+from app.services.lam_exec_layer import *
+from app.services.lam_decision_layer import *
 
 router = APIRouter()
 
@@ -174,7 +175,7 @@ async def process_request(
             with open(file_location, "wb") as f:
                 f.write(await file.read())
 
-            file_responses.append(f"Stored {file.filename}")  # Store & log file
+            file_responses.append(store_file_in_faiss(file_location))
 
         responses["file_processing"] = file_responses
 
