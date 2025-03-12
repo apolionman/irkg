@@ -5,7 +5,9 @@ import os
 import openai
 from langchain.embeddings.openai import OpenAIEmbeddings
 from dotenv import load_dotenv
-load_dotenv('.env')
+load_dotenv()
+
+OPEN_AI_KEY = os.getenv('OPEN_API_KEY')
 
 # Initialize OpenAI Embeddings
 embeddings = OpenAIEmbeddings()
@@ -89,7 +91,7 @@ async def decision_making_layer(query: str):
     response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=[{"role": "system", "content": prompt}],
-        api_key=os.getenv('OPEN_API_KEY')
+        api_key=OPEN_AI_KEY
     )
 
     return response['choices'][0]['message']['content']
