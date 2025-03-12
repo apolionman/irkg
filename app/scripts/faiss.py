@@ -90,8 +90,9 @@ async def decision_making_layer(query: str):
     {{"action": "decided_action"}}
     """
 
-    response = client.chat.completions.create(model="gpt-4",
-    messages=[{"role": "system", "content": prompt}],
-    api_key=OPEN_AI_KEY)
+    response = client.chat.completions.create(
+        model="gpt-4",
+        messages=[{"role": "system", "content": prompt}]
+    )
 
     return response.choices[0].message.content
