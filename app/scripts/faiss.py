@@ -2,7 +2,9 @@ import faiss
 import numpy as np
 import json
 import os
-import openai
+from openai import OpenAI
+
+client = OpenAI()
 from langchain.embeddings.openai import OpenAIEmbeddings
 from dotenv import load_dotenv
 load_dotenv('/home/dgx/dgx_irkg_be/.env')
@@ -31,9 +33,9 @@ else:
 
 def store_feedback(action: str, result: str):
     """ Stores feedback locally in FAISS """
-    
+
     feedback_text = f"Action: {action}\nResult: {result}"
-    
+
     # Convert feedback to embedding
     feedback_vector = embeddings.embed_query(feedback_text)
 
@@ -49,12 +51,12 @@ def store_feedback(action: str, result: str):
     faiss.write_index(index, FAISS_INDEX_FILE)
     with open(FAISS_DATA_FILE, "w") as f:
         json.dump(feedback_data, f)
-    
+
     return "Feedback stored successfully."
 
 def retrieve_past_feedback(query: str, top_k=3):
     """ Retrieves top-k similar feedback from FAISS """
-    
+
     # Convert query to embedding
     query_vector = np.array([embeddings.embed_query(query)], dtype=np.float32)
 
@@ -88,10 +90,8 @@ async def decision_making_layer(query: str):
     {{"action": "decided_action"}}
     """
 
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "system", "content": prompt}],
-        api_key=OPEN_AI_KEY
-    )
+    response = client.chat.completions.create(model="gpt-4",
+    messages=[{"role": "system", "content": prompt}],
+    api_key=OPEN_AI_KEY)
 
-    return response['choices'][0]['message']['content']
+    return response.choices[0].message.content

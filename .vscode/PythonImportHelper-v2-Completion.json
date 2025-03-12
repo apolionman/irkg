@@ -909,11 +909,10 @@
         "documentation": {}
     },
     {
-        "label": "openai",
-        "kind": 6,
-        "isExtraImport": true,
+        "label": "OpenAI",
         "importPath": "openai",
         "description": "openai",
+        "isExtraImport": true,
         "detail": "openai",
         "documentation": {}
     },
@@ -1906,6 +1905,24 @@
         "importPath": "app.scripts.faiss",
         "description": "app.scripts.faiss",
         "peekOfCode": "def retrieve_past_feedback(query: str, top_k=3):\n    \"\"\" Retrieves top-k similar feedback from FAISS \"\"\"\n    # Convert query to embedding\n    query_vector = np.array([embeddings.embed_query(query)], dtype=np.float32)\n    # Search FAISS for similar vectors\n    D, I = index.search(query_vector, top_k)\n    # Retrieve corresponding feedback texts\n    similar_feedbacks = [feedback_data.get(i, \"No relevant feedback\") for i in I[0] if i in feedback_data]\n    return similar_feedbacks\nasync def decision_making_layer(query: str):",
+        "detail": "app.scripts.faiss",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "app.scripts.faiss",
+        "description": "app.scripts.faiss",
+        "peekOfCode": "client = OpenAI()\nfrom langchain.embeddings.openai import OpenAIEmbeddings\nfrom dotenv import load_dotenv\nload_dotenv('/home/dgx/dgx_irkg_be/.env')\nOPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\n# Initialize OpenAI Embeddings\nembeddings = OpenAIEmbeddings()\n# FAISS Index File\nFAISS_INDEX_FILE = \"feedback_index.faiss\"\nFAISS_DATA_FILE = \"feedback_data.json\"",
+        "detail": "app.scripts.faiss",
+        "documentation": {}
+    },
+    {
+        "label": "OPEN_AI_KEY",
+        "kind": 5,
+        "importPath": "app.scripts.faiss",
+        "description": "app.scripts.faiss",
+        "peekOfCode": "OPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\n# Initialize OpenAI Embeddings\nembeddings = OpenAIEmbeddings()\n# FAISS Index File\nFAISS_INDEX_FILE = \"feedback_index.faiss\"\nFAISS_DATA_FILE = \"feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data",
         "detail": "app.scripts.faiss",
         "documentation": {}
     },
