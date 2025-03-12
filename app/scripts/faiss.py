@@ -89,7 +89,7 @@ async def decision_making_layer(query: str):
     response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=[{"role": "system", "content": prompt}],
-        api_key=os.getenv('OPEN_AI_KEY')
+        api_key=os.getenv('OPEN_API_KEY')
     )
 
     return response['choices'][0]['message']['content']
