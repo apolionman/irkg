@@ -49,4 +49,3 @@ class VariantSchema(BaseModel):
 
 class ProcessRequest(BaseModel):
     query: Optional[str] = None
-    files: Optional[List[UploadFile]] = None 

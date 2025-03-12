@@ -161,8 +161,8 @@ async def cancel_task(
 
 @router.post("/lam/")
 async def process_request(
-    request: ProcessRequest = Depends(),
-    files: Optional[List[UploadFile]] = File(None)
+    request: ProcessRequest = Depends(),  # Handles JSON input (query)
+    files: Optional[List[UploadFile]] = File(None)  # Handles file uploads separately
 ):
     responses = {}
 
@@ -174,7 +174,7 @@ async def process_request(
             with open(file_location, "wb") as f:
                 f.write(await file.read())
 
-            file_responses.append(store_file_in_faiss(file_location))
+            file_responses.append(f"Stored {file.filename}")  # Store & log file
 
         responses["file_processing"] = file_responses
 

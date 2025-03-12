@@ -1874,7 +1874,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class ProcessRequest(BaseModel):\n    query: Optional[str] = None\n    files: Optional[List[UploadFile]] = None",
+        "peekOfCode": "class ProcessRequest(BaseModel):\n    query: Optional[str] = None",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
