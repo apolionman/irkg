@@ -823,18 +823,18 @@
     },
     {
         "label": "*",
-        "importPath": "scripts.faiss",
-        "description": "scripts.faiss",
+        "importPath": "app.scripts.faiss",
+        "description": "app.scripts.faiss",
         "isExtraImport": true,
-        "detail": "scripts.faiss",
+        "detail": "app.scripts.faiss",
         "documentation": {}
     },
     {
         "label": "*",
-        "importPath": "scripts.exec_layer",
-        "description": "scripts.exec_layer",
+        "importPath": "app.scripts.exec_layer",
+        "description": "app.scripts.exec_layer",
         "isExtraImport": true,
-        "detail": "scripts.exec_layer",
+        "detail": "app.scripts.exec_layer",
         "documentation": {}
     },
     {

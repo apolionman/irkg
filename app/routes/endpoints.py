@@ -16,8 +16,8 @@ from app.core.utils import get_user
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.services.crud import *
 from app.core.database import get_db
-from scripts.faiss import *
-from scripts.exec_layer import *
+from app.scripts.faiss import *
+from app.scripts.exec_layer import *
 
 router = APIRouter()
 
