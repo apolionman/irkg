@@ -1913,7 +1913,7 @@
         "kind": 5,
         "importPath": "app.scripts.faiss",
         "description": "app.scripts.faiss",
-        "peekOfCode": "client = OpenAI()\nfrom langchain.embeddings.openai import OpenAIEmbeddings\nfrom dotenv import load_dotenv\nload_dotenv('/home/dgx/dgx_irkg_be/.env')\nOPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\n# Initialize OpenAI Embeddings\nembeddings = OpenAIEmbeddings()\n# FAISS Index File\nFAISS_INDEX_FILE = \"feedback_index.faiss\"\nFAISS_DATA_FILE = \"feedback_data.json\"",
+        "peekOfCode": "client = OpenAI()\nfrom langchain.embeddings.openai import OpenAIEmbeddings\nfrom dotenv import load_dotenv\nload_dotenv('/home/dgx/dgx_irkg_be/.env')\nOPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\n# Initialize OpenAI Embeddings\nembeddings = OpenAIEmbeddings()\n# FAISS Index File\nFAISS_INDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nFAISS_DATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"",
         "detail": "app.scripts.faiss",
         "documentation": {}
     },
@@ -1922,7 +1922,7 @@
         "kind": 5,
         "importPath": "app.scripts.faiss",
         "description": "app.scripts.faiss",
-        "peekOfCode": "OPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\n# Initialize OpenAI Embeddings\nembeddings = OpenAIEmbeddings()\n# FAISS Index File\nFAISS_INDEX_FILE = \"feedback_index.faiss\"\nFAISS_DATA_FILE = \"feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data",
+        "peekOfCode": "OPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\n# Initialize OpenAI Embeddings\nembeddings = OpenAIEmbeddings()\n# FAISS Index File\nFAISS_INDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nFAISS_DATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data",
         "detail": "app.scripts.faiss",
         "documentation": {}
     },
@@ -1931,7 +1931,7 @@
         "kind": 5,
         "importPath": "app.scripts.faiss",
         "description": "app.scripts.faiss",
-        "peekOfCode": "embeddings = OpenAIEmbeddings()\n# FAISS Index File\nFAISS_INDEX_FILE = \"feedback_index.faiss\"\nFAISS_DATA_FILE = \"feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\nif os.path.exists(FAISS_INDEX_FILE):\n    faiss.read_index(FAISS_INDEX_FILE)",
+        "peekOfCode": "embeddings = OpenAIEmbeddings()\n# FAISS Index File\nFAISS_INDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nFAISS_DATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\nif os.path.exists(FAISS_INDEX_FILE):\n    faiss.read_index(FAISS_INDEX_FILE)",
         "detail": "app.scripts.faiss",
         "documentation": {}
     },
@@ -1940,7 +1940,7 @@
         "kind": 5,
         "importPath": "app.scripts.faiss",
         "description": "app.scripts.faiss",
-        "peekOfCode": "FAISS_INDEX_FILE = \"feedback_index.faiss\"\nFAISS_DATA_FILE = \"feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\nif os.path.exists(FAISS_INDEX_FILE):\n    faiss.read_index(FAISS_INDEX_FILE)\nif os.path.exists(FAISS_DATA_FILE):\n    with open(FAISS_DATA_FILE, \"r\") as f:",
+        "peekOfCode": "FAISS_INDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nFAISS_DATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\nif os.path.exists(FAISS_INDEX_FILE):\n    faiss.read_index(FAISS_INDEX_FILE)\nif os.path.exists(FAISS_DATA_FILE):\n    with open(FAISS_DATA_FILE, \"r\") as f:",
         "detail": "app.scripts.faiss",
         "documentation": {}
     },
@@ -1949,7 +1949,7 @@
         "kind": 5,
         "importPath": "app.scripts.faiss",
         "description": "app.scripts.faiss",
-        "peekOfCode": "FAISS_DATA_FILE = \"feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\nif os.path.exists(FAISS_INDEX_FILE):\n    faiss.read_index(FAISS_INDEX_FILE)\nif os.path.exists(FAISS_DATA_FILE):\n    with open(FAISS_DATA_FILE, \"r\") as f:\n        feedback_data = json.load(f)",
+        "peekOfCode": "FAISS_DATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\nif os.path.exists(FAISS_INDEX_FILE):\n    faiss.read_index(FAISS_INDEX_FILE)\nif os.path.exists(FAISS_DATA_FILE):\n    with open(FAISS_DATA_FILE, \"r\") as f:\n        feedback_data = json.load(f)",
         "detail": "app.scripts.faiss",
         "documentation": {}
     },

@@ -15,8 +15,8 @@ OPEN_AI_KEY = os.getenv('OPENAI_API_KEY')
 embeddings = OpenAIEmbeddings()
 
 # FAISS Index File
-FAISS_INDEX_FILE = "feedback_index.faiss"
-FAISS_DATA_FILE = "feedback_data.json"
+FAISS_INDEX_FILE = "/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss"
+FAISS_DATA_FILE = "/home/dgx/dgx_irkg_be/feedback/feedback_data.json"
 
 # Create FAISS index (dimension = 1536 for OpenAI embeddings)
 dimension = 1536
