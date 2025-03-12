@@ -5,3 +5,4 @@ TxGNN/
 alembic/
 alembic.ini
 requirements copy.txt
+.env
