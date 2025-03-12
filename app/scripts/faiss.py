@@ -5,7 +5,7 @@ import os
 import openai
 from langchain.embeddings.openai import OpenAIEmbeddings
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv('/home/dgx/dgx_irkg_be/.env')
 
 OPEN_AI_KEY = os.getenv('OPEN_API_KEY')
 
