@@ -1,8 +1,13 @@
 import faiss
+import fitz 
 import numpy as np
 import json
 import os
+from bs4 import BeautifulSoup
+from pptx import Presentation
 from openai import OpenAI
+import pandas as pd
+import docx
 
 client = OpenAI()
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -15,64 +20,100 @@ OPEN_AI_KEY = os.getenv('OPENAI_API_KEY')
 embeddings = OpenAIEmbeddings()
 
 # FAISS Index File
-FAISS_INDEX_FILE = "/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss"
-FAISS_DATA_FILE = "/home/dgx/dgx_irkg_be/feedback/feedback_data.json"
+INDEX_FILE = "/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss"
+DATA_FILE = "/home/dgx/dgx_irkg_be/feedback/feedback_data.json"
 
 # Create FAISS index (dimension = 1536 for OpenAI embeddings)
 dimension = 1536
 index = faiss.IndexFlatL2(dimension)
 
 # Load previous stored data
-if os.path.exists(FAISS_INDEX_FILE):
-    faiss.read_index(FAISS_INDEX_FILE)
-if os.path.exists(FAISS_DATA_FILE):
-    with open(FAISS_DATA_FILE, "r") as f:
-        feedback_data = json.load(f)
-else:
-    feedback_data = {}
+document_data = {}
 
-def store_feedback(action: str, result: str):
-    """ Stores feedback locally in FAISS """
+if os.path.exists(INDEX_FILE):
+    faiss.read_index(INDEX_FILE)
+if os.path.exists(DATA_FILE):
+    with open(DATA_FILE, "r") as f:
+        document_data = json.load(f)
 
-    feedback_text = f"Action: {action}\nResult: {result}"
+def extract_text_from_file(file_path):
+    """ Extracts text from various file types """
+    file_ext = file_path.split(".")[-1].lower()
+    text = ""
 
-    # Convert feedback to embedding
-    feedback_vector = embeddings.embed_query(feedback_text)
+    if file_ext == "pdf":
+        doc = fitz.open(file_path)
+        text = "\n".join([page.get_text("text") for page in doc])
 
-    # Convert to numpy array and add to FAISS
-    vector_np = np.array([feedback_vector], dtype=np.float32)
-    index.add(vector_np)
+    elif file_ext in ["doc", "docx"]:
+        doc = docx.Document(file_path)
+        text = "\n".join([para.text for para in doc.paragraphs])
 
-    # Store corresponding feedback text
-    feedback_id = len(feedback_data)
-    feedback_data[feedback_id] = feedback_text
+    elif file_ext in ["xls", "xlsx", "csv"]:
+        df = pd.read_excel(file_path) if file_ext in ["xls", "xlsx"] else pd.read_csv(file_path)
+        text = df.to_string()
 
-    # Save FAISS index and data
-    faiss.write_index(index, FAISS_INDEX_FILE)
-    with open(FAISS_DATA_FILE, "w") as f:
-        json.dump(feedback_data, f)
+    elif file_ext in ["ppt", "pptx"]:
+        prs = Presentation(file_path)
+        text = "\n".join([slide.notes_slide.notes_text_frame.text for slide in prs.slides if slide.notes_slide])
 
-    return "Feedback stored successfully."
+    elif file_ext in ["txt"]:
+        with open(file_path, "r", encoding="utf-8") as f:
+            text = f.read()
 
-def retrieve_past_feedback(query: str, top_k=3):
-    """ Retrieves top-k similar feedback from FAISS """
+    elif file_ext in ["html", "htm", "xml"]:
+        with open(file_path, "r", encoding="utf-8") as f:
+            soup = BeautifulSoup(f, "lxml")
+            text = soup.get_text()
 
-    # Convert query to embedding
+    return text.strip()
+
+def chunk_text(text, chunk_size=500):
+    """ Splits text into smaller chunks for vectorization """
+    words = text.split()
+    return [" ".join(words[i:i+chunk_size]) for i in range(0, len(words), chunk_size)]
+
+def store_file_in_faiss(file_path):
+    """ Extracts text, converts to embeddings, and stores in FAISS """
+    
+    text = extract_text_from_file(file_path)
+    if not text:
+        return "No text found in the document."
+
+    chunks = chunk_text(text)
+
+    for i, chunk in enumerate(chunks):
+        vector = embeddings.embed_query(chunk)
+        vector_np = np.array([vector], dtype=np.float32)
+        index.add(vector_np)
+
+        document_data[len(document_data)] = chunk
+
+    # Save FAISS index and metadata
+    faiss.write_index(index, INDEX_FILE)
+    with open(DATA_FILE, "w") as f:
+        json.dump(document_data, f)
+
+    return f"Stored {len(chunks)} chunks from {file_path}"
+
+def retrieve_relevant_context(query: str, top_k=3):
+    """ Searches FAISS for similar document text chunks """
+    
     query_vector = np.array([embeddings.embed_query(query)], dtype=np.float32)
 
     # Search FAISS for similar vectors
-    D, I = index.search(query_vector, top_k)
+    _, matches = index.search(query_vector, top_k)
 
-    # Retrieve corresponding feedback texts
-    similar_feedbacks = [feedback_data.get(i, "No relevant feedback") for i in I[0] if i in feedback_data]
+    # Retrieve corresponding text chunks
+    relevant_contexts = [document_data.get(i, "No relevant context") for i in matches[0] if i in document_data]
 
-    return similar_feedbacks
+    return relevant_contexts
 
 async def decision_making_layer(query: str):
     """ Uses LLM with retrieved feedback to decide an action """
 
     # Retrieve relevant past feedback
-    past_feedbacks = retrieve_past_feedback(query)
+    past_feedbacks = retrieve_relevant_context(query)
 
     context = "\n".join(past_feedbacks)
 

@@ -4,3 +4,49 @@ test1
 
 
 esearch -db clinvar -query "((C8G[Gene Name]) AND mol cons missense[Filter]) OR ((C8G[Gene Name]) AND mol cons nonsense[Filter])" | efetch -format xml&api_key=314d1e57cb7a1f3a8e4f6d7a7ec6634e8709
+
+class TagHandler(xml.sax.ContentHandler):
+    def __init__(self, output_file):
+        self.unique_tags = {}  # Dictionary to store tag -> sample value
+        self.output_file = output_file
+        self.current_tag = None
+        self.current_value = None
+    def startElement(self, name, attrs):
+        self.current_tag = name
+        self.current_value = ""  # Reset value storage for new tag        
+    def characters(self, content):
+        """Capture the text content inside an XML tag."""
+        if self.current_tag:
+            self.current_value += content.strip()
+    def endElement(self, name):
+        """Store the tag and a sample value when closing a tag."""
+        if name in self.unique_tags:
+            return  # We already have a sample, so skip        
+        if self.current_value:
+            self.unique_tags[name] = self.current_value[:100]
+        # Flush to file periodically to avoid memory overload
+        if len(self.unique_tags) > 50000:  # Adjust threshold as needed
+            self._flush_to_file()
+        self.current_tag = None
+        self.current_value = None
+    def _flush_to_file(self):
+        """Flush collected tags and sample values to file."""
+        with open(self.output_file, "a", encoding="utf-8") as f:
+            for tag, value in self.unique_tags.items():
+                f.write(f"{tag}: {value}\n")
+        self.unique_tags.clear()
+    def endDocument(self):
+        """Final write when document parsing ends."""
+        self._flush_to_file()
+        
+def get_unique_tags_and_samples(file_path, output_file):
+    handler = TagHandler(output_file)
+    parser = xml.sax.make_parser()
+    parser.setContentHandler(handler)
+    parser.parse(file_path)
+
+xml_file = "/mnt/newssd2/lawrence/clinvar/xml/ClinVarVCVRelease_2025-0306.xml"
+output_file = "/mnt/newssd2/lawrence/clinvar/xml/unique_tags.txt"
+open(output_file, "w").close()
+
+get_unique_tags_and_samples(xml_file, output_file)

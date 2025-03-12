@@ -160,20 +160,27 @@ async def cancel_task(
     return {"message": f"Task '{task_id}' cancelled successfully."}
 
 @router.post("/lam/")
-async def lam_entry(input_data: UserQuery):
-    query = input_data.query
+async def process_request(
+    request: ProcessRequest = Depends(),
+    files: Optional[List[UploadFile]] = File(None)
+):
+    responses = {}
 
-    # Decision Making with Memory
-    decision = await decision_making_layer(query)
+    # Handle file uploads first
+    if files:
+        file_responses = []
+        for file in files:
+            file_location = f"uploads/{file.filename}"
+            with open(file_location, "wb") as f:
+                f.write(await file.read())
 
-    # Execute Action
-    execution_result = await execution_layer(decision)
+            file_responses.append(store_file_in_faiss(file_location))
 
-    # Store Feedback Locally
-    feedback = store_feedback(decision, execution_result)
+        responses["file_processing"] = file_responses
 
-    return {
-        "decision": decision, 
-        "execution_result": execution_result, 
-        "feedback": feedback
-    }
+    # Handle user query
+    if request.query:
+        decision = await decision_making_layer(request.query)
+        responses["workflow_action"] = decision
+
+    return responses

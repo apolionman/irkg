@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from enum import Enum
 from typing import Optional, List
+from fastapi import UploadFile
 
 
 class SeqRequest(BaseModel):
@@ -46,5 +47,6 @@ class VariantSchema(BaseModel):
     class Config:
         orm_mode = True
 
-class UserQuery(BaseModel):
-    query: str
+class ProcessRequest(BaseModel):
+    query: Optional[str] = None
+    files: Optional[List[UploadFile]] = None 
