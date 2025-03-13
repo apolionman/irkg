@@ -32,11 +32,8 @@ async def decision_making_layer(query: str):
     If the query is about running an SQL query, return:
     {{"action": "run_sql_query"}}
 
-    Otherwise, return:
-    Use the provided context if it helps:
-    {context}
-
-    Respond with structured JSON output:
+    else, use the provided context for relevant return:
+    {context} and respond with structured JSON output:
     {{"action": "decided_action"}}
     """
 
