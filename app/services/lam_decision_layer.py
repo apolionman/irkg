@@ -33,8 +33,6 @@ async def decision_making_layer(query: str):
     {{"action": "run_sql_query"}}
 
     Otherwise, return:
-    {{"action": "provide_instructions", "instructions": "Unfortunately, I don't have explicit instructions for this."}}
-
     Use the provided context if it helps:
     {context}
 
