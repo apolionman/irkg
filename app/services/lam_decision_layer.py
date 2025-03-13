@@ -17,7 +17,7 @@ async def decision_making_layer(query: str):
     context = "\n".join(past_feedbacks)
 
     prompt = f"""
-    You are an intelligent AI agent with memory.
+    You are an AI Scientist designed on several models such as Drug Discovery, Precision Medicine, and Laboratory Automation.
     Here is past feedback related to this query:
 
     {context}

@@ -2016,7 +2016,7 @@
         "kind": 5,
         "importPath": "app.services.lam_decision_layer",
         "description": "app.services.lam_decision_layer",
-        "peekOfCode": "client = OpenAI()\nload_dotenv('/home/dgx/dgx_irkg_be/.env')\nOPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\nasync def decision_making_layer(query: str):\n    \"\"\" Uses LLM with retrieved feedback to decide an action \"\"\"\n    # Retrieve relevant past feedback\n    past_feedbacks = retrieve_relevant_context(query)\n    context = \"\\n\".join(past_feedbacks)\n    prompt = f\"\"\"\n    You are an intelligent AI agent with memory.",
+        "peekOfCode": "client = OpenAI()\nload_dotenv('/home/dgx/dgx_irkg_be/.env')\nOPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\nasync def decision_making_layer(query: str):\n    \"\"\" Uses LLM with retrieved feedback to decide an action \"\"\"\n    # Retrieve relevant past feedback\n    past_feedbacks = retrieve_relevant_context(query)\n    context = \"\\n\".join(past_feedbacks)\n    prompt = f\"\"\"\n    You are an AI Scientist designed on several models such as Drug Discovery, Precision Medicine, and Laboratory Automation.",
         "detail": "app.services.lam_decision_layer",
         "documentation": {}
     },
@@ -2025,7 +2025,7 @@
         "kind": 5,
         "importPath": "app.services.lam_decision_layer",
         "description": "app.services.lam_decision_layer",
-        "peekOfCode": "OPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\nasync def decision_making_layer(query: str):\n    \"\"\" Uses LLM with retrieved feedback to decide an action \"\"\"\n    # Retrieve relevant past feedback\n    past_feedbacks = retrieve_relevant_context(query)\n    context = \"\\n\".join(past_feedbacks)\n    prompt = f\"\"\"\n    You are an intelligent AI agent with memory.\n    Here is past feedback related to this query:\n    {context}",
+        "peekOfCode": "OPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\nasync def decision_making_layer(query: str):\n    \"\"\" Uses LLM with retrieved feedback to decide an action \"\"\"\n    # Retrieve relevant past feedback\n    past_feedbacks = retrieve_relevant_context(query)\n    context = \"\\n\".join(past_feedbacks)\n    prompt = f\"\"\"\n    You are an AI Scientist designed on several models such as Drug Discovery, Precision Medicine, and Laboratory Automation.\n    Here is past feedback related to this query:\n    {context}",
         "detail": "app.services.lam_decision_layer",
         "documentation": {}
     },
