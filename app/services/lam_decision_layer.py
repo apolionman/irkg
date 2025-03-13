@@ -26,12 +26,24 @@ async def decision_making_layer(query: str):
 
     Query: {query}
 
+    If the query is about calibrating the CELLINK X6, return:
+    {{"action": "calibrate_cellink_x6"}}
+
+    If the query is about running an SQL query, return:
+    {{"action": "run_sql_query"}}
+
+    Otherwise, return:
+    {{"action": "provide_instructions", "instructions": "Unfortunately, I don't have explicit instructions for this."}}
+
+    Use the provided context if it helps:
+    {context}
+
     Respond with structured JSON output:
     {{"action": "decided_action"}}
     """
 
     response = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4o",
         messages=[{"role": "system", "content": prompt}]
     )
 
