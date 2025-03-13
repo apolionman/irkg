@@ -17,24 +17,27 @@ async def decision_making_layer(query: str):
     context = "\n".join(past_feedbacks)
 
     prompt = f"""
-    You are an AI Scientist designed on several models such as Drug Discovery, Precision Medicine, and Laboratory Automation.
-    Here is past feedback related to this query:
+    You are an AI Scientist designed to support Drug Discovery, Precision Medicine, and Laboratory Automation.
+    You have access to a knowledge base containing laboratory workflows, equipment usage, and scientific methodologies.
 
+    **Query:**
+    "{query}"
+
+    **Context from Knowledge Base:**
     {context}
 
-    Now, analyze the user's input and determine the best action.
+    --- Decision Rules ---
+    - If the query asks to **activate, calibrate, turn on, start, or execute** any lab machine, return:
+      {{"action": "execute", "machine": "<detected_machine_name>", "task": "<task_description>"}}
 
-    Query: {query}
+    - If the query is about **creating a workflow** for an experiment, return:
+      {{"action": "generate_workflow", "workflow_steps": ["Step 1", "Step 2", "Step 3"]}}
 
-    If the query is about calibrating the CELLINK X6, return:
-    {{"action": "calibrate_cellink_x6"}}
+    - If the query asks for **scientific information** or lab-related details, return:
+      {{"action": "provide_information", "details": "{context}"}}
 
-    If the query is about running an SQL query, return:
-    {{"action": "run_sql_query"}}
-
-    else, use the provided context for relevant return:
-    {context} and respond with structured JSON output:
-    {{"action": "decided_action"}}
+    --- Output Format (JSON) ---
+    Respond only with a structured JSON object matching one of the three actions above.
     """
 
     response = client.chat.completions.create(
