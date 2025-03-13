@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package protocol;
+
+// Define the gRPC service
+service Protocol {
+  rpc StartPrinting (StartPrintingRequest) returns (PrintResponse);
+  rpc StartPrepaireLogoPrinting (Empty) returns (PrintResponse);
+  rpc StartManualPrinting (StartManualPrintingRequest) returns (PrintResponse);
+  rpc ResetPrinting (Empty) returns (PrintResponse);
+  rpc CheckPrintingProgress (Empty) returns (stream PrintResponse);
+}
+
+// Request and response messages
+message StartPrintingRequest {
+  int32 cell_quantity = 1;
+}
+
+message StartManualPrintingRequest {
+  string print_data = 1;
+}
+
+message PrintResponse {
+  string message = 1;
+}
+
+message Empty {}

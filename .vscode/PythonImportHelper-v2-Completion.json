@@ -862,6 +862,33 @@
         "documentation": {}
     },
     {
+        "label": "grpc",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "grpc",
+        "description": "grpc",
+        "detail": "grpc",
+        "documentation": {}
+    },
+    {
+        "label": "protocol_pb2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "protocol_pb2",
+        "description": "protocol_pb2",
+        "detail": "protocol_pb2",
+        "documentation": {}
+    },
+    {
+        "label": "protocol_pb2_grpc",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "protocol_pb2_grpc",
+        "description": "protocol_pb2_grpc",
+        "detail": "protocol_pb2_grpc",
+        "documentation": {}
+    },
+    {
         "label": "Enum",
         "importPath": "enum",
         "description": "enum",
@@ -1499,6 +1526,46 @@
         "documentation": {}
     },
     {
+        "label": "descriptor",
+        "importPath": "google.protobuf",
+        "description": "google.protobuf",
+        "isExtraImport": true,
+        "detail": "google.protobuf",
+        "documentation": {}
+    },
+    {
+        "label": "descriptor_pool",
+        "importPath": "google.protobuf",
+        "description": "google.protobuf",
+        "isExtraImport": true,
+        "detail": "google.protobuf",
+        "documentation": {}
+    },
+    {
+        "label": "runtime_version",
+        "importPath": "google.protobuf",
+        "description": "google.protobuf",
+        "isExtraImport": true,
+        "detail": "google.protobuf",
+        "documentation": {}
+    },
+    {
+        "label": "symbol_database",
+        "importPath": "google.protobuf",
+        "description": "google.protobuf",
+        "isExtraImport": true,
+        "detail": "google.protobuf",
+        "documentation": {}
+    },
+    {
+        "label": "builder",
+        "importPath": "google.protobuf.internal",
+        "description": "google.protobuf.internal",
+        "isExtraImport": true,
+        "detail": "google.protobuf.internal",
+        "documentation": {}
+    },
+    {
         "label": "upgrade",
         "kind": 2,
         "importPath": "alembic.versions.298e075afff7_initial_migration",
@@ -1778,11 +1845,38 @@
         "documentation": {}
     },
     {
+        "label": "reset_printing",
+        "kind": 2,
+        "importPath": "app.routes.endpoints",
+        "description": "app.routes.endpoints",
+        "peekOfCode": "def reset_printing():\n    try:\n        response = grpc_client.ResetPrinting(protocol_pb2.Empty())\n        return {\"message\": response.message}\n    except grpc.RpcError as e:\n        return {\"error\": str(e)}",
+        "detail": "app.routes.endpoints",
+        "documentation": {}
+    },
+    {
         "label": "router",
         "kind": 5,
         "importPath": "app.routes.endpoints",
         "description": "app.routes.endpoints",
-        "peekOfCode": "router = APIRouter()\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise HTTPException(status_code=401, detail=\"Invalid token\")\n    except JWTError:\n        raise HTTPException(status_code=401, detail=\"Could not validate credentials\")",
+        "peekOfCode": "router = APIRouter()\n#Connect GRPC for Cellink\nchannel = grpc.insecure_channel(\"1.tcp.ap.ngrok.io:22599\")\ngrpc_client = protocol_pb2_grpc.ProtocolStub(channel)\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:",
+        "detail": "app.routes.endpoints",
+        "documentation": {}
+    },
+    {
+        "label": "channel",
+        "kind": 5,
+        "importPath": "app.routes.endpoints",
+        "description": "app.routes.endpoints",
+        "peekOfCode": "channel = grpc.insecure_channel(\"1.tcp.ap.ngrok.io:22599\")\ngrpc_client = protocol_pb2_grpc.ProtocolStub(channel)\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise HTTPException(status_code=401, detail=\"Invalid token\")\n    except JWTError:",
+        "detail": "app.routes.endpoints",
+        "documentation": {}
+    },
+    {
+        "label": "grpc_client",
+        "kind": 5,
+        "importPath": "app.routes.endpoints",
+        "description": "app.routes.endpoints",
+        "peekOfCode": "grpc_client = protocol_pb2_grpc.ProtocolStub(channel)\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise HTTPException(status_code=401, detail=\"Invalid token\")\n    except JWTError:\n        raise HTTPException(status_code=401, detail=\"Could not validate credentials\")",
         "detail": "app.routes.endpoints",
         "documentation": {}
     },
@@ -5636,6 +5730,96 @@
         "description": "main",
         "peekOfCode": "app = FastAPI()\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n# Include authentication routes\napp.include_router(auth_router, prefix=\"/auth\", tags=[\"Authentication\"])",
         "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "_sym_db",
+        "kind": 5,
+        "importPath": "protocol_pb2",
+        "description": "protocol_pb2",
+        "peekOfCode": "_sym_db = _symbol_database.Default()\nDESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\\n\\x0eprotocol.proto\\x12\\x08protocol\\\"-\\n\\x14StartPrintingRequest\\x12\\x15\\n\\rcell_quantity\\x18\\x01 \\x01(\\x05\\\"0\\n\\x1aStartManualPrintingRequest\\x12\\x12\\n\\nprint_data\\x18\\x01 \\x01(\\t\\\" \\n\\rPrintResponse\\x12\\x0f\\n\\x07message\\x18\\x01 \\x01(\\t\\\"\\x07\\n\\x05\\x45mpty2\\xf1\\x02\\n\\x08Protocol\\x12H\\n\\rStartPrinting\\x12\\x1e.protocol.StartPrintingRequest\\x1a\\x17.protocol.PrintResponse\\x12\\x45\\n\\x19StartPrepaireLogoPrinting\\x12\\x0f.protocol.Empty\\x1a\\x17.protocol.PrintResponse\\x12T\\n\\x13StartManualPrinting\\x12$.protocol.StartManualPrintingRequest\\x1a\\x17.protocol.PrintResponse\\x12\\x39\\n\\rResetPrinting\\x12\\x0f.protocol.Empty\\x1a\\x17.protocol.PrintResponse\\x12\\x43\\n\\x15\\x43heckPrintingProgress\\x12\\x0f.protocol.Empty\\x1a\\x17.protocol.PrintResponse0\\x01\\x62\\x06proto3')\n_globals = globals()\n_builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)\n_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'protocol_pb2', _globals)\nif not _descriptor._USE_C_DESCRIPTORS:\n  DESCRIPTOR._loaded_options = None\n  _globals['_STARTPRINTINGREQUEST']._serialized_start=28\n  _globals['_STARTPRINTINGREQUEST']._serialized_end=73\n  _globals['_STARTMANUALPRINTINGREQUEST']._serialized_start=75",
+        "detail": "protocol_pb2",
+        "documentation": {}
+    },
+    {
+        "label": "DESCRIPTOR",
+        "kind": 5,
+        "importPath": "protocol_pb2",
+        "description": "protocol_pb2",
+        "peekOfCode": "DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\\n\\x0eprotocol.proto\\x12\\x08protocol\\\"-\\n\\x14StartPrintingRequest\\x12\\x15\\n\\rcell_quantity\\x18\\x01 \\x01(\\x05\\\"0\\n\\x1aStartManualPrintingRequest\\x12\\x12\\n\\nprint_data\\x18\\x01 \\x01(\\t\\\" \\n\\rPrintResponse\\x12\\x0f\\n\\x07message\\x18\\x01 \\x01(\\t\\\"\\x07\\n\\x05\\x45mpty2\\xf1\\x02\\n\\x08Protocol\\x12H\\n\\rStartPrinting\\x12\\x1e.protocol.StartPrintingRequest\\x1a\\x17.protocol.PrintResponse\\x12\\x45\\n\\x19StartPrepaireLogoPrinting\\x12\\x0f.protocol.Empty\\x1a\\x17.protocol.PrintResponse\\x12T\\n\\x13StartManualPrinting\\x12$.protocol.StartManualPrintingRequest\\x1a\\x17.protocol.PrintResponse\\x12\\x39\\n\\rResetPrinting\\x12\\x0f.protocol.Empty\\x1a\\x17.protocol.PrintResponse\\x12\\x43\\n\\x15\\x43heckPrintingProgress\\x12\\x0f.protocol.Empty\\x1a\\x17.protocol.PrintResponse0\\x01\\x62\\x06proto3')\n_globals = globals()\n_builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)\n_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'protocol_pb2', _globals)\nif not _descriptor._USE_C_DESCRIPTORS:\n  DESCRIPTOR._loaded_options = None\n  _globals['_STARTPRINTINGREQUEST']._serialized_start=28\n  _globals['_STARTPRINTINGREQUEST']._serialized_end=73\n  _globals['_STARTMANUALPRINTINGREQUEST']._serialized_start=75\n  _globals['_STARTMANUALPRINTINGREQUEST']._serialized_end=123",
+        "detail": "protocol_pb2",
+        "documentation": {}
+    },
+    {
+        "label": "_globals",
+        "kind": 5,
+        "importPath": "protocol_pb2",
+        "description": "protocol_pb2",
+        "peekOfCode": "_globals = globals()\n_builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)\n_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'protocol_pb2', _globals)\nif not _descriptor._USE_C_DESCRIPTORS:\n  DESCRIPTOR._loaded_options = None\n  _globals['_STARTPRINTINGREQUEST']._serialized_start=28\n  _globals['_STARTPRINTINGREQUEST']._serialized_end=73\n  _globals['_STARTMANUALPRINTINGREQUEST']._serialized_start=75\n  _globals['_STARTMANUALPRINTINGREQUEST']._serialized_end=123\n  _globals['_PRINTRESPONSE']._serialized_start=125",
+        "detail": "protocol_pb2",
+        "documentation": {}
+    },
+    {
+        "label": "ProtocolStub",
+        "kind": 6,
+        "importPath": "protocol_pb2_grpc",
+        "description": "protocol_pb2_grpc",
+        "peekOfCode": "class ProtocolStub(object):\n    \"\"\"Define the gRPC service\n    \"\"\"\n    def __init__(self, channel):\n        \"\"\"Constructor.\n        Args:\n            channel: A grpc.Channel.\n        \"\"\"\n        self.StartPrinting = channel.unary_unary(\n                '/protocol.Protocol/StartPrinting',",
+        "detail": "protocol_pb2_grpc",
+        "documentation": {}
+    },
+    {
+        "label": "ProtocolServicer",
+        "kind": 6,
+        "importPath": "protocol_pb2_grpc",
+        "description": "protocol_pb2_grpc",
+        "peekOfCode": "class ProtocolServicer(object):\n    \"\"\"Define the gRPC service\n    \"\"\"\n    def StartPrinting(self, request, context):\n        \"\"\"Missing associated documentation comment in .proto file.\"\"\"\n        context.set_code(grpc.StatusCode.UNIMPLEMENTED)\n        context.set_details('Method not implemented!')\n        raise NotImplementedError('Method not implemented!')\n    def StartPrepaireLogoPrinting(self, request, context):\n        \"\"\"Missing associated documentation comment in .proto file.\"\"\"",
+        "detail": "protocol_pb2_grpc",
+        "documentation": {}
+    },
+    {
+        "label": "Protocol",
+        "kind": 6,
+        "importPath": "protocol_pb2_grpc",
+        "description": "protocol_pb2_grpc",
+        "peekOfCode": "class Protocol(object):\n    \"\"\"Define the gRPC service\n    \"\"\"\n    @staticmethod\n    def StartPrinting(request,\n            target,\n            options=(),\n            channel_credentials=None,\n            call_credentials=None,\n            insecure=False,",
+        "detail": "protocol_pb2_grpc",
+        "documentation": {}
+    },
+    {
+        "label": "add_ProtocolServicer_to_server",
+        "kind": 2,
+        "importPath": "protocol_pb2_grpc",
+        "description": "protocol_pb2_grpc",
+        "peekOfCode": "def add_ProtocolServicer_to_server(servicer, server):\n    rpc_method_handlers = {\n            'StartPrinting': grpc.unary_unary_rpc_method_handler(\n                    servicer.StartPrinting,\n                    request_deserializer=protocol__pb2.StartPrintingRequest.FromString,\n                    response_serializer=protocol__pb2.PrintResponse.SerializeToString,\n            ),\n            'StartPrepaireLogoPrinting': grpc.unary_unary_rpc_method_handler(\n                    servicer.StartPrepaireLogoPrinting,\n                    request_deserializer=protocol__pb2.Empty.FromString,",
+        "detail": "protocol_pb2_grpc",
+        "documentation": {}
+    },
+    {
+        "label": "GRPC_GENERATED_VERSION",
+        "kind": 5,
+        "importPath": "protocol_pb2_grpc",
+        "description": "protocol_pb2_grpc",
+        "peekOfCode": "GRPC_GENERATED_VERSION = '1.70.0'\nGRPC_VERSION = grpc.__version__\n_version_not_supported = False\ntry:\n    from grpc._utilities import first_version_is_lower\n    _version_not_supported = first_version_is_lower(GRPC_VERSION, GRPC_GENERATED_VERSION)\nexcept ImportError:\n    _version_not_supported = True\nif _version_not_supported:\n    raise RuntimeError(",
+        "detail": "protocol_pb2_grpc",
+        "documentation": {}
+    },
+    {
+        "label": "GRPC_VERSION",
+        "kind": 5,
+        "importPath": "protocol_pb2_grpc",
+        "description": "protocol_pb2_grpc",
+        "peekOfCode": "GRPC_VERSION = grpc.__version__\n_version_not_supported = False\ntry:\n    from grpc._utilities import first_version_is_lower\n    _version_not_supported = first_version_is_lower(GRPC_VERSION, GRPC_GENERATED_VERSION)\nexcept ImportError:\n    _version_not_supported = True\nif _version_not_supported:\n    raise RuntimeError(\n        f'The grpc package installed is at version {GRPC_VERSION},'",
+        "detail": "protocol_pb2_grpc",
+        "documentation": {}
+    },
+    {
+        "label": "_version_not_supported",
+        "kind": 5,
+        "importPath": "protocol_pb2_grpc",
+        "description": "protocol_pb2_grpc",
+        "peekOfCode": "_version_not_supported = False\ntry:\n    from grpc._utilities import first_version_is_lower\n    _version_not_supported = first_version_is_lower(GRPC_VERSION, GRPC_GENERATED_VERSION)\nexcept ImportError:\n    _version_not_supported = True\nif _version_not_supported:\n    raise RuntimeError(\n        f'The grpc package installed is at version {GRPC_VERSION},'\n        + f' but the generated code in protocol_pb2_grpc.py depends on'",
+        "detail": "protocol_pb2_grpc",
         "documentation": {}
     }
 ]

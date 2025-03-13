@@ -19,8 +19,15 @@ from app.core.database import get_db
 from app.services.lam_feedback_layer import *
 from app.services.lam_exec_layer import *
 from app.services.lam_decision_layer import *
+import grpc
+import protocol_pb2
+import protocol_pb2_grpc
 
 router = APIRouter()
+
+#Connect GRPC for Cellink
+channel = grpc.insecure_channel("1.tcp.ap.ngrok.io:22599")
+grpc_client = protocol_pb2_grpc.ProtocolStub(channel)
 
 os.environ["PATH"] = os.path.expanduser("~") + "/edirect:" + os.environ["PATH"]
 
@@ -188,3 +195,11 @@ async def process_request(
         responses["execution_result"] = execution_result
 
     return responses
+
+@router.post("/reset-printing/")
+def reset_printing():
+    try:
+        response = grpc_client.ResetPrinting(protocol_pb2.Empty())
+        return {"message": response.message}
+    except grpc.RpcError as e:
+        return {"error": str(e)}
