@@ -196,10 +196,17 @@ async def process_request(
 
     return responses
 
-@router.post("/reset-printing/")
-def reset_printing():
+@router.post("/equipment/x6/operation/{operation}")
+def perform_operation(operation: str):
     try:
-        response = grpc_client.ResetPrinting(protocol_pb2.Empty())
+        if operation == 'reset':
+            response = grpc_client.ResetPrinting(protocol_pb2.Empty())
+        elif operation == 'calibrate':
+            response = grpc_client.CalibratePrinter(protocol_pb2.Empty())
+        else:
+            return {"error": "Invalid operation. Supported operations: reset, calibrate"}
+        
         return {"message": response.message}
+    
     except grpc.RpcError as e:
         return {"error": str(e)}

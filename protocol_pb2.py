@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0eprotocol.proto\x12\x08protocol\"-\n\x14StartPrintingRequest\x12\x15\n\rcell_quantity\x18\x01 \x01(\x05\"0\n\x1aStartManualPrintingRequest\x12\x12\n\nprint_data\x18\x01 \x01(\t\" \n\rPrintResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x07\n\x05\x45mpty2\xf1\x02\n\x08Protocol\x12H\n\rStartPrinting\x12\x1e.protocol.StartPrintingRequest\x1a\x17.protocol.PrintResponse\x12\x45\n\x19StartPrepaireLogoPrinting\x12\x0f.protocol.Empty\x1a\x17.protocol.PrintResponse\x12T\n\x13StartManualPrinting\x12$.protocol.StartManualPrintingRequest\x1a\x17.protocol.PrintResponse\x12\x39\n\rResetPrinting\x12\x0f.protocol.Empty\x1a\x17.protocol.PrintResponse\x12\x43\n\x15\x43heckPrintingProgress\x12\x0f.protocol.Empty\x1a\x17.protocol.PrintResponse0\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0eprotocol.proto\x12\x08protocol\"-\n\x14StartPrintingRequest\x12\x15\n\rcell_quantity\x18\x01 \x01(\x05\"0\n\x1aStartManualPrintingRequest\x12\x12\n\nprint_data\x18\x01 \x01(\t\" \n\rPrintResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x07\n\x05\x45mpty2\xaf\x03\n\x08Protocol\x12H\n\rStartPrinting\x12\x1e.protocol.StartPrintingRequest\x1a\x17.protocol.PrintResponse\x12\x45\n\x19StartPrepaireLogoPrinting\x12\x0f.protocol.Empty\x1a\x17.protocol.PrintResponse\x12T\n\x13StartManualPrinting\x12$.protocol.StartManualPrintingRequest\x1a\x17.protocol.PrintResponse\x12\x39\n\rResetPrinting\x12\x0f.protocol.Empty\x1a\x17.protocol.PrintResponse\x12\x43\n\x15\x43heckPrintingProgress\x12\x0f.protocol.Empty\x1a\x17.protocol.PrintResponse0\x01\x12<\n\x10\x43\x61libratePrinter\x12\x0f.protocol.Empty\x1a\x17.protocol.PrintResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -40,5 +40,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_EMPTY']._serialized_start=159
   _globals['_EMPTY']._serialized_end=166
   _globals['_PROTOCOL']._serialized_start=169
-  _globals['_PROTOCOL']._serialized_end=538
+  _globals['_PROTOCOL']._serialized_end=600
 # @@protoc_insertion_point(module_scope)
