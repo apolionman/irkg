@@ -1982,7 +1982,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class DiseaseResponse(BaseModel):\n    disease_name: str\n    drugs: List[DrugInfo]\nclass RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass ModelType(str, Enum):\n    new_model = \"New Model\"",
+        "peekOfCode": "class DiseaseResponse(BaseModel):\n    disease_name: str\n    drugs: List[DrugInfo]\nclass RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass SplitName(BaseModel):\n    id: int",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -1991,7 +1991,16 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass ModelType(str, Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\nclass ModelSchema(BaseModel):",
+        "peekOfCode": "class RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass SplitName(BaseModel):\n    id: int\n    split_name: str\nclass ModelType(Enum):\n    new_model = \"New Model\"",
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "SplitName",
+        "kind": 6,
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "peekOfCode": "class SplitName(BaseModel):\n    id: int\n    split_name: str\nclass ModelType(Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\n    def __str__(self):\n        return self.value\nclass ModelSchema(BaseModel):",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2000,7 +2009,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class ModelType(str, Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\nclass ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType\nclass ModeEnum(str, Enum):\n    indication = \"indication\"",
+        "peekOfCode": "class ModelType(Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\n    def __str__(self):\n        return self.value\nclass ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },

@@ -31,10 +31,17 @@ class RelationReq(str, Enum):
     contraindication = 'contraindication'
     off_label = 'off-label use'
 
-class ModelType(str, Enum):
+class SplitName(BaseModel):
+    id: int
+    split_name: str
+
+class ModelType(Enum):
     new_model = "New Model"
     full_graph = "Full Graph Model"
     pre_trained = "Pre-trained Model"
+
+    def __str__(self):
+        return self.value
 
 class ModelSchema(BaseModel):
     id: int
