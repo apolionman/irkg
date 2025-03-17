@@ -31,6 +31,16 @@ class RelationReq(str, Enum):
     contraindication = 'contraindication'
     off_label = 'off-label use'
 
+class ModelType(str, Enum):
+    new_model = "New Model"
+    full_graph = "Full Graph Model"
+    pre_trained = "Pre-trained Model"
+
+class ModelSchema(BaseModel):
+    id: int
+    name: str
+    model_type: ModelType
+
 class ModeEnum(str, Enum):
     indication = "indication"
     contradiction = "contradiction"

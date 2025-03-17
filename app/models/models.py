@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table, Enum
 from sqlalchemy.orm import declarative_base, relationship
+from app.schemas.schemas import *
 
 Base = declarative_base()
 
@@ -75,3 +76,10 @@ class Consequence(Base):
 
     # Relationship
     variant = relationship("VariantInfo", back_populates="consequences")
+
+class ModelDB(Base):
+    __tablename__ = "model_type"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    model_type = Column(Enum(ModelType), nullable=False)

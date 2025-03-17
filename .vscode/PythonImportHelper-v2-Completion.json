@@ -169,6 +169,14 @@
         "documentation": {}
     },
     {
+        "label": "Enum",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
         "label": "fileConfig",
         "importPath": "logging.config",
         "description": "logging.config",
@@ -490,6 +498,46 @@
         "documentation": {}
     },
     {
+        "label": "*",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
         "label": "BaseModel",
         "importPath": "pydantic",
         "description": "pydantic",
@@ -771,38 +819,6 @@
         "description": "app.scripts.txgnn_query",
         "isExtraImport": true,
         "detail": "app.scripts.txgnn_query",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "app.schemas.schemas",
-        "description": "app.schemas.schemas",
-        "isExtraImport": true,
-        "detail": "app.schemas.schemas",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "app.schemas.schemas",
-        "description": "app.schemas.schemas",
-        "isExtraImport": true,
-        "detail": "app.schemas.schemas",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "app.schemas.schemas",
-        "description": "app.schemas.schemas",
-        "isExtraImport": true,
-        "detail": "app.schemas.schemas",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "app.schemas.schemas",
-        "description": "app.schemas.schemas",
-        "isExtraImport": true,
-        "detail": "app.schemas.schemas",
         "documentation": {}
     },
     {
@@ -1786,7 +1802,16 @@
         "kind": 6,
         "importPath": "app.models.models",
         "description": "app.models.models",
-        "peekOfCode": "class Consequence(Base):\n    __tablename__ = \"consequence\"\n    id = Column(Integer, primary_key=True, index=True)\n    consequence = Column(String, index=True)\n    variant_id = Column(Integer, ForeignKey(\"gene_variant.id\"))\n    # Relationship\n    variant = relationship(\"VariantInfo\", back_populates=\"consequences\")",
+        "peekOfCode": "class Consequence(Base):\n    __tablename__ = \"consequence\"\n    id = Column(Integer, primary_key=True, index=True)\n    consequence = Column(String, index=True)\n    variant_id = Column(Integer, ForeignKey(\"gene_variant.id\"))\n    # Relationship\n    variant = relationship(\"VariantInfo\", back_populates=\"consequences\")\nclass ModelDB(Base):\n    __tablename__ = \"model_type\"\n    id = Column(Integer, primary_key=True, index=True)",
+        "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "ModelDB",
+        "kind": 6,
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "peekOfCode": "class ModelDB(Base):\n    __tablename__ = \"model_type\"\n    id = Column(Integer, primary_key=True, index=True)\n    name = Column(String, nullable=False)\n    model_type = Column(Enum(ModelType), nullable=False)",
         "detail": "app.models.models",
         "documentation": {}
     },
@@ -1858,7 +1883,16 @@
         "kind": 5,
         "importPath": "app.routes.endpoints",
         "description": "app.routes.endpoints",
-        "peekOfCode": "router = APIRouter()\n#Connect GRPC for Cellink\nchannel = grpc.insecure_channel(\"1.tcp.ap.ngrok.io:22599\")\ngrpc_client = protocol_pb2_grpc.ProtocolStub(channel)\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:",
+        "peekOfCode": "router = APIRouter()\ntxgnn_data_path = '/home/dgx/dgx_irkg_be/TxGNN/data'\n#Connect GRPC for Cellink\nchannel = grpc.insecure_channel(\"1.tcp.ap.ngrok.io:22599\")\ngrpc_client = protocol_pb2_grpc.ProtocolStub(channel)\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")",
+        "detail": "app.routes.endpoints",
+        "documentation": {}
+    },
+    {
+        "label": "txgnn_data_path",
+        "kind": 5,
+        "importPath": "app.routes.endpoints",
+        "description": "app.routes.endpoints",
+        "peekOfCode": "txgnn_data_path = '/home/dgx/dgx_irkg_be/TxGNN/data'\n#Connect GRPC for Cellink\nchannel = grpc.insecure_channel(\"1.tcp.ap.ngrok.io:22599\")\ngrpc_client = protocol_pb2_grpc.ProtocolStub(channel)\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:",
         "detail": "app.routes.endpoints",
         "documentation": {}
     },
@@ -1948,7 +1982,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class DiseaseResponse(BaseModel):\n    disease_name: str\n    drugs: List[DrugInfo]\nclass RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass ModeEnum(str, Enum):\n    indication = \"indication\"",
+        "peekOfCode": "class DiseaseResponse(BaseModel):\n    disease_name: str\n    drugs: List[DrugInfo]\nclass RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass ModelType(str, Enum):\n    new_model = \"New Model\"",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -1957,7 +1991,25 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass ModeEnum(str, Enum):\n    indication = \"indication\"\n    contradiction = \"contradiction\"\nclass VariantSchema(BaseModel):\n    id: int",
+        "peekOfCode": "class RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass ModelType(str, Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\nclass ModelSchema(BaseModel):",
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "ModelType",
+        "kind": 6,
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "peekOfCode": "class ModelType(str, Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\nclass ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType\nclass ModeEnum(str, Enum):\n    indication = \"indication\"",
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "ModelSchema",
+        "kind": 6,
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "peekOfCode": "class ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType\nclass ModeEnum(str, Enum):\n    indication = \"indication\"\n    contradiction = \"contradiction\"\nclass VariantSchema(BaseModel):\n    id: int\n    variationTitle: str",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },

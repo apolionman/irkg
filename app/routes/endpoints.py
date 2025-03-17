@@ -24,6 +24,7 @@ import protocol_pb2
 import protocol_pb2_grpc
 
 router = APIRouter()
+txgnn_data_path = '/home/dgx/dgx_irkg_be/TxGNN/data'
 
 #Connect GRPC for Cellink
 channel = grpc.insecure_channel("1.tcp.ap.ngrok.io:22599")
@@ -210,3 +211,56 @@ def perform_operation(operation: str):
     
     except grpc.RpcError as e:
         return {"error": str(e)}
+
+@router.post("/upload-txgnn-files/")
+async def upload_files(
+    files: List[UploadFile] = File(...),
+    split_name: str = Form(...),
+    model_type: ModelType = Form(...),
+    new_model_name: Optional[str] = Form(None),
+    db: Session = Depends(get_db)
+):
+    """
+    Upload multiple files and categorize them into appropriate directories.
+
+    - Files with "train.csv", "valid.csv", "test.csv" go under `SplitName` directory.
+    - Files with "config.pkl", "model.pt" go under `ModelType` directory.
+    - If `new_model` is selected, `new_model_name` is required, a new database entry is created, and a directory is formed.
+    """
+
+    # Validate if new_model is selected but no new_model_name provided
+    if model_type == ModelType.new_model and not new_model_name:
+        raise HTTPException(status_code=400, detail="New model name is required when 'New Model' is selected.")
+
+    # Determine the base directory based on model type
+    if model_type == ModelType.new_model:
+        model_dir = os.path.join(txgnn_data_path, new_model_name)
+        
+        # Save new model to DB
+        new_model_entry = ModelDB(name=new_model_name, model_type=ModelType.new_model)
+        db.add(new_model_entry)
+        db.commit()
+        db.refresh(new_model_entry)
+    else:
+        model_dir = os.path.join(txgnn_data_path, model_type.value)
+
+    # Create directories if they don't exist
+    split_dir = os.path.join(txgnn_data_path, split_name)
+    os.makedirs(model_dir, exist_ok=True)
+    os.makedirs(split_dir, exist_ok=True)
+
+    # Save files
+    for file in files:
+        filename = file.filename.lower()
+        
+        if any(substring in filename for substring in ["train.csv", "valid.csv", "test.csv"]):
+            file_path = os.path.join(split_dir, filename)
+        elif any(substring in filename for substring in ["config.pkl", "model.pt"]):
+            file_path = os.path.join(model_dir, filename)
+        else:
+            raise HTTPException(status_code=400, detail=f"Unsupported file type: {filename}")
+
+        with open(file_path, "wb") as buffer:
+            buffer.write(await file.read())
+
+    return {"message": "Files uploaded successfully", "split_dir": split_dir, "model_dir": model_dir}
