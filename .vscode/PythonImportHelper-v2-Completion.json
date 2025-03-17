@@ -1811,7 +1811,7 @@
         "kind": 6,
         "importPath": "app.models.models",
         "description": "app.models.models",
-        "peekOfCode": "class ModelDB(Base):\n    __tablename__ = \"model_type\"\n    id = Column(Integer, primary_key=True, index=True)\n    name = Column(String, nullable=False)\n    model_type = Column(Enum(ModelType), nullable=False)",
+        "peekOfCode": "class ModelDB(Base):\n    __tablename__ = \"model_type\"\n    id = Column(Integer, primary_key=True, index=True)\n    name = Column(String, nullable=False)\n    model_type = Column(SQLAlchemyEnum(ModelType, name=\"model_type_enum\", create_constraint=True), nullable=False)",
         "detail": "app.models.models",
         "documentation": {}
     },
@@ -2018,7 +2018,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType\nclass ModeEnum(str, Enum):\n    indication = \"indication\"\n    contradiction = \"contradiction\"\nclass VariantSchema(BaseModel):\n    id: int\n    variationTitle: str",
+        "peekOfCode": "class ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType\n    class Config:\n        from_attributes = True\nclass ModeEnum(str, Enum):\n    indication = \"indication\"\n    contradiction = \"contradiction\"\nclass VariantSchema(BaseModel):",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },

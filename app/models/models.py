@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table, Enum
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table, Enum as SQLAlchemyEnum
 from sqlalchemy.orm import declarative_base, relationship
 from app.schemas.schemas import *
 
@@ -82,4 +82,4 @@ class ModelDB(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
-    model_type = Column(Enum(ModelType), nullable=False)
+    model_type = Column(SQLAlchemyEnum(ModelType, name="model_type_enum", create_constraint=True), nullable=False)

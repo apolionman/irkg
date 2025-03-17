@@ -48,6 +48,9 @@ class ModelSchema(BaseModel):
     name: str
     model_type: ModelType
 
+    class Config:
+        from_attributes = True
+
 class ModeEnum(str, Enum):
     indication = "indication"
     contradiction = "contradiction"

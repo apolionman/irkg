@@ -88,6 +88,9 @@ jobs:
 
             # Migrate new changes in model
             alembic revision --autogenerate -m "Migration on $TIMESTAMP"
+
+            # Apply the migration
+            alembic upgrade head
             
             # Run migrations (Add this step for your DB migration)
             alembic upgrade head  # If you're using Alembic for migrations
