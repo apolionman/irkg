@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from core.database import get_db
+from app.core.database import get_db
 from typing import List, Dict
 import pandas as pd
 from fuzzywuzzy import fuzz
@@ -8,7 +8,7 @@ from txgnn import TxData, TxGNN, TxEval
 import json
 from app.schemas.schemas import *
 from sqlalchemy.orm import Session
-from models.models import *
+from app.models.models import *
 from services.crud import save_txgnn
 from sqlalchemy.ext.asyncio import AsyncSession
 import csv

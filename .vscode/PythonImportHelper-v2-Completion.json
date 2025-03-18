@@ -902,6 +902,14 @@
         "documentation": {}
     },
     {
+        "label": "get_db",
+        "importPath": "app.core.database",
+        "description": "app.core.database",
+        "isExtraImport": true,
+        "detail": "app.core.database",
+        "documentation": {}
+    },
+    {
         "label": "*",
         "importPath": "app.services.lam_feedback_layer",
         "description": "app.services.lam_feedback_layer",
@@ -1005,14 +1013,6 @@
         "documentation": {}
     },
     {
-        "label": "get_db",
-        "importPath": "core.database",
-        "description": "core.database",
-        "isExtraImport": true,
-        "detail": "core.database",
-        "documentation": {}
-    },
-    {
         "label": "pandas",
         "kind": 6,
         "isExtraImport": true,
@@ -1112,10 +1112,26 @@
     },
     {
         "label": "*",
-        "importPath": "models.models",
-        "description": "models.models",
+        "importPath": "app.models.models",
+        "description": "app.models.models",
         "isExtraImport": true,
-        "detail": "models.models",
+        "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "isExtraImport": true,
+        "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "isExtraImport": true,
+        "detail": "app.models.models",
         "documentation": {}
     },
     {
@@ -1158,22 +1174,6 @@
         "importPath": "pickle",
         "description": "pickle",
         "detail": "pickle",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "app.models.models",
-        "description": "app.models.models",
-        "isExtraImport": true,
-        "detail": "app.models.models",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "app.models.models",
-        "description": "app.models.models",
-        "isExtraImport": true,
-        "detail": "app.models.models",
         "documentation": {}
     },
     {
