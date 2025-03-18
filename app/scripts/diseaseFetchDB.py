@@ -12,7 +12,7 @@ from app.models.models import *
 from app.services.crud import save_txgnn
 from sqlalchemy.ext.asyncio import AsyncSession
 import csv
-from txgnn_query import get_node_id_by_name, get_drug_id
+from app.scripts.txgnn_query import get_node_id_by_name, get_drug_id
 
 CSV_FILE_PATH = "/home/dgx/dgx_irkg_be/TxGNN/data/filtered_disease_data.csv "
 _range = 200
@@ -75,7 +75,7 @@ def main(db: AsyncSession = Depends(get_db)):
         for row in reader:
             results = txgnn_get(row['node_name'])
             save_txgnn(db, results)
-    print('Done')
+    print('Disease and drug score saved for disease:', row['node_name'])
 
 # Run the script
 if __name__ == "__main__":
