@@ -44,8 +44,8 @@ class ModelType(Enum):
         return self.value
 
 class ModelSelection(str, Enum):
-    new_model = "TxGNN Explorer Model"
-    rare_model = "Rare Diasease Model"
+    new_model = 'TxGNN Explorer Model'
+    rare_model = 'Rare Diasease Model'
 
 class ModelSchema(BaseModel):
     id: int

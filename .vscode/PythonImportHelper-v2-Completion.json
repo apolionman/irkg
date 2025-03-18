@@ -2009,7 +2009,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class ModelType(Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\n    def __str__(self):\n        return self.value\nclass ModelSelection(str, Enum):\n    new_model = \"TxGNN Explorer Model\"\n    rare_model = \"Rare Diasease Model\"\nclass ModelSchema(BaseModel):",
+        "peekOfCode": "class ModelType(Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\n    def __str__(self):\n        return self.value\nclass ModelSelection(str, Enum):\n    new_model = 'TxGNN Explorer Model'\n    rare_model = 'Rare Diasease Model'\nclass ModelSchema(BaseModel):",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2018,7 +2018,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class ModelSelection(str, Enum):\n    new_model = \"TxGNN Explorer Model\"\n    rare_model = \"Rare Diasease Model\"\nclass ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType\n    class Config:\n        from_attributes = True\nclass ModeEnum(str, Enum):",
+        "peekOfCode": "class ModelSelection(str, Enum):\n    new_model = 'TxGNN Explorer Model'\n    rare_model = 'Rare Diasease Model'\nclass ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType\n    class Config:\n        from_attributes = True\nclass ModeEnum(str, Enum):",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
