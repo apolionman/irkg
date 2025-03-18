@@ -2000,7 +2000,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class SplitName(BaseModel):\n    id: int\n    split_name: str\nclass ModelType(Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\n    def __str__(self):\n        return self.value\nclass ModelSchema(BaseModel):",
+        "peekOfCode": "class SplitName(BaseModel):\n    id: int\n    split_name: str\nclass ModelType(Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\n    def __str__(self):\n        return self.value\nclass ModelSelection(str, Enum):",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2009,7 +2009,16 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class ModelType(Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\n    def __str__(self):\n        return self.value\nclass ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType",
+        "peekOfCode": "class ModelType(Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\n    def __str__(self):\n        return self.value\nclass ModelSelection(str, Enum):\n    new_model = \"TxGNN Explorer Model\"\n    rare_model = \"Rare Diasease Model\"\nclass ModelSchema(BaseModel):",
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "ModelSelection",
+        "kind": 6,
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "peekOfCode": "class ModelSelection(str, Enum):\n    new_model = \"TxGNN Explorer Model\"\n    rare_model = \"Rare Diasease Model\"\nclass ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType\n    class Config:\n        from_attributes = True\nclass ModeEnum(str, Enum):",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2126,7 +2135,7 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def get_drug_id(node_name):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_name'] == node_name]\n    if not result.empty:\n        return result['node_id'].iloc[0]\n    else:\n        return None\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, ",
+        "peekOfCode": "def get_drug_id(node_name):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_name'] == node_name]\n    if not result.empty:\n        return result['node_id'].iloc[0]\n    else:\n        return None\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='complex_disease', seed=42)\nTxG = TxGNN(data=TxD, ",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -2135,7 +2144,7 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    results = TxE.eval_disease_centric(disease_idxs=disease_idx, \n                                relation=relation,\n                                show_plot=False, \n                                verbose=False,\n                                save_result=False,\n                                return_raw=False,",
+        "peekOfCode": "def txgnn_query(\n        selectModel: str,\n        disease_name: List[str], \n        relation: str, \n        _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    if selectModel == 'new_model':\n        TxG.load_pretrained(f'/home/dgx/dgx_irkg_be/TxGNN/New_model')",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -2144,7 +2153,7 @@
         "kind": 5,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\nTxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')",
+        "peekOfCode": "TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='complex_disease', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\n# TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -2153,16 +2162,7 @@
         "kind": 5,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\nTxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')\nTxE = TxEval(model=TxG)\ndef txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:",
-        "detail": "app.scripts.txgnn_query",
-        "documentation": {}
-    },
-    {
-        "label": "TxE",
-        "kind": 5,
-        "importPath": "app.scripts.txgnn_query",
-        "description": "app.scripts.txgnn_query",
-        "peekOfCode": "TxE = TxEval(model=TxG)\ndef txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    results = TxE.eval_disease_centric(disease_idxs=disease_idx, \n                                relation=relation,\n                                show_plot=False, \n                                verbose=False,\n                                save_result=False,",
+        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\n# TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')\n# TxE = TxEval(model=TxG)\ndef txgnn_query(",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },

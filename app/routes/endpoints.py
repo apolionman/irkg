@@ -115,6 +115,7 @@ async def nucleotide_fasta(request: NucleotideReq, current_user: dict = Depends(
 
 @router.get("/txgnn_query", response_model=DiseaseResponse)
 async def get_txgnn_results(
+    selectModel: ModelSelection, 
     disease_name: str, 
     relation: RelationReq, 
     _range: int,
@@ -122,7 +123,7 @@ async def get_txgnn_results(
     current_user: dict = Depends(get_current_user)
 ):
     try:
-        results = txgnn_query(disease_name, relation, _range)
+        results = txgnn_query(selectModel, disease_name, relation, _range)
         disease_id = await save_txgnn(db, results)  # Ensure this is awaited
         return results
     except Exception as e:

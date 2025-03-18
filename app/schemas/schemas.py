@@ -43,6 +43,10 @@ class ModelType(Enum):
     def __str__(self):
         return self.value
 
+class ModelSelection(str, Enum):
+    new_model = "TxGNN Explorer Model"
+    rare_model = "Rare Diasease Model"
+
 class ModelSchema(BaseModel):
     id: int
     name: str

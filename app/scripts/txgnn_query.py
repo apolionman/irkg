@@ -54,7 +54,7 @@ def get_drug_id(node_name):
         return None
     
 TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')
-TxD.prepare_split(split='full_graph', seed=42)
+TxD.prepare_split(split='complex_disease', seed=42)
 
 TxG = TxGNN(data=TxD, 
                 weight_bias_track=False,
@@ -63,13 +63,22 @@ TxG = TxGNN(data=TxD,
                 device='cpu'
                 )
 # TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')
-TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')
-TxE = TxEval(model=TxG)
+# TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')
+# TxE = TxEval(model=TxG)
 
-def txgnn_query(disease_name: List[str], relation: str, _range: int) -> DiseaseResponse:
+def txgnn_query(
+        selectModel: str,
+        disease_name: List[str], 
+        relation: str, 
+        _range: int) -> DiseaseResponse:
     disease_idx = get_node_id_by_name(disease_name)
     # if relation != 'auto':
     # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'
+    if selectModel == 'new_model':
+        TxG.load_pretrained(f'/home/dgx/dgx_irkg_be/TxGNN/New_model')
+    elif selectModel == 'rare_model':
+        TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')
+    TxE = TxEval(model=TxG)
     results = TxE.eval_disease_centric(disease_idxs=disease_idx, 
                                 relation=relation,
                                 show_plot=False, 
