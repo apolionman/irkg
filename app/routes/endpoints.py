@@ -123,6 +123,7 @@ async def get_txgnn_results(
     current_user: dict = Depends(get_current_user)
 ):
     try:
+        print('This is the mode', selectModel)
         results = txgnn_query(selectModel, disease_name, relation, _range)
         disease_id = await save_txgnn(db, results)  # Ensure this is awaited
         return results
