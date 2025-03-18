@@ -80,6 +80,22 @@
         "documentation": {}
     },
     {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "op",
         "importPath": "alembic",
         "description": "alembic",
@@ -322,6 +338,14 @@
         "documentation": {}
     },
     {
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
         "label": "sessionmaker",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
@@ -339,6 +363,14 @@
     },
     {
         "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
         "isExtraImport": true,
@@ -538,6 +570,14 @@
         "documentation": {}
     },
     {
+        "label": "*",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
         "label": "BaseModel",
         "importPath": "pydantic",
         "description": "pydantic",
@@ -667,6 +707,22 @@
     },
     {
         "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
@@ -838,6 +894,22 @@
         "documentation": {}
     },
     {
+        "label": "save_txgnn",
+        "importPath": "app.services.crud",
+        "description": "app.services.crud",
+        "isExtraImport": true,
+        "detail": "app.services.crud",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "app.core.database",
+        "description": "app.core.database",
+        "isExtraImport": true,
+        "detail": "app.core.database",
+        "documentation": {}
+    },
+    {
         "label": "get_db",
         "importPath": "app.core.database",
         "description": "app.core.database",
@@ -949,15 +1021,6 @@
         "documentation": {}
     },
     {
-        "label": "pickle",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "pickle",
-        "description": "pickle",
-        "detail": "pickle",
-        "documentation": {}
-    },
-    {
         "label": "pandas",
         "kind": 6,
         "isExtraImport": true,
@@ -980,6 +1043,46 @@
         "description": "fuzzywuzzy",
         "isExtraImport": true,
         "detail": "fuzzywuzzy",
+        "documentation": {}
+    },
+    {
+        "label": "fuzz",
+        "importPath": "fuzzywuzzy",
+        "description": "fuzzywuzzy",
+        "isExtraImport": true,
+        "detail": "fuzzywuzzy",
+        "documentation": {}
+    },
+    {
+        "label": "process",
+        "importPath": "fuzzywuzzy",
+        "description": "fuzzywuzzy",
+        "isExtraImport": true,
+        "detail": "fuzzywuzzy",
+        "documentation": {}
+    },
+    {
+        "label": "TxData",
+        "importPath": "txgnn",
+        "description": "txgnn",
+        "isExtraImport": true,
+        "detail": "txgnn",
+        "documentation": {}
+    },
+    {
+        "label": "TxGNN",
+        "importPath": "txgnn",
+        "description": "txgnn",
+        "isExtraImport": true,
+        "detail": "txgnn",
+        "documentation": {}
+    },
+    {
+        "label": "TxEval",
+        "importPath": "txgnn",
+        "description": "txgnn",
+        "isExtraImport": true,
+        "detail": "txgnn",
         "documentation": {}
     },
     {
@@ -1029,6 +1132,48 @@
         "description": "app.models.models",
         "isExtraImport": true,
         "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "isExtraImport": true,
+        "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "get_node_id_by_name",
+        "importPath": "txgnn_query",
+        "description": "txgnn_query",
+        "isExtraImport": true,
+        "detail": "txgnn_query",
+        "documentation": {}
+    },
+    {
+        "label": "get_drug_id",
+        "importPath": "txgnn_query",
+        "description": "txgnn_query",
+        "isExtraImport": true,
+        "detail": "txgnn_query",
+        "documentation": {}
+    },
+    {
+        "label": "pickle",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pickle",
+        "description": "pickle",
+        "detail": "pickle",
         "documentation": {}
     },
     {
@@ -2110,6 +2255,69 @@
         "description": "app.scripts.clinvar_query_v1",
         "peekOfCode": "os.environ[\"PATH\"] = \"/usr/bin:/bin:\" + os.environ[\"PATH\"]\nasync def fetch_clinvar_variations(gene_name: str) -> GeneRequest:\n    try:\n        esearch_command = (\n        f'esearch -db clinvar -query \"(({gene_name}[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])\" |'\n        f'efetch -format xml&api_key={API_KEY}'\n        )\n        process = await asyncio.create_subprocess_shell(\n            esearch_command,\n            stdout=asyncio.subprocess.PIPE,",
         "detail": "app.scripts.clinvar_query_v1",
+        "documentation": {}
+    },
+    {
+        "label": "txgnn_get",
+        "kind": 2,
+        "importPath": "app.scripts.diseaseFetchDB",
+        "description": "app.scripts.diseaseFetchDB",
+        "peekOfCode": "def txgnn_get(disease) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease)\n    results = TxE.eval_disease_centric(disease_idxs=disease_idx, \n                                relation='indication',\n                                show_plot=False, \n                                verbose=False,\n                                save_result=False,\n                                return_raw=False,\n                                # save_name=save_path\n                                )",
+        "detail": "app.scripts.diseaseFetchDB",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "app.scripts.diseaseFetchDB",
+        "description": "app.scripts.diseaseFetchDB",
+        "peekOfCode": "def main(db: AsyncSession = Depends(get_db)):\n    with open(CSV_FILE_PATH, mode='r', encoding='utf-8') as file:\n        reader = csv.DictReader(file)  # Read as a dictionary\n        for row in reader:\n            results = txgnn_get(row['node_name'])\n            save_txgnn(db, results)\n    print('Done')\n# Run the script\nif __name__ == \"__main__\":\n    main()",
+        "detail": "app.scripts.diseaseFetchDB",
+        "documentation": {}
+    },
+    {
+        "label": "CSV_FILE_PATH",
+        "kind": 5,
+        "importPath": "app.scripts.diseaseFetchDB",
+        "description": "app.scripts.diseaseFetchDB",
+        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/TxGNN/data/filtered_disease_data.csv \"\n_range = 200\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='complex_disease', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )",
+        "detail": "app.scripts.diseaseFetchDB",
+        "documentation": {}
+    },
+    {
+        "label": "_range",
+        "kind": 5,
+        "importPath": "app.scripts.diseaseFetchDB",
+        "description": "app.scripts.diseaseFetchDB",
+        "peekOfCode": "_range = 200\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='complex_disease', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\nTxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')",
+        "detail": "app.scripts.diseaseFetchDB",
+        "documentation": {}
+    },
+    {
+        "label": "TxD",
+        "kind": 5,
+        "importPath": "app.scripts.diseaseFetchDB",
+        "description": "app.scripts.diseaseFetchDB",
+        "peekOfCode": "TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='complex_disease', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\nTxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')\nTxE = TxEval(model=TxG)",
+        "detail": "app.scripts.diseaseFetchDB",
+        "documentation": {}
+    },
+    {
+        "label": "TxG",
+        "kind": 5,
+        "importPath": "app.scripts.diseaseFetchDB",
+        "description": "app.scripts.diseaseFetchDB",
+        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\nTxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')\nTxE = TxEval(model=TxG)\ndef txgnn_get(disease) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease)",
+        "detail": "app.scripts.diseaseFetchDB",
+        "documentation": {}
+    },
+    {
+        "label": "TxE",
+        "kind": 5,
+        "importPath": "app.scripts.diseaseFetchDB",
+        "description": "app.scripts.diseaseFetchDB",
+        "peekOfCode": "TxE = TxEval(model=TxG)\ndef txgnn_get(disease) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease)\n    results = TxE.eval_disease_centric(disease_idxs=disease_idx, \n                                relation='indication',\n                                show_plot=False, \n                                verbose=False,\n                                save_result=False,\n                                return_raw=False,\n                                # save_name=save_path",
+        "detail": "app.scripts.diseaseFetchDB",
         "documentation": {}
     },
     {
