@@ -2144,7 +2144,7 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def txgnn_query(\n        selectModel: str,\n        disease_name: List[str], \n        relation: str, \n        _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    if selectModel == 'new_model':\n        TxG.load_pretrained(f'/home/dgx/dgx_irkg_be/TxGNN/New_model')",
+        "peekOfCode": "def txgnn_query(\n        selectModel: str,\n        disease_name: List[str], \n        relation: str, \n        _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    print(\"WHAT MODEL?\", selectModel)\n    if selectModel == 'new_model':",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
