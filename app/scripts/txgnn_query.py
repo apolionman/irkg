@@ -76,9 +76,10 @@ def txgnn_query(
     # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'
     if selectModel == 'new_model':
         TxG.load_pretrained(f'/home/dgx/dgx_irkg_be/TxGNN/New_model')
+        TxE = TxEval(model=TxG)
     elif selectModel == 'rare_model':
         TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')
-    TxE = TxEval(model=TxG)
+        TxE = TxEval(model=TxG)
     results = TxE.eval_disease_centric(disease_idxs=disease_idx, 
                                 relation=relation,
                                 show_plot=False, 
