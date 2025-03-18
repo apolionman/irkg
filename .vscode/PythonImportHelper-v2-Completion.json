@@ -894,14 +894,6 @@
         "documentation": {}
     },
     {
-        "label": "save_txgnn",
-        "importPath": "app.services.crud",
-        "description": "app.services.crud",
-        "isExtraImport": true,
-        "detail": "app.services.crud",
-        "documentation": {}
-    },
-    {
         "label": "get_db",
         "importPath": "app.core.database",
         "description": "app.core.database",

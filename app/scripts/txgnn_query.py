@@ -9,7 +9,6 @@ import json
 from app.schemas.schemas import *
 from sqlalchemy.orm import Session
 from app.models.models import *
-from app.services.crud import save_txgnn
 from sqlalchemy.ext.asyncio import AsyncSession
 
 def get_node_id_by_name(input_name):
