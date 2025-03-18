@@ -894,6 +894,14 @@
         "documentation": {}
     },
     {
+        "label": "save_txgnn",
+        "importPath": "app.services.crud",
+        "description": "app.services.crud",
+        "isExtraImport": true,
+        "detail": "app.services.crud",
+        "documentation": {}
+    },
+    {
         "label": "get_db",
         "importPath": "app.core.database",
         "description": "app.core.database",
@@ -1132,14 +1140,6 @@
         "description": "app.models.models",
         "isExtraImport": true,
         "detail": "app.models.models",
-        "documentation": {}
-    },
-    {
-        "label": "save_txgnn",
-        "importPath": "services.crud",
-        "description": "services.crud",
-        "isExtraImport": true,
-        "detail": "services.crud",
         "documentation": {}
     },
     {

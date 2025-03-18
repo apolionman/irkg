@@ -9,7 +9,7 @@ import json
 from app.schemas.schemas import *
 from sqlalchemy.orm import Session
 from app.models.models import *
-from services.crud import save_txgnn
+from app.services.crud import save_txgnn
 from sqlalchemy.ext.asyncio import AsyncSession
 import csv
 from txgnn_query import get_node_id_by_name, get_drug_id
