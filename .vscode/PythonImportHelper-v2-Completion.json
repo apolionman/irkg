@@ -2272,7 +2272,7 @@
         "kind": 5,
         "importPath": "app.scripts.diseaseFetchDB",
         "description": "app.scripts.diseaseFetchDB",
-        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/TxGNN/data/filtered_disease_data.csv \"\n_range = 200\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='complex_disease', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )",
+        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/TxGNN/data/filtered_disease_data.csv\"\n_range = 200\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='complex_disease', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )",
         "detail": "app.scripts.diseaseFetchDB",
         "documentation": {}
     },
