@@ -2259,15 +2259,6 @@
         "documentation": {}
     },
     {
-        "label": "main",
-        "kind": 2,
-        "importPath": "app.scripts.diseaseFetchDB",
-        "description": "app.scripts.diseaseFetchDB",
-        "peekOfCode": "def main(db: AsyncSession = Depends(get_db)):\n    with open(CSV_FILE_PATH, mode='r', encoding='utf-8') as file:\n        reader = csv.DictReader(file)  # Read as a dictionary\n        for row in reader:\n            results = txgnn_get(row['node_name'])\n            save_txgnn(db, results)\n    print('Disease and drug score saved for disease:', row['node_name'])\n# Run the script\nif __name__ == \"__main__\":\n    main()",
-        "detail": "app.scripts.diseaseFetchDB",
-        "documentation": {}
-    },
-    {
         "label": "CSV_FILE_PATH",
         "kind": 5,
         "importPath": "app.scripts.diseaseFetchDB",

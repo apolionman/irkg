@@ -69,12 +69,12 @@ def txgnn_get(disease) -> DiseaseResponse:
     )
     return response
 
-def main(db: AsyncSession = Depends(get_db)):
+async def main(db: AsyncSession = Depends(get_db)):
     with open(CSV_FILE_PATH, mode='r', encoding='utf-8') as file:
         reader = csv.DictReader(file)  # Read as a dictionary
         for row in reader:
             results = txgnn_get(row['node_name'])
-            save_txgnn(db, results)
+            await save_txgnn(db, results)
     print('Disease and drug score saved for disease:', row['node_name'])
 
 # Run the script
