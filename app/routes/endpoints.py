@@ -272,21 +272,23 @@ async def upload_files(
 async def get_disease_info(disease_name: str,
                            model_name: SetModelWeightSchema,
                            db: AsyncSession = Depends(get_db)):
-    # Query for disease and join with setModelWeight
+    # Query disease and eagerly load the drugs relationship
     query = (
         select(DiseaseDrugScore)
+        .options(joinedload(DiseaseDrugScore.drugs))  # ✅ Fix: Eager loading to avoid lazy loading
         .join(setModelWeight)
         .filter(DiseaseDrugScore.disease_name == disease_name, setModelWeight.model_name == model_name.name)
     )
-    
+
     result = await db.execute(query)
     disease = result.scalars().first()
 
     if not disease:
         raise HTTPException(status_code=404, detail="Disease not found for the specified model")
 
+    # Explicitly access loaded relationship
     return DiseaseResponse(
         disease_name=disease.disease_name,
-        drugs = [{"drug": d.drug, "score": d.score, "rank": d.rank} async for d in disease.drugs],
-        model_name=model_name.name  # Include model name in response
+        drugs=[{"drug": d.drug, "score": d.score, "rank": d.rank} for d in disease.drugs],  # ✅ No async iteration needed
+        model_name=model_name.name
     )
