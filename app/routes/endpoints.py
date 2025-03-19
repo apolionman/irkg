@@ -288,5 +288,5 @@ async def get_disease_info(disease_name: str,
     return DiseaseResponse(
         disease_name=disease.disease_name,
         drugs=[{"drug": d.drug, "score": d.score, "rank": d.rank} for d in disease.drugs],
-        model_name=model_name.value  # Include model name in response
+        model_name=model_name.name  # Include model name in response
     )
