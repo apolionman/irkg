@@ -12,6 +12,14 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     password = Column(String)
 
+class setModelWeight(Base):
+    __tablename__ = "model_type_name"
+
+    id = Column(Integer, primary_key=True, index=True)
+    model_name = Column(String, index=True)
+
+    disease = relationship("DiseaseDrugScore", back_populates="disease", cascade="all, delete-orphan")
+
 class DiseaseDrugScore(Base):
     __tablename__ = "disease_drug_score"
 
@@ -20,6 +28,7 @@ class DiseaseDrugScore(Base):
 
     # Define a relationship with DrugInfo
     drugs = relationship("DrugInformation", back_populates="disease", cascade="all, delete-orphan")
+    model = relationship("setModelWeight", back_populates="disease")
 
 class DrugInformation(Base):
     __tablename__ = "drug_info"

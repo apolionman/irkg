@@ -1,6 +1,6 @@
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import selectinload
+from sqlalchemy.orm import selectinload, joinedload
 from app.models.models import *
 from app.scripts.txgnn_query import *
 from app.schemas.schemas import *
@@ -40,16 +40,71 @@ async def save_drug_records(db: AsyncSession, drugs: list, disease_id: int):
 
     await db.commit()  # Commit to save all drug records
 
-# Main function to orchestrate saving the disease and drug records
+# Main function to orchestrate saving the disease and drug records old
+# async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
+#     query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
+#     result = await db.execute(query)
+#     existing_disease = result.scalars().first()
+#     if existing_disease:
+#         return existing_disease.id
+
+#     disease_record = await save_disease_record(db, response.disease_name)
+#     await save_drug_records(db, response.drugs, disease_record)
+#     return disease_record
+
 async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
-    query = select(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == response.disease_name)
+    # Check if the same disease and model already exist
+    query = (
+        select(DiseaseDrugScore)
+        .join(setModelWeight)
+        .filter(
+            DiseaseDrugScore.disease_name == response.disease_name,
+            setModelWeight.model_name == response.model
+        )
+        .options(joinedload(DiseaseDrugScore.drugs))
+    )
+    
     result = await db.execute(query)
     existing_disease = result.scalars().first()
+
     if existing_disease:
+        # Update existing drug records instead of creating new ones
+        for drug in response.drugs:
+            existing_drug = next((d for d in existing_disease.drugs if d.drug == drug.drug), None)
+            if existing_drug:
+                existing_drug.score = drug.score
+                existing_drug.rank = drug.rank
+            else:
+                new_drug = DrugInformation(
+                    drug=drug.drug,
+                    score=drug.score,
+                    rank=drug.rank,
+                    disease_id=existing_disease.id
+                )
+                db.add(new_drug)
+        await db.commit()
         return existing_disease.id
 
+    # If no existing disease with the same model, create a new record
     disease_record = await save_disease_record(db, response.disease_name)
+
+    # Retrieve or create model weight record
+    model_query = select(setModelWeight).filter(setModelWeight.model_name == model_name)
+    model_result = await db.execute(model_query)
+    model_record = model_result.scalars().first()
+
+    if not model_record:
+        model_record = setModelWeight(model_name=model_name)
+        db.add(model_record)
+        await db.commit()
+        await db.refresh(model_record)
+
+    # Link disease to model
+    disease_record.model = model_record
+    await db.commit()
+
     await save_drug_records(db, response.drugs, disease_record)
+
     return disease_record
 
 async def create_variant(db: AsyncSession, variation_data: dict):

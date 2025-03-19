@@ -66,7 +66,8 @@ def txgnn_get(disease) -> DiseaseResponse:
     # Prepare the response object with the disease name and the list of drugs with scores and ranks
     response = DiseaseResponse(
         disease_name=results.iloc[0]['Name'] if isinstance(results.iloc[0]['Name'], list) else results.iloc[0]['Name'],
-        drugs=sorted_drugs_info
+        drugs=sorted_drugs_info,
+        model='rare_disease'
     )
     return response
 

@@ -266,3 +266,16 @@ async def upload_files(
             buffer.write(await file.read())
 
     return {"message": "Files uploaded successfully", "split_dir": split_dir, "model_dir": model_dir}
+
+@router.get("/disease/{disease_name}", response_model=DiseaseResponse)
+async def get_disease_info(disease_name: str, db: AsyncSession = Depends(get_db)):
+    # Query for disease
+    disease = db.query(DiseaseDrugScore).filter(DiseaseDrugScore.disease_name == disease_name).first()
+    if not disease:
+        raise HTTPException(status_code=404, detail="Disease not found")
+
+    # Format response
+    return {
+        "disease_name": disease.disease_name,
+        "drugs": [{"drug": d.drug, "score": d.score, "rank": d.rank} for d in disease.drugs]
+    }

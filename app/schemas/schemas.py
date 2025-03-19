@@ -23,6 +23,7 @@ class DrugRange(BaseModel):
 
 class DiseaseResponse(BaseModel):
     disease_name: str
+    model: str
     drugs: List[DrugInfo]
 
 class RelationReq(str, Enum):

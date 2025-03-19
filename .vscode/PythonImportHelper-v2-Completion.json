@@ -394,6 +394,14 @@
         "documentation": {}
     },
     {
+        "label": "joinedload",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "JWTError",
         "importPath": "jose",
         "description": "jose",
@@ -1911,7 +1919,16 @@
         "kind": 6,
         "importPath": "app.models.models",
         "description": "app.models.models",
-        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(Integer, primary_key=True, index=True)\n    name = Column(String, index=True)\n    email = Column(String, unique=True, index=True)\n    password = Column(String)\nclass DiseaseDrugScore(Base):\n    __tablename__ = \"disease_drug_score\"\n    id = Column(Integer, primary_key=True, index=True)\n    disease_name = Column(String, index=True)",
+        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(Integer, primary_key=True, index=True)\n    name = Column(String, index=True)\n    email = Column(String, unique=True, index=True)\n    password = Column(String)\nclass setModelWeight(Base):\n    __tablename__ = \"model_type_name\"\n    id = Column(Integer, primary_key=True, index=True)\n    model_name = Column(String, index=True)",
+        "detail": "app.models.models",
+        "documentation": {}
+    },
+    {
+        "label": "setModelWeight",
+        "kind": 6,
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "peekOfCode": "class setModelWeight(Base):\n    __tablename__ = \"model_type_name\"\n    id = Column(Integer, primary_key=True, index=True)\n    model_name = Column(String, index=True)\n    disease = relationship(\"DiseaseDrugScore\", back_populates=\"disease\", cascade=\"all, delete-orphan\")\nclass DiseaseDrugScore(Base):\n    __tablename__ = \"disease_drug_score\"\n    id = Column(Integer, primary_key=True, index=True)\n    disease_name = Column(String, index=True)\n    # Define a relationship with DrugInfo",
         "detail": "app.models.models",
         "documentation": {}
     },
@@ -1920,7 +1937,7 @@
         "kind": 6,
         "importPath": "app.models.models",
         "description": "app.models.models",
-        "peekOfCode": "class DiseaseDrugScore(Base):\n    __tablename__ = \"disease_drug_score\"\n    id = Column(Integer, primary_key=True, index=True)\n    disease_name = Column(String, index=True)\n    # Define a relationship with DrugInfo\n    drugs = relationship(\"DrugInformation\", back_populates=\"disease\", cascade=\"all, delete-orphan\")\nclass DrugInformation(Base):\n    __tablename__ = \"drug_info\"\n    id = Column(Integer, primary_key=True, index=True)\n    drug = Column(String, index=True)",
+        "peekOfCode": "class DiseaseDrugScore(Base):\n    __tablename__ = \"disease_drug_score\"\n    id = Column(Integer, primary_key=True, index=True)\n    disease_name = Column(String, index=True)\n    # Define a relationship with DrugInfo\n    drugs = relationship(\"DrugInformation\", back_populates=\"disease\", cascade=\"all, delete-orphan\")\n    model = relationship(\"setModelWeight\", back_populates=\"disease\")\nclass DrugInformation(Base):\n    __tablename__ = \"drug_info\"\n    id = Column(Integer, primary_key=True, index=True)",
         "detail": "app.models.models",
         "documentation": {}
     },
@@ -1974,7 +1991,7 @@
         "kind": 5,
         "importPath": "app.models.models",
         "description": "app.models.models",
-        "peekOfCode": "Base = declarative_base()\nclass User(Base):\n    __tablename__ = \"users\"\n    id = Column(Integer, primary_key=True, index=True)\n    name = Column(String, index=True)\n    email = Column(String, unique=True, index=True)\n    password = Column(String)\nclass DiseaseDrugScore(Base):\n    __tablename__ = \"disease_drug_score\"\n    id = Column(Integer, primary_key=True, index=True)",
+        "peekOfCode": "Base = declarative_base()\nclass User(Base):\n    __tablename__ = \"users\"\n    id = Column(Integer, primary_key=True, index=True)\n    name = Column(String, index=True)\n    email = Column(String, unique=True, index=True)\n    password = Column(String)\nclass setModelWeight(Base):\n    __tablename__ = \"model_type_name\"\n    id = Column(Integer, primary_key=True, index=True)",
         "detail": "app.models.models",
         "documentation": {}
     },
@@ -2118,7 +2135,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):\n    disease_name: str\n    drugs: List[DrugInfo]\nclass RelationReq(str, Enum):",
+        "peekOfCode": "class DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):\n    disease_name: str\n    model: str\n    drugs: List[DrugInfo]",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2127,7 +2144,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):\n    disease_name: str\n    drugs: List[DrugInfo]\nclass RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'",
+        "peekOfCode": "class DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):\n    disease_name: str\n    model: str\n    drugs: List[DrugInfo]\nclass RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2136,7 +2153,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class DiseaseResponse(BaseModel):\n    disease_name: str\n    drugs: List[DrugInfo]\nclass RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass SplitName(BaseModel):\n    id: int",
+        "peekOfCode": "class DiseaseResponse(BaseModel):\n    disease_name: str\n    model: str\n    drugs: List[DrugInfo]\nclass RelationReq(str, Enum):\n    # auto = 'auto'\n    indication = 'indication'\n    contraindication = 'contraindication'\n    off_label = 'off-label use'\nclass SplitName(BaseModel):",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
