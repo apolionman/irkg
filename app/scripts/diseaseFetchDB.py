@@ -10,7 +10,7 @@ from app.schemas.schemas import *
 from sqlalchemy.orm import Session
 from app.models.models import *
 from app.services.crud import save_txgnn
-from sqlalchemy.ext.asyncio import AsyncSession
+from app.core.database import async_session_maker
 import csv
 import asyncio
 from app.scripts.txgnn_query import get_node_id_by_name, get_drug_id
@@ -70,13 +70,14 @@ def txgnn_get(disease) -> DiseaseResponse:
     )
     return response
 
-async def main(db: AsyncSession = Depends(get_db)):
-    with open(CSV_FILE_PATH, mode='r', encoding='utf-8') as file:
-        reader = csv.DictReader(file)  # Read as a dictionary
-        for row in reader:
-            results = txgnn_get(row['node_name'])
-            await save_txgnn(db, results)
-            print('Disease and drug score saved for disease:', row['node_name'])
+async def main():
+    async with async_session_maker() as db: 
+        with open(CSV_FILE_PATH, mode='r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)  # Read as a dictionary
+            for row in reader:
+                results = txgnn_get(row['node_name'])
+                await save_txgnn(db, results)
+                print('Disease and drug score saved for disease:', row['node_name'])
 
 
 if __name__ == "__main__":
