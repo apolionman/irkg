@@ -75,7 +75,7 @@ async def main(db: AsyncSession = Depends(get_db)):
         for row in reader:
             results = txgnn_get(row['node_name'])
             await save_txgnn(db, results)
-    print('Disease and drug score saved for disease:', row['node_name'])
+            print('Disease and drug score saved for disease:', row['node_name'])
 
 # Run the script
 if __name__ == "__main__":
