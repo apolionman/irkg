@@ -314,6 +314,14 @@
         "documentation": {}
     },
     {
+        "label": "async_sessionmaker",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
         "label": "AsyncSession",
         "importPath": "sqlalchemy.ext.asyncio",
         "description": "sqlalchemy.ext.asyncio",
@@ -1840,7 +1848,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "engine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\nasync def get_db() -> AsyncSession:\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "peekOfCode": "engine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\nasync def get_db() -> AsyncSession:\n    async with AsyncSessionLocal() as session:\n        yield session\nasync_session_maker = async_sessionmaker(\n    bind=engine,\n    class_=AsyncSession,",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1849,7 +1857,16 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "AsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\nasync def get_db() -> AsyncSession:\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "peekOfCode": "AsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\nasync def get_db() -> AsyncSession:\n    async with AsyncSessionLocal() as session:\n        yield session\nasync_session_maker = async_sessionmaker(\n    bind=engine,\n    class_=AsyncSession,\n    expire_on_commit=False",
+        "detail": "app.core.database",
+        "documentation": {}
+    },
+    {
+        "label": "async_session_maker",
+        "kind": 5,
+        "importPath": "app.core.database",
+        "description": "app.core.database",
+        "peekOfCode": "async_session_maker = async_sessionmaker(\n    bind=engine,\n    class_=AsyncSession,\n    expire_on_commit=False\n)",
         "detail": "app.core.database",
         "documentation": {}
     },
