@@ -346,62 +346,6 @@
         "documentation": {}
     },
     {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "declarative_base",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "relationship",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "selectinload",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "joinedload",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
         "label": "JWTError",
         "importPath": "jose",
         "description": "jose",
@@ -535,6 +479,54 @@
         "description": "app.models.user",
         "isExtraImport": true,
         "detail": "app.models.user",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "selectinload",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "joinedload",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
         "documentation": {}
     },
     {
@@ -1855,7 +1847,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "DATABASE_URL = os.getenv(\n    \"DATABASE_URL\",\n    \"postgresql+asyncpg://admin_dgx:password123@localhost:5432/irkg_db\"\n)\nengine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\nasync def get_db() -> AsyncSession:\n    async with AsyncSessionLocal() as session:",
+        "peekOfCode": "DATABASE_URL = os.getenv(\n    \"DATABASE_URL\",\n    \"postgresql+asyncpg://admin_dgx:password123@localhost:5432/irkg_db\"\n)\n# Create async engine\nengine = create_async_engine(\n    DATABASE_URL,\n    echo=True,  # Enable SQL query logging (optional, useful for debugging)\n    pool_pre_ping=True,\n    pool_size=10,       # Adjust based on concurrency needs",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1864,16 +1856,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "engine = create_async_engine(DATABASE_URL, pool_pre_ping=True)\nAsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\nasync def get_db() -> AsyncSession:\n    async with AsyncSessionLocal() as session:\n        yield session\nasync_session_maker = async_sessionmaker(\n    bind=engine,\n    class_=AsyncSession,",
-        "detail": "app.core.database",
-        "documentation": {}
-    },
-    {
-        "label": "AsyncSessionLocal",
-        "kind": 5,
-        "importPath": "app.core.database",
-        "description": "app.core.database",
-        "peekOfCode": "AsyncSessionLocal = sessionmaker(\n    bind=engine, class_=AsyncSession, expire_on_commit=False\n)\nasync def get_db() -> AsyncSession:\n    async with AsyncSessionLocal() as session:\n        yield session\nasync_session_maker = async_sessionmaker(\n    bind=engine,\n    class_=AsyncSession,\n    expire_on_commit=False",
+        "peekOfCode": "engine = create_async_engine(\n    DATABASE_URL,\n    echo=True,  # Enable SQL query logging (optional, useful for debugging)\n    pool_pre_ping=True,\n    pool_size=10,       # Adjust based on concurrency needs\n    max_overflow=20     # Allow extra temporary connections if needed\n)\n# Define session factory\nasync_session_maker = async_sessionmaker(\n    bind=engine,",
         "detail": "app.core.database",
         "documentation": {}
     },
@@ -1882,7 +1865,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "async_session_maker = async_sessionmaker(\n    bind=engine,\n    class_=AsyncSession,\n    expire_on_commit=False\n)",
+        "peekOfCode": "async_session_maker = async_sessionmaker(\n    bind=engine,\n    class_=AsyncSession,\n    expire_on_commit=False\n)\n# Dependency to get an async session\nasync def get_db() -> AsyncSession:\n    async with async_session_maker() as session:\n        yield session  # Yield session correctly",
         "detail": "app.core.database",
         "documentation": {}
     },
