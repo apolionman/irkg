@@ -18,7 +18,7 @@ class setModelWeight(Base):
     id = Column(Integer, primary_key=True, index=True)
     model_name = Column(String, index=True)
 
-    disease = relationship("DiseaseDrugScore", back_populates="disease", cascade="all, delete-orphan")
+    disease = relationship("DiseaseDrugScore", back_populates="model", cascade="all, delete-orphan")
 
 class DiseaseDrugScore(Base):
     __tablename__ = "disease_drug_score"
@@ -26,9 +26,10 @@ class DiseaseDrugScore(Base):
     id = Column(Integer, primary_key=True, index=True)
     disease_name = Column(String, index=True)
 
-    # Define a relationship with DrugInfo
-    drugs = relationship("DrugInformation", back_populates="disease", cascade="all, delete-orphan")
+    model_id = Column(Integer, ForeignKey("model_type_name.id", ondelete="CASCADE"), nullable=False)
     model = relationship("setModelWeight", back_populates="disease")
+    drugs = relationship("DrugInformation", back_populates="disease", cascade="all, delete-orphan")
+    
 
 class DrugInformation(Base):
     __tablename__ = "drug_info"

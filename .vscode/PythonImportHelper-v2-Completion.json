@@ -1936,7 +1936,7 @@
         "kind": 6,
         "importPath": "app.models.models",
         "description": "app.models.models",
-        "peekOfCode": "class setModelWeight(Base):\n    __tablename__ = \"model_type_name\"\n    id = Column(Integer, primary_key=True, index=True)\n    model_name = Column(String, index=True)\n    disease = relationship(\"DiseaseDrugScore\", back_populates=\"disease\", cascade=\"all, delete-orphan\")\nclass DiseaseDrugScore(Base):\n    __tablename__ = \"disease_drug_score\"\n    id = Column(Integer, primary_key=True, index=True)\n    disease_name = Column(String, index=True)\n    # Define a relationship with DrugInfo",
+        "peekOfCode": "class setModelWeight(Base):\n    __tablename__ = \"model_type_name\"\n    id = Column(Integer, primary_key=True, index=True)\n    model_name = Column(String, index=True)\n    disease = relationship(\"DiseaseDrugScore\", back_populates=\"model\", cascade=\"all, delete-orphan\")\nclass DiseaseDrugScore(Base):\n    __tablename__ = \"disease_drug_score\"\n    id = Column(Integer, primary_key=True, index=True)\n    disease_name = Column(String, index=True)\n    model_id = Column(Integer, ForeignKey(\"model_type_name.id\", ondelete=\"CASCADE\"), nullable=False)",
         "detail": "app.models.models",
         "documentation": {}
     },
@@ -1945,7 +1945,7 @@
         "kind": 6,
         "importPath": "app.models.models",
         "description": "app.models.models",
-        "peekOfCode": "class DiseaseDrugScore(Base):\n    __tablename__ = \"disease_drug_score\"\n    id = Column(Integer, primary_key=True, index=True)\n    disease_name = Column(String, index=True)\n    # Define a relationship with DrugInfo\n    drugs = relationship(\"DrugInformation\", back_populates=\"disease\", cascade=\"all, delete-orphan\")\n    model = relationship(\"setModelWeight\", back_populates=\"disease\")\nclass DrugInformation(Base):\n    __tablename__ = \"drug_info\"\n    id = Column(Integer, primary_key=True, index=True)",
+        "peekOfCode": "class DiseaseDrugScore(Base):\n    __tablename__ = \"disease_drug_score\"\n    id = Column(Integer, primary_key=True, index=True)\n    disease_name = Column(String, index=True)\n    model_id = Column(Integer, ForeignKey(\"model_type_name.id\", ondelete=\"CASCADE\"), nullable=False)\n    model = relationship(\"setModelWeight\", back_populates=\"disease\")\n    drugs = relationship(\"DrugInformation\", back_populates=\"disease\", cascade=\"all, delete-orphan\")\nclass DrugInformation(Base):\n    __tablename__ = \"drug_info\"\n    id = Column(Integer, primary_key=True, index=True)",
         "detail": "app.models.models",
         "documentation": {}
     },
