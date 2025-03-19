@@ -974,6 +974,22 @@
         "documentation": {}
     },
     {
+        "label": "select",
+        "importPath": "sqlalchemy.future",
+        "description": "sqlalchemy.future",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.future",
+        "documentation": {}
+    },
+    {
+        "label": "select",
+        "importPath": "sqlalchemy.future",
+        "description": "sqlalchemy.future",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.future",
+        "documentation": {}
+    },
+    {
         "label": "grpc",
         "kind": 6,
         "isExtraImport": true,
@@ -1182,14 +1198,6 @@
         "importPath": "pickle",
         "description": "pickle",
         "detail": "pickle",
-        "documentation": {}
-    },
-    {
-        "label": "select",
-        "importPath": "sqlalchemy.future",
-        "description": "sqlalchemy.future",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.future",
         "documentation": {}
     },
     {
@@ -2108,7 +2116,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class SeqRequest(BaseModel):\n    fasta_sequence: Optional[str] = None\nclass GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int",
+        "peekOfCode": "class SeqRequest(BaseModel):\n    fasta_sequence: Optional[str] = None\nclass GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\nclass DrugInfo(BaseModel):\n    drug: str",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2117,7 +2125,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):\n    _range: int",
+        "peekOfCode": "class GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2126,7 +2134,16 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class NucleotideReq(BaseModel):\n    nucleotide: str\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):\n    disease_name: str",
+        "peekOfCode": "class NucleotideReq(BaseModel):\n    nucleotide: str\nclass SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):\n    _range: int",
+        "detail": "app.schemas.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "SetModelWeightSchema",
+        "kind": 6,
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "peekOfCode": "class SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):\n    disease_name: str",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },

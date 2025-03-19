@@ -13,6 +13,9 @@ class GeneRequest(BaseModel):
 class NucleotideReq(BaseModel):
     nucleotide: str
 
+class SetModelWeightSchema(str, Enum):
+    rare_model_533 = "Rare Disease Model 533"
+
 class DrugInfo(BaseModel):
     drug: str
     score: float
