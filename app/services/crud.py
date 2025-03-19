@@ -52,15 +52,15 @@ async def save_drug_records(db: AsyncSession, drugs: list, disease_id: int):
 #     await save_drug_records(db, response.drugs, disease_record)
 #     return disease_record
 
-async def save_txgnn(db: AsyncSession, response: DiseaseResponse, model_name: str):
+async def save_txgnn(db: AsyncSession, response: DiseaseResponse):
     # Fetch model record
-    model_query = select(setModelWeight).filter(setModelWeight.model_name == model_name)
+    model_query = select(setModelWeight).filter(setModelWeight.model_name == response.model_name)
     model_result = await db.execute(model_query)
     model_record = model_result.scalars().first()
 
     if not model_record:
         # Create new model if it doesn't exist
-        model_record = setModelWeight(model_name=model_name)
+        model_record = setModelWeight(model_name=response.model_name)
         db.add(model_record)
         await db.commit()
         await db.refresh(model_record)
