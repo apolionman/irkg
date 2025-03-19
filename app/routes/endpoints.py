@@ -280,7 +280,7 @@ async def get_disease_info(disease_name: str,
     )
     
     result = await db.execute(query)
-    disease = result.scalars().fetchone()
+    disease = result.scalars().first()
 
     if not disease:
         raise HTTPException(status_code=404, detail="Disease not found for the specified model")
