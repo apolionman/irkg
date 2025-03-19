@@ -290,5 +290,5 @@ async def get_disease_info(disease_name: str,
     return DiseaseResponse(
         disease_name=disease.disease_name,
         drugs=[{"drug": d.drug, "score": d.score, "rank": d.rank} for d in disease.drugs],  # ✅ No async iteration needed
-        model_name=model_name.name
+        model=model_name.name
     )
