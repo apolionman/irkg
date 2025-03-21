@@ -45,11 +45,16 @@ def txgnn_get(disease) -> DiseaseResponse:
     max_score = max(limited_result.items(), key=lambda x: x[1])[1]
     min_score = min(limited_result.items(), key=lambda x: x[1])[1]
     threshold = 47
-    normalized_predictions = {
-        drug: (float(score) - float(min_score)) / (float(max_score) - float(min_score))
-        for drug, score in limited_result.items()
-    }
-
+    if float(max_score) == float(min_score):
+        # Avoid division by zero: assign a default value or skip normalization
+        normalized_predictions = {
+            drug: 0.0 for drug in limited_result
+        }
+    else:
+        normalized_predictions = {
+            drug: (float(score) - float(min_score)) / (float(max_score) - float(min_score))
+            for drug, score in limited_result.items()
+        }
     ranked_range = ranked_result[:_range]
 
     drugs_info = []
