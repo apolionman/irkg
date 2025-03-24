@@ -15,6 +15,7 @@ class NucleotideReq(BaseModel):
 
 class SetModelWeightSchema(str, Enum):
     rare_model_533 = "Rare Disease Model 533"
+    complex_disease_model = "Complex Disease Model"
 
 class DrugInfo(BaseModel):
     drug: str
