@@ -15,7 +15,7 @@ import csv
 import asyncio
 from app.scripts.txgnn_query import get_node_id_by_name, get_drug_id
 
-CSV_FILE_PATH = "/home/dgx/dgx_irkg_be/TxGNN/data/filtered_disease_data.csv"
+CSV_FILE_PATH = "/home/dgx/dgx_irkg_be/TxGNN/data/complete_disease_data.csv"
 _range = 200
 
 TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')
