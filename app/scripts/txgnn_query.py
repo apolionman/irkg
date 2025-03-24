@@ -74,6 +74,7 @@ def txgnn_query(
     # if relation != 'auto':
     # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'
     if selectModel == 'new_model':
+        print('new model selected')
         TxG.load_pretrained(f'/home/dgx/dgx_irkg_be/TxGNN/New_model')
         TxE = TxEval(model=TxG)
     elif selectModel == 'rare_model':
