@@ -53,7 +53,7 @@ def get_drug_id(node_name):
         return None
     
 TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')
-TxD.prepare_split(split='complex_disease', seed=42)
+TxD.prepare_split(split='full_graph', seed=42)
 
 TxG = TxGNN(data=TxD, 
                 weight_bias_track=False,
