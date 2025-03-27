@@ -11,7 +11,7 @@ CSV_FILE_PATH = "/home/dgx/dgx_irkg_be/app/input/gene_list.csv"
 async def process_csv_and_store_variants(gene)  -> VariantSchema:
     try:
         # Fetch ClinVar variations for each gene
-        response = fetch_clinvar_variations(gene)
+        response = await fetch_clinvar_variations(gene)
         
         # Check if variations exist in response
         if 'ClinVarSet' in response:
