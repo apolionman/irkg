@@ -32,8 +32,8 @@ async def main():
             reader = csv.DictReader(file)  # Read as a dictionary
             for gene in reader:
                 response = process_csv_and_store_variants(gene['node_name'])
-                create_variant(db, response)
-
+                if response:
+                    await create_variant(db, response)
 
 if __name__ == "__main__":
     asyncio.run(main())
