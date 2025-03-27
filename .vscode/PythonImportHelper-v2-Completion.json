@@ -538,14 +538,6 @@
         "documentation": {}
     },
     {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
         "label": "selectinload",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
@@ -927,22 +919,6 @@
     },
     {
         "label": "txgnn_query",
-        "importPath": "app.scripts.txgnn_query",
-        "description": "app.scripts.txgnn_query",
-        "isExtraImport": true,
-        "detail": "app.scripts.txgnn_query",
-        "documentation": {}
-    },
-    {
-        "label": "get_node_id_by_name",
-        "importPath": "app.scripts.txgnn_query",
-        "description": "app.scripts.txgnn_query",
-        "isExtraImport": true,
-        "detail": "app.scripts.txgnn_query",
-        "documentation": {}
-    },
-    {
-        "label": "get_drug_id",
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
         "isExtraImport": true,
@@ -2642,7 +2618,7 @@
         "kind": 5,
         "importPath": "app.scripts.uploadVariants2DB",
         "description": "app.scripts.uploadVariants2DB",
-        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/app/input/gene_list.csv\"\nasync def main():\n    async with async_session_maker() as db: \n        process_csv_and_store_variants('/home/dgx/dgx_irkg_be/app/input/gene_list.csv', db)\nif __name__ == \"__main__\":\n    asyncio.run(main())",
+        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/app/input/gene_list.csv\"\nasync def main():\n    async with async_session_maker() as db: \n        process_csv_and_store_variants(CSV_FILE_PATH, db)\nif __name__ == \"__main__\":\n    asyncio.run(main())",
         "detail": "app.scripts.uploadVariants2DB",
         "documentation": {}
     },
