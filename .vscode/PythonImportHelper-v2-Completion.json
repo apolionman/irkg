@@ -538,6 +538,14 @@
         "documentation": {}
     },
     {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "selectinload",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
@@ -551,6 +559,14 @@
         "description": "sqlalchemy.orm",
         "isExtraImport": true,
         "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.schemas.schemas",
+        "description": "app.schemas.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas.schemas",
         "documentation": {}
     },
     {
@@ -950,6 +966,22 @@
         "documentation": {}
     },
     {
+        "label": "get_node_id_by_name",
+        "importPath": "app.scripts.txgnn_query",
+        "description": "app.scripts.txgnn_query",
+        "isExtraImport": true,
+        "detail": "app.scripts.txgnn_query",
+        "documentation": {}
+    },
+    {
+        "label": "get_drug_id",
+        "importPath": "app.scripts.txgnn_query",
+        "description": "app.scripts.txgnn_query",
+        "isExtraImport": true,
+        "detail": "app.scripts.txgnn_query",
+        "documentation": {}
+    },
+    {
         "label": "*",
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
@@ -982,6 +1014,14 @@
         "documentation": {}
     },
     {
+        "label": "process_csv_and_store_variants",
+        "importPath": "app.services.crud",
+        "description": "app.services.crud",
+        "isExtraImport": true,
+        "detail": "app.services.crud",
+        "documentation": {}
+    },
+    {
         "label": "get_db",
         "importPath": "app.core.database",
         "description": "app.core.database",
@@ -1007,6 +1047,14 @@
     },
     {
         "label": "get_db",
+        "importPath": "app.core.database",
+        "description": "app.core.database",
+        "isExtraImport": true,
+        "detail": "app.core.database",
+        "documentation": {}
+    },
+    {
+        "label": "async_session_maker",
         "importPath": "app.core.database",
         "description": "app.core.database",
         "isExtraImport": true,
@@ -1276,6 +1324,14 @@
         "importPath": "json",
         "description": "json",
         "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.models.models",
+        "description": "app.models.models",
+        "isExtraImport": true,
+        "detail": "app.models.models",
         "documentation": {}
     },
     {
@@ -2579,6 +2635,15 @@
         "description": "app.scripts.txgnn_query",
         "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\n# TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')\n# TxE = TxEval(model=TxG)\ndef txgnn_query(",
         "detail": "app.scripts.txgnn_query",
+        "documentation": {}
+    },
+    {
+        "label": "CSV_FILE_PATH",
+        "kind": 5,
+        "importPath": "app.scripts.uploadVariants2DB",
+        "description": "app.scripts.uploadVariants2DB",
+        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/app/input/gene_list.csv\"\nasync def main():\n    async with async_session_maker() as db: \n        process_csv_and_store_variants('/home/dgx/dgx_irkg_be/app/input/gene_list.csv', db)\nif __name__ == \"__main__\":\n    asyncio.run(main())",
+        "detail": "app.scripts.uploadVariants2DB",
         "documentation": {}
     },
     {
