@@ -40,7 +40,7 @@ async def main():
         with open(CSV_FILE_PATH, mode='r', encoding='utf-8') as file:
             reader = csv.DictReader(file)  # Read as a dictionary
             for gene in reader:
-                await process_csv_and_store_variants(gene['node_name'])
+                await process_csv_and_store_variants(gene['node_name'], db)
 
 if __name__ == "__main__":
     asyncio.run(main())
