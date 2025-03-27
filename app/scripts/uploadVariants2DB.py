@@ -12,11 +12,19 @@ async def process_csv_and_store_variants(gene)  -> VariantSchema:
     try:
         # Fetch ClinVar variations for each gene
         response = await fetch_clinvar_variations(gene)
+        print('<================== printing response data ==================>')
+        print(response)
+        print('<================== printing response type ==================>')
+        print(type(response))
         
         # Check if variations exist in response
         if 'ClinVarSet' in response:
             for variation_entry in response['ClinVarSet']['ReferenceClinVarAssertion']:
                 variation_data = variation_entry['Variation']
+                print('<================== printing variation data ==================>')
+                print(variation_data)
+                print('<================== printing variation type ==================>')
+                print(type(variation_data))
                 # Store variation data in the database
                 print('Saving clinvar data for GENE:', gene)
                 return variation_data

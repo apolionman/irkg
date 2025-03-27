@@ -2634,7 +2634,7 @@
         "kind": 5,
         "importPath": "app.scripts.uploadVariants2DB",
         "description": "app.scripts.uploadVariants2DB",
-        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/app/input/gene_list.csv\"\nasync def process_csv_and_store_variants(gene)  -> VariantSchema:\n    try:\n        # Fetch ClinVar variations for each gene\n        response = await fetch_clinvar_variations(gene)\n        # Check if variations exist in response\n        if 'ClinVarSet' in response:\n            for variation_entry in response['ClinVarSet']['ReferenceClinVarAssertion']:\n                variation_data = variation_entry['Variation']\n                # Store variation data in the database",
+        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/app/input/gene_list.csv\"\nasync def process_csv_and_store_variants(gene)  -> VariantSchema:\n    try:\n        # Fetch ClinVar variations for each gene\n        response = await fetch_clinvar_variations(gene)\n        print('<================== printing response data ==================>')\n        print(response)\n        print('<================== printing response type ==================>')\n        print(type(response))\n        # Check if variations exist in response",
         "detail": "app.scripts.uploadVariants2DB",
         "documentation": {}
     },
