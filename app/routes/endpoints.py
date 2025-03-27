@@ -292,3 +292,19 @@ async def get_disease_info(disease_name: str,
         drugs=[{"drug": d.drug, "score": d.score, "rank": d.rank} for d in disease.drugs],  # ✅ No async iteration needed
         model=model_name.name
     )
+
+@router.get("/variants/search", response_model=List[VariantSchema])
+async def search_variants(
+    gene_symbol: Optional[str] = Query(None),
+    variation_title: Optional[str] = Query(None),
+    db: AsyncSession = Depends(get_db),
+):
+    stmt = select(VariantInfo).options(selectinload(VariantInfo.genes), selectinload(VariantInfo.consequences))
+
+    if gene_symbol:
+        stmt = stmt.join(VariantInfo.genes).filter(Gene.GeneSymbol.ilike(f"%{gene_symbol}%"))
+    elif variation_title:
+        stmt = stmt.filter(VariantInfo.variationTitle.ilike(f"%{variation_title}%"))
+
+    result = await db.execute(stmt)
+    return result.scalars().all()
