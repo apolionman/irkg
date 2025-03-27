@@ -910,6 +910,14 @@
         "documentation": {}
     },
     {
+        "label": "*",
+        "importPath": "app.scripts.clinvar_query_v1",
+        "description": "app.scripts.clinvar_query_v1",
+        "isExtraImport": true,
+        "detail": "app.scripts.clinvar_query_v1",
+        "documentation": {}
+    },
+    {
         "label": "fetch_clinvar_variations",
         "importPath": "app.scripts.clinvar_query_v1",
         "description": "app.scripts.clinvar_query_v1",
@@ -991,6 +999,14 @@
     },
     {
         "label": "process_csv_and_store_variants",
+        "importPath": "app.services.crud",
+        "description": "app.services.crud",
+        "isExtraImport": true,
+        "detail": "app.services.crud",
+        "documentation": {}
+    },
+    {
+        "label": "create_variant",
         "importPath": "app.services.crud",
         "description": "app.services.crud",
         "isExtraImport": true,
@@ -2614,11 +2630,20 @@
         "documentation": {}
     },
     {
+        "label": "process_csv_and_store_variants",
+        "kind": 2,
+        "importPath": "app.scripts.uploadVariants2DB",
+        "description": "app.scripts.uploadVariants2DB",
+        "peekOfCode": "def process_csv_and_store_variants(gene)  -> VariantSchema:\n    try:\n        # Fetch ClinVar variations for each gene\n        response = fetch_clinvar_variations(gene)\n        # Check if variations exist in response\n        if 'ClinVarSet' in response:\n            for variation_entry in response['ClinVarSet']['ReferenceClinVarAssertion']:\n                variation_data = variation_entry['Variation']\n                # Store variation data in the database\n                print('Saving clinvar data for GENE:', gene)",
+        "detail": "app.scripts.uploadVariants2DB",
+        "documentation": {}
+    },
+    {
         "label": "CSV_FILE_PATH",
         "kind": 5,
         "importPath": "app.scripts.uploadVariants2DB",
         "description": "app.scripts.uploadVariants2DB",
-        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/app/input/gene_list.csv\"\nasync def main():\n    async with async_session_maker() as db: \n        process_csv_and_store_variants(CSV_FILE_PATH, db)\nif __name__ == \"__main__\":\n    asyncio.run(main())",
+        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/app/input/gene_list.csv\"\ndef process_csv_and_store_variants(gene)  -> VariantSchema:\n    try:\n        # Fetch ClinVar variations for each gene\n        response = fetch_clinvar_variations(gene)\n        # Check if variations exist in response\n        if 'ClinVarSet' in response:\n            for variation_entry in response['ClinVarSet']['ReferenceClinVarAssertion']:\n                variation_data = variation_entry['Variation']\n                # Store variation data in the database",
         "detail": "app.scripts.uploadVariants2DB",
         "documentation": {}
     },
