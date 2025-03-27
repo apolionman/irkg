@@ -39,7 +39,7 @@ async def main():
         with open(CSV_FILE_PATH, mode='r', encoding='utf-8') as file:
             reader = csv.DictReader(file)  # Read as a dictionary
             for gene in reader:
-                response = process_csv_and_store_variants(gene['node_name'])
+                response = await process_csv_and_store_variants(gene['node_name'])
                 if response:
                     await create_variant(db, response)
 
