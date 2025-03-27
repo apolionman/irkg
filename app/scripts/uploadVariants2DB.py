@@ -8,7 +8,7 @@ import asyncio
 
 CSV_FILE_PATH = "/home/dgx/dgx_irkg_be/app/input/gene_list.csv"
 
-def process_csv_and_store_variants(gene)  -> VariantSchema:
+async def process_csv_and_store_variants(gene)  -> VariantSchema:
     try:
         # Fetch ClinVar variations for each gene
         response = fetch_clinvar_variations(gene)
