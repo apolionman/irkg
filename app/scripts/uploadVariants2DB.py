@@ -19,7 +19,7 @@ async def process_csv_and_store_variants(gene)  -> VariantSchema:
                 variation_data = variation_entry['Variation']
                 # Store variation data in the database
                 print('Saving clinvar data for GENE:', gene)
-                return variation_data
+                return await variation_data
         else:
             print(f"No variations found for gene {gene}")
             return None 

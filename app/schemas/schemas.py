@@ -74,7 +74,7 @@ class VariantSchema(BaseModel):
     ReviewStatus: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ProcessRequest(BaseModel):
     query: Optional[str] = None

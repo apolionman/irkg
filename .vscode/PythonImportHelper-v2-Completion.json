@@ -2400,7 +2400,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class VariantSchema(BaseModel):\n    id: int\n    variationTitle: str\n    ProteinChange: str\n    Type: str\n    Condition: str\n    Classification: str\n    ReviewStatus: str\n    class Config:\n        orm_mode = True",
+        "peekOfCode": "class VariantSchema(BaseModel):\n    id: int\n    variationTitle: str\n    ProteinChange: str\n    Type: str\n    Condition: str\n    Classification: str\n    ReviewStatus: str\n    class Config:\n        from_attributes = True",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
