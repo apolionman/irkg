@@ -121,18 +121,10 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-        with:
-          path: dgx_irkg_be  # Clone into this folder
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
 
       - name: Install dependencies and run migrations
         run: |
-          cd dgx_irkg_be
-          python -m venv venv
+          cd /home/dgx/dgx_irkg_be
           source venv/bin/activate
           pip install --no-cache-dir -r requirements.txt
 
@@ -142,7 +134,8 @@ jobs:
 
       - name: Restart app
         run: |
-          # Replace with your actual restart script
-          # Example:
-          # systemctl restart irkg.service
+          systemctl restart fastapi.service
           echo "App restarted (placeholder)"
+
+    environment:
+      name: development
