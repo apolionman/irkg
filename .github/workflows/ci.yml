@@ -134,7 +134,7 @@ jobs:
 
       - name: Restart app
         run: |
-          systemctl restart fastapi.service
+          sudo systemctl restart fastapi.service
           echo "App restarted (placeholder)"
 
     environment:
