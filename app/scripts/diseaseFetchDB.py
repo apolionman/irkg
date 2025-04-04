@@ -24,7 +24,7 @@ TxG = TxGNN(data=TxD,
                 weight_bias_track=False,
                 proj_name='TxGNN',
                 exp_name='TxGNN',
-                device='cuda:2'
+                device='cuda:1'
                 )
 # TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')
 TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/model/model_ckpt')
