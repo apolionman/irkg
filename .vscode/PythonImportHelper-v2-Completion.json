@@ -2291,7 +2291,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class SeqRequest(BaseModel):\n    fasta_sequence: Optional[str] = None\nclass GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\n    complex_disease_model = \"Complex Disease Model\"\nclass DrugInfo(BaseModel):",
+        "peekOfCode": "class SeqRequest(BaseModel):\n    fasta_sequence: Optional[str] = None\nclass GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\n    complex_disease_model = \"Complex Disease Model\"\n    full_graph_model = \"Full Graph Model\"",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2300,7 +2300,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\n    complex_disease_model = \"Complex Disease Model\"\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float",
+        "peekOfCode": "class GeneRequest(BaseModel):\n    gene: str\nclass NucleotideReq(BaseModel):\n    nucleotide: str\nclass SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\n    complex_disease_model = \"Complex Disease Model\"\n    full_graph_model = \"Full Graph Model\"\nclass DrugInfo(BaseModel):\n    drug: str",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2309,7 +2309,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class NucleotideReq(BaseModel):\n    nucleotide: str\nclass SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\n    complex_disease_model = \"Complex Disease Model\"\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):",
+        "peekOfCode": "class NucleotideReq(BaseModel):\n    nucleotide: str\nclass SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\n    complex_disease_model = \"Complex Disease Model\"\n    full_graph_model = \"Full Graph Model\"\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2318,7 +2318,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\n    complex_disease_model = \"Complex Disease Model\"\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):\n    _range: int\nclass DiseaseResponse(BaseModel):",
+        "peekOfCode": "class SetModelWeightSchema(str, Enum):\n    rare_model_533 = \"Rare Disease Model 533\"\n    complex_disease_model = \"Complex Disease Model\"\n    full_graph_model = \"Full Graph Model\"\nclass DrugInfo(BaseModel):\n    drug: str\n    score: float\n    rank: int\nclass DrugRange(BaseModel):\n    _range: int",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2372,7 +2372,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class ModelType(Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\n    def __str__(self):\n        return self.value\nclass ModelSelection(str, Enum):\n    new_model = 'TxGNN Explorer Model'\n    rare_model = 'Rare Diasease Model'\nclass ModelSchema(BaseModel):",
+        "peekOfCode": "class ModelType(Enum):\n    new_model = \"New Model\"\n    full_graph = \"Full Graph Model\"\n    pre_trained = \"Pre-trained Model\"\n    def __str__(self):\n        return self.value\nclass ModelSelection(str, Enum):\n    new_model = 'TxGNN Explorer Model'\n    rare_model = 'Rare Diasease Model'\n    full_graph_model = 'Full Graph Model'",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2381,7 +2381,7 @@
         "kind": 6,
         "importPath": "app.schemas.schemas",
         "description": "app.schemas.schemas",
-        "peekOfCode": "class ModelSelection(str, Enum):\n    new_model = 'TxGNN Explorer Model'\n    rare_model = 'Rare Diasease Model'\nclass ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType\n    class Config:\n        from_attributes = True\nclass ModeEnum(str, Enum):",
+        "peekOfCode": "class ModelSelection(str, Enum):\n    new_model = 'TxGNN Explorer Model'\n    rare_model = 'Rare Diasease Model'\n    full_graph_model = 'Full Graph Model'\nclass ModelSchema(BaseModel):\n    id: int\n    name: str\n    model_type: ModelType\n    class Config:\n        from_attributes = True",
         "detail": "app.schemas.schemas",
         "documentation": {}
     },
@@ -2624,7 +2624,7 @@
         "kind": 5,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\n# TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')",
+        "peekOfCode": "TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:2'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\n# TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -2633,7 +2633,7 @@
         "kind": 5,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\n# TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')\n# TxE = TxEval(model=TxG)\ndef txgnn_query(",
+        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:2'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\n# TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')\n# TxE = TxEval(model=TxG)\ndef txgnn_query(",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },

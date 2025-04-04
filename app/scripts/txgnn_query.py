@@ -59,7 +59,7 @@ TxG = TxGNN(data=TxD,
                 weight_bias_track=False,
                 proj_name='TxGNN',
                 exp_name='TxGNN',
-                device='cpu'
+                device='cuda:2'
                 )
 # TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')
 # TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')
@@ -76,10 +76,11 @@ def txgnn_query(
     if selectModel == 'new_model':
         print('new model selected')
         TxG.load_pretrained(f'/home/dgx/dgx_irkg_be/TxGNN/New_model')
-        TxE = TxEval(model=TxG)
     elif selectModel == 'rare_model':
         TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')
-        TxE = TxEval(model=TxG)
+    elif selectModel == 'full_graph_model':
+        TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/model/model_ckpt')
+    TxE = TxEval(model=TxG)
     results = TxE.eval_disease_centric(disease_idxs=disease_idx, 
                                 relation=relation,
                                 show_plot=False, 

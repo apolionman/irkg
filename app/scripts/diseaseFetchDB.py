@@ -73,7 +73,7 @@ def txgnn_get(disease) -> DiseaseResponse:
     response = DiseaseResponse(
         disease_name=results.iloc[0]['Name'] if isinstance(results.iloc[0]['Name'], list) else results.iloc[0]['Name'],
         drugs=sorted_drugs_info,
-        model='rare_model_533'
+        model='full_graph_model'
     )
     return response
 

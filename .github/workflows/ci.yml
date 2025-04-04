@@ -44,60 +44,105 @@
 #     environment:
 #       name: development
 
+
+##### OLD PUSH W/OUT RUNNER ####
+
+# name: Deploy to Local
+
+# on:
+#   push:
+#     branches:
+#       - main  # Trigger on push to the main branch
+
+# jobs:
+#   deploy_to_local:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Check out code
+#         uses: actions/checkout@v3
+
+#       - name: Set up SSH key
+#         uses: webfactory/ssh-agent@v0.5.3
+#         with:
+#           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+#       - name: Check SSH connection
+#         run: |
+#           echo "Checking SSH connection"
+#           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 20265 dgx@1.tcp.in.ngrok.io "echo 'SSH connection successful'"
+
+#       - name: Pull latest changes, install dependencies, and restart app
+#         run: |
+#           echo "Pulling latest changes"
+#           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -p 20265 dgx@1.tcp.in.ngrok.io << 'EOF'
+#             cd /home/dgx/dgx_irkg_be
+#             git status  # Check current status
+#             git fetch --all  # Fetch latest updates
+#             git reset --hard origin/main  # Force sync with the latest code
+#             git pull origin main  # Pull latest changes
+            
+#             # Install new pip packages
+#             source venv/bin/activate  # Activate virtual environment (if using one)
+#             pip install --no-cache-dir -r requirements.txt
+
+#             # Generate a timestamp
+#             TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+
+#             # Migrate new changes in model
+#             alembic revision --autogenerate -m "Migration on $TIMESTAMP"
+
+#             # Apply the migration
+#             alembic upgrade head
+            
+#             # Run migrations (Add this step for your DB migration)
+#             alembic upgrade head  # If you're using Alembic for migrations
+            
+#             # Restart application (modify this based on your setup)
+#             # ./cleanup_uvicorn.sh
+#           EOF
+
+#     environment:
+#       name: development
+
+### NEW PUSH WITH RUNNER """"
+
 name: Deploy to Local
 
 on:
   push:
     branches:
-      - main  # Trigger on push to the main branch
+      - main
 
 jobs:
   deploy_to_local:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, dgx-hub]
 
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-
-      - name: Set up SSH key
-        uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          path: dgx_irkg_be  # Clone into this folder
 
-      - name: Check SSH connection
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies and run migrations
         run: |
-          echo "Checking SSH connection"
-          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 20265 dgx@1.tcp.in.ngrok.io "echo 'SSH connection successful'"
+          cd dgx_irkg_be
+          python -m venv venv
+          source venv/bin/activate
+          pip install --no-cache-dir -r requirements.txt
 
-      - name: Pull latest changes, install dependencies, and restart app
+          TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+          alembic revision --autogenerate -m "Migration on $TIMESTAMP"
+          alembic upgrade head
+
+      - name: Restart app
         run: |
-          echo "Pulling latest changes"
-          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -p 20265 dgx@1.tcp.in.ngrok.io << 'EOF'
-            cd /home/dgx/dgx_irkg_be
-            git status  # Check current status
-            git fetch --all  # Fetch latest updates
-            git reset --hard origin/main  # Force sync with the latest code
-            git pull origin main  # Pull latest changes
-            
-            # Install new pip packages
-            source venv/bin/activate  # Activate virtual environment (if using one)
-            pip install --no-cache-dir -r requirements.txt
-
-            # Generate a timestamp
-            TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
-
-            # Migrate new changes in model
-            alembic revision --autogenerate -m "Migration on $TIMESTAMP"
-
-            # Apply the migration
-            alembic upgrade head
-            
-            # Run migrations (Add this step for your DB migration)
-            alembic upgrade head  # If you're using Alembic for migrations
-            
-            # Restart application (modify this based on your setup)
-            # ./cleanup_uvicorn.sh
-          EOF
-
-    environment:
-      name: development
+          # Replace with your actual restart script
+          # Example:
+          # systemctl restart irkg.service
+          echo "App restarted (placeholder)"

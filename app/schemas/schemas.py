@@ -16,6 +16,7 @@ class NucleotideReq(BaseModel):
 class SetModelWeightSchema(str, Enum):
     rare_model_533 = "Rare Disease Model 533"
     complex_disease_model = "Complex Disease Model"
+    full_graph_model = "Full Graph Model"
 
 class DrugInfo(BaseModel):
     drug: str
@@ -51,6 +52,7 @@ class ModelType(Enum):
 class ModelSelection(str, Enum):
     new_model = 'TxGNN Explorer Model'
     rare_model = 'Rare Diasease Model'
+    full_graph_model = 'Full Graph Model'
 
 class ModelSchema(BaseModel):
     id: int
