@@ -116,28 +116,39 @@ on:
 
 jobs:
   deploy_to_local:
-    runs-on: [self-hosted, dgx-hub]
+    runs-on: [self-hosted, github-runner-dgx]
 
     steps:
-      - name: Pull latest code
-        run: |
-          cd /home/dgx/dgx_irkg_be
-          git pull origin main
+      - name: Checkout latest code
+        uses: actions/checkout@v4
 
-      - name: Install dependencies and run migrations
+      - name: Build Docker image
         run: |
-          cd /home/dgx/dgx_irkg_be
-          source venv/bin/activate
-          pip install --no-cache-dir -r requirements.txt
+          docker build -t irkg:dev .
 
-          TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
-          alembic revision --autogenerate -m "Migration on $TIMESTAMP"
-          alembic upgrade head
-
-      - name: Restart app
+      - name: Stop and Delete previous container
         run: |
-          sudo systemctl restart fastapi.service
-          echo "App restarted"
+          docker stop irkg || true
+          docker rm irkg || true
+
+      - name: Run Docker container
+        env:
+          SECRET_KEY: ${{ vars.SECRET_KEY }}
+          API_KEY: ${{ vars.API_KEY }}
+          OPEN_API_KEY: ${{ vars.OPEN_API_KEY }}
+          DATABASE_URL: ${{ vars.DATABASE_URL }}
+        run: |
+          docker run -d --gpus all \
+            -v "/home/dgx/dgx_irkg_be/TxGNN:/app/TxGNN" \
+            -v "/home/dgx/dgx_irkg_be/feedback:/app/feedback" \
+            -e SECRET_KEY="$SECRET_KEY" \
+            -e API_KEY="$API_KEY" \
+            -e OPEN_API_KEY="$OPEN_API_KEY" \
+            -e DATABASE_URL="$DATABASE_URL" \
+            -p 8001:8000 \
+            --name irkg \
+            irkg:dev
 
     environment:
       name: development
+

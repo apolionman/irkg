@@ -1,0 +1,50 @@
+FROM nvidia/cuda:11.7.1-devel-ubuntu20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+
+# -------------------------------
+# Copy application code
+# -------------------------------
+WORKDIR /app
+
+# -------------------------------
+# System dependencies
+# -------------------------------
+RUN apt-get update && apt-get install -y \
+    python3 python3-pip python3-dev \
+    git curl nano build-essential \
+    libportaudio2 libportaudiocpp0 portaudio19-dev ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set python as default
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+
+# -------------------------------
+# Python environment setup
+# -------------------------------
+RUN python -m pip install --upgrade pip setuptools wheel packaging
+
+# -------------------------------
+# Install CUDA-compatible PyTorch manually (cu117)
+# -------------------------------
+RUN pip install torch==2.0.1+cu117 torchvision==0.15.2+cu117 torchaudio==2.0.2+cu117 \
+    --index-url https://download.pytorch.org/whl/cu117
+
+# -------------------------------
+# Install application dependencies
+# -------------------------------
+COPY requirements.txt ./
+COPY constraints.txt ./
+RUN pip install --no-cache-dir --prefer-binary -r requirements.txt -c constraints.txt
+
+# -------------------------------
+# Copy repo
+# -------------------------------
+COPY . .
+
+# -------------------------------
+# Expose app port & run
+# -------------------------------
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
