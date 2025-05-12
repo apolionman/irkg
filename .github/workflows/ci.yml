@@ -116,7 +116,7 @@ on:
 
 jobs:
   deploy_to_local:
-    runs-on: [self-hosted, github-runner-dgx]
+    runs-on: [self-hosted, github-runner]
 
     steps:
       - name: Checkout latest code
