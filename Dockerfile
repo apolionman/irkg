@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 
 # -------------------------------
-# Copy application code
+# Set working directory
 # -------------------------------
 WORKDIR /app
 
@@ -26,24 +26,28 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 RUN python -m pip install --upgrade pip setuptools wheel packaging
 
 # -------------------------------
-# Install CUDA-compatible PyTorch manually (cu117)
+# Install PyTorch (cu117)
 # -------------------------------
-RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
+
+# -------------------------------
+# Install DGL manually (cu121-compatible wheel)
+# -------------------------------
+RUN pip install https://data.dgl.ai/wheels/cu121/dgl-2.4.0+cu121-cp38-cp38-manylinux2014_x86_64.whl
 
 # -------------------------------
 # Install application dependencies
 # -------------------------------
 COPY requirements.txt ./
-# COPY constraints.txt ./
-RUN pip install --no-cache-dir --prefer-binary -r requirements.txt
+RUN pip install --no-cache-dir --prefer-binary -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu117
 
 # -------------------------------
-# Copy repo
+# Copy rest of the app
 # -------------------------------
 COPY . .
 
 # -------------------------------
-# Expose app port & run
+# Expose port and run app
 # -------------------------------
 EXPOSE 8000
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
