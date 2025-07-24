@@ -33,7 +33,7 @@ RUN pip install torch torchvision torchaudio --index-url https://download.pytorc
 # -------------------------------
 # Install DGL manually (cu121-compatible wheel)
 # -------------------------------
-RUN pip install https://data.dgl.ai/wheels/cu121/dgl-2.4.0+cu121-cp38-cp38-manylinux2014_x86_64.whl
+RUN pip install  dgl -f https://data.dgl.ai/wheels/torch-2.1/cu121/repo.html
 
 # -------------------------------
 # Install application dependencies
