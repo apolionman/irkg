@@ -36,7 +36,7 @@ RUN pip install torch==2.0.1+cu117 torchvision==0.15.2+cu117 torchaudio==2.0.2+c
 # -------------------------------
 COPY requirements.txt ./
 # COPY constraints.txt ./
-RUN pip install --no-cache-dir --prefer-binary -r requirements.txt -c constraints.txt
+RUN pip install --no-cache-dir --prefer-binary -r requirements.txt
 
 # -------------------------------
 # Copy repo
