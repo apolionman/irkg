@@ -116,7 +116,7 @@ on:
 
 jobs:
   deploy_to_local:
-    runs-on: [self-hosted, github-runner]
+    runs-on: [mas-dgx-s2]
 
     steps:
       - name: Checkout latest code
@@ -139,8 +139,8 @@ jobs:
           DATABASE_URL: ${{ vars.DATABASE_URL }}
         run: |
           docker run -d --gpus all \
-            -v "/home/dgx/dgx_irkg_be/TxGNN:/app/TxGNN" \
-            -v "/home/dgx/dgx_irkg_be/feedback:/app/feedback" \
+            -v "/home/dev_admin/dgx_irkg_be/TxGNN:/app/TxGNN" \
+            -v "/home/dev_admin/dgx_irkg_be/feedback:/app/feedback" \
             -e SECRET_KEY="$SECRET_KEY" \
             -e API_KEY="$API_KEY" \
             -e OPEN_API_KEY="$OPEN_API_KEY" \

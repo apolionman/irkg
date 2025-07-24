@@ -50,3 +50,20 @@ output_file = "/mnt/newssd2/lawrence/clinvar/xml/unique_tags.txt"
 open(output_file, "w").close()
 
 get_unique_tags_and_samples(xml_file, output_file)
+
+
+with open(CSV_FILE_PATH, mode='r', encoding='utf-8') as file:
+    reader = csv.DictReader(file)  # Read as a dictionary
+    for gene in reader:
+        gene['node_name']
+
+docker run -d \
+  --name postgres \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=limlamDB \
+  -v pgdata:/var/lib/postgresql/data \
+  -p 5532:5432 \
+  postgres:15
+
+esearch -db clinvar -query "((SLC24A3-AS1[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])"
