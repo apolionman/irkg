@@ -35,7 +35,7 @@ RUN pip install torch==2.0.1+cu117 torchvision==0.15.2+cu117 torchaudio==2.0.2+c
 # Install application dependencies
 # -------------------------------
 COPY requirements.txt ./
-COPY constraints.txt ./
+# COPY constraints.txt ./
 RUN pip install --no-cache-dir --prefer-binary -r requirements.txt -c constraints.txt
 
 # -------------------------------
@@ -47,4 +47,4 @@ COPY . .
 # Expose app port & run
 # -------------------------------
 EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
