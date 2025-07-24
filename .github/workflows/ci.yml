@@ -147,7 +147,8 @@ jobs:
             -e DATABASE_URL="$DATABASE_URL" \
             -p 8001:8000 \
             --name irkg \
-            irkg:dev
+            irkg:dev \
+            bash -c "pip install -e /app/TxGNN"
 
     environment:
       name: development
