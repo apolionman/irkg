@@ -28,8 +28,7 @@ RUN python -m pip install --upgrade pip setuptools wheel packaging
 # -------------------------------
 # Install CUDA-compatible PyTorch manually (cu117)
 # -------------------------------
-RUN pip install torch==2.0.1+cu117 torchvision==0.15.2+cu117 torchaudio==2.0.2+cu117 \
-    --index-url https://download.pytorch.org/whl/cu117
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 # -------------------------------
 # Install application dependencies
