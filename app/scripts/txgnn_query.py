@@ -12,7 +12,7 @@ from app.models.models import *
 from sqlalchemy.ext.asyncio import AsyncSession
 
 def get_node_id_by_name(input_name):
-    df = pd.read_csv('/home/dev_admin/dgx_irkg_be/TxGNN/data/disease_sorted_nodes.csv', delimiter='\t', dtype=str)
+    df = pd.read_csv('/app/TxGNN/data/disease_sorted_nodes.csv', delimiter='\t', dtype=str)
     df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
     df['id'] = pd.to_numeric(df['id'], errors='coerce')  # This turns invalid values into NaN
     df['id'] = df['id'].fillna(0)
@@ -37,7 +37,7 @@ def get_node_id_by_name(input_name):
     return None
 
 def get_drug_name(node_id):
-    df = pd.read_csv('/home/dev_admin/dgx_irkg_be/TxGNN/data/drug_nodes.csv')
+    df = pd.read_csv('/app/TxGNN/data/drug_nodes.csv')
     result = df[df['node_id'] == node_id]
     if not result.empty:
         return result['node_name'].iloc[0]
@@ -45,14 +45,14 @@ def get_drug_name(node_id):
         return None
 
 def get_drug_id(node_name):
-    df = pd.read_csv('/home/dev_admin/dgx_irkg_be/TxGNN/data/drug_nodes.csv')
+    df = pd.read_csv('/app/TxGNN/data/drug_nodes.csv')
     result = df[df['node_name'] == node_name]
     if not result.empty:
         return result['node_id'].iloc[0]
     else:
         return None
     
-TxD = TxData(data_folder_path='/home/dev_admin/dgx_irkg_be/TxGNN/data')
+TxD = TxData(data_folder_path='/app/TxGNN/data')
 TxD.prepare_split(split='full_graph', seed=42)
 
 TxG = TxGNN(data=TxD, 
@@ -61,8 +61,8 @@ TxG = TxGNN(data=TxD,
                 exp_name='TxGNN',
                 device='cuda:2'
                 )
-# TxG.load_pretrained_graphmask('/home/dev_admin/dgx_irkg_be/TxGNN/graphmask_model_ckpt')
-# TxG.load_pretrained('/home/dev_admin/dgx_irkg_be/TxGNN/New_model')
+# TxG.load_pretrained_graphmask('/app/TxGNN/graphmask_model_ckpt')
+# TxG.load_pretrained('/app/TxGNN/New_model')
 # TxE = TxEval(model=TxG)
 
 def txgnn_query(
@@ -72,14 +72,14 @@ def txgnn_query(
         _range: int) -> DiseaseResponse:
     disease_idx = get_node_id_by_name(disease_name)
     # if relation != 'auto':
-    # save_path = '/home/dev_admin/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'
+    # save_path = '/app/TxGNN/disease_centric_eval.pkl'
     if selectModel == 'new_model':
         print('new model selected')
-        TxG.load_pretrained(f'/home/dev_admin/dgx_irkg_be/TxGNN/New_model')
+        TxG.load_pretrained(f'/app/TxGNN/New_model')
     elif selectModel == 'rare_model':
-        TxG.load_pretrained_graphmask('/home/dev_admin/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')
+        TxG.load_pretrained_graphmask('/app/TxGNN/data/rare_disease_model_ckpt')
     elif selectModel == 'full_graph_model':
-        TxG.load_pretrained_graphmask('/home/dev_admin/dgx_irkg_be/TxGNN/model/model_ckpt')
+        TxG.load_pretrained_graphmask('/app/TxGNN/model/model_ckpt')
     TxE = TxEval(model=TxG)
     results = TxE.eval_disease_centric(disease_idxs=disease_idx, 
                                 relation=relation,

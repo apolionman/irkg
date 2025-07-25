@@ -7,7 +7,7 @@ from app.core.database import async_session_maker
 import csv
 import asyncio
 
-CSV_FILE_PATH = "/home/dev_admin/dgx_irkg_be/app/input/gene_list.csv"
+CSV_FILE_PATH = "/app/app/input/gene_list.csv"
 
 async def process_csv_and_store_variants(gene: str, db: AsyncSession)  -> VariantSchema:
     try:

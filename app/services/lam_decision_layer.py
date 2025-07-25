@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 client = OpenAI()
-load_dotenv('/home/dev_admin/dgx_irkg_be/.env')
+load_dotenv('/app/.env')
 
 OPEN_AI_KEY = os.getenv('OPENAI_API_KEY')
 

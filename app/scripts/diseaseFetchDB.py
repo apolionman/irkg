@@ -15,10 +15,10 @@ import csv
 import asyncio
 from app.scripts.txgnn_query import get_node_id_by_name, get_drug_id
 
-CSV_FILE_PATH = "/home/dev_admin/dgx_irkg_be/TxGNN/data/filtered_disease_data.csv"
+CSV_FILE_PATH = "/app/TxGNN/data/filtered_disease_data.csv"
 _range = 200
 
-TxD = TxData(data_folder_path='/home/dev_admin/dgx_irkg_be/TxGNN/data')
+TxD = TxData(data_folder_path='/app/TxGNN/data')
 TxD.prepare_split(split='full_graph', seed=42)
 TxG = TxGNN(data=TxD, 
                 weight_bias_track=False,
@@ -26,8 +26,8 @@ TxG = TxGNN(data=TxD,
                 exp_name='TxGNN',
                 device='cuda:1'
                 )
-# TxG.load_pretrained_graphmask('/home/dev_admin/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')
-TxG.load_pretrained('/home/dev_admin/dgx_irkg_be/TxGNN/model/model_ckpt')
+# TxG.load_pretrained_graphmask('/app/TxGNN/data/rare_disease_model_ckpt')
+TxG.load_pretrained('/app/TxGNN/model/model_ckpt')
 TxE = TxEval(model=TxG)
 
 def txgnn_get(disease) -> DiseaseResponse:
