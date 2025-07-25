@@ -25,7 +25,7 @@ import protocol_pb2
 import protocol_pb2_grpc
 
 router = APIRouter()
-txgnn_data_path = '/home/dgx/dgx_irkg_be/TxGNN/data'
+txgnn_data_path = '/home/dev_admin/dgx_irkg_be/TxGNN/data'
 
 #Connect GRPC for Cellink
 channel = grpc.insecure_channel("1.tcp.ap.ngrok.io:22599")
@@ -144,7 +144,7 @@ async def run_csv_async(
     """Updating Gene Variant Database in DGX."""
     task_id = generate_task_id()
     task = asyncio.create_task(
-        process_csv_and_store_variants('/home/dgx/dgx_irkg_be/app/input/gene_list.csv', db)
+        process_csv_and_store_variants('/home/dev_admin/dgx_irkg_be/app/input/gene_list.csv', db)
     )
     running_tasks[task_id] = task
     return {"message": f"CSV processing started asynchronously", "task_id": task_id}
@@ -182,7 +182,7 @@ async def process_request(
     if files:
         file_responses = []
         for file in files:
-            file_location = f"/home/dgx/dgx_irkg_be/files/{file.filename}"
+            file_location = f"/home/dev_admin/dgx_irkg_be/files/{file.filename}"
             with open(file_location, "wb") as f:
                 f.write(await file.read())
 

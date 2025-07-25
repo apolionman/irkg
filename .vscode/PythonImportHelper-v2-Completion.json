@@ -2237,7 +2237,7 @@
         "kind": 5,
         "importPath": "app.routes.endpoints",
         "description": "app.routes.endpoints",
-        "peekOfCode": "router = APIRouter()\ntxgnn_data_path = '/home/dgx/dgx_irkg_be/TxGNN/data'\n#Connect GRPC for Cellink\nchannel = grpc.insecure_channel(\"1.tcp.ap.ngrok.io:22599\")\ngrpc_client = protocol_pb2_grpc.ProtocolStub(channel)\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")",
+        "peekOfCode": "router = APIRouter()\ntxgnn_data_path = '/home/dev_admin/dgx_irkg_be/TxGNN/data'\n#Connect GRPC for Cellink\nchannel = grpc.insecure_channel(\"1.tcp.ap.ngrok.io:22599\")\ngrpc_client = protocol_pb2_grpc.ProtocolStub(channel)\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")",
         "detail": "app.routes.endpoints",
         "documentation": {}
     },
@@ -2246,7 +2246,7 @@
         "kind": 5,
         "importPath": "app.routes.endpoints",
         "description": "app.routes.endpoints",
-        "peekOfCode": "txgnn_data_path = '/home/dgx/dgx_irkg_be/TxGNN/data'\n#Connect GRPC for Cellink\nchannel = grpc.insecure_channel(\"1.tcp.ap.ngrok.io:22599\")\ngrpc_client = protocol_pb2_grpc.ProtocolStub(channel)\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:",
+        "peekOfCode": "txgnn_data_path = '/home/dev_admin/dgx_irkg_be/TxGNN/data'\n#Connect GRPC for Cellink\nchannel = grpc.insecure_channel(\"1.tcp.ap.ngrok.io:22599\")\ngrpc_client = protocol_pb2_grpc.ProtocolStub(channel)\nos.environ[\"PATH\"] = os.path.expanduser(\"~\") + \"/edirect:\" + os.environ[\"PATH\"]\nasync def get_current_user(token: str = Depends(oauth2_scheme)):\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:",
         "detail": "app.routes.endpoints",
         "documentation": {}
     },
@@ -2489,7 +2489,7 @@
         "kind": 5,
         "importPath": "app.scripts.diseaseComplex",
         "description": "app.scripts.diseaseComplex",
-        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/TxGNN/data/complete_disease_data.csv\"\n_range = 200\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )",
+        "peekOfCode": "CSV_FILE_PATH = \"/home/dev_admin/dgx_irkg_be/TxGNN/data/complete_disease_data.csv\"\n_range = 200\nTxD = TxData(data_folder_path='/home/dev_admin/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )",
         "detail": "app.scripts.diseaseComplex",
         "documentation": {}
     },
@@ -2498,7 +2498,7 @@
         "kind": 5,
         "importPath": "app.scripts.diseaseComplex",
         "description": "app.scripts.diseaseComplex",
-        "peekOfCode": "_range = 200\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\nTxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')",
+        "peekOfCode": "_range = 200\nTxD = TxData(data_folder_path='/home/dev_admin/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\nTxG.load_pretrained('/home/dev_admin/dgx_irkg_be/TxGNN/New_model')",
         "detail": "app.scripts.diseaseComplex",
         "documentation": {}
     },
@@ -2507,7 +2507,7 @@
         "kind": 5,
         "importPath": "app.scripts.diseaseComplex",
         "description": "app.scripts.diseaseComplex",
-        "peekOfCode": "TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\nTxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')\nTxE = TxEval(model=TxG)",
+        "peekOfCode": "TxD = TxData(data_folder_path='/home/dev_admin/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\nTxG.load_pretrained('/home/dev_admin/dgx_irkg_be/TxGNN/New_model')\nTxE = TxEval(model=TxG)",
         "detail": "app.scripts.diseaseComplex",
         "documentation": {}
     },
@@ -2516,7 +2516,7 @@
         "kind": 5,
         "importPath": "app.scripts.diseaseComplex",
         "description": "app.scripts.diseaseComplex",
-        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\nTxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')\nTxE = TxEval(model=TxG)\ndef txgnn_get(disease) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease)",
+        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cpu'\n                )\nTxG.load_pretrained('/home/dev_admin/dgx_irkg_be/TxGNN/New_model')\nTxE = TxEval(model=TxG)\ndef txgnn_get(disease) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease)",
         "detail": "app.scripts.diseaseComplex",
         "documentation": {}
     },
@@ -2543,7 +2543,7 @@
         "kind": 5,
         "importPath": "app.scripts.diseaseFetchDB",
         "description": "app.scripts.diseaseFetchDB",
-        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/TxGNN/data/filtered_disease_data.csv\"\n_range = 200\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:1'\n                )",
+        "peekOfCode": "CSV_FILE_PATH = \"/home/dev_admin/dgx_irkg_be/TxGNN/data/filtered_disease_data.csv\"\n_range = 200\nTxD = TxData(data_folder_path='/home/dev_admin/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:1'\n                )",
         "detail": "app.scripts.diseaseFetchDB",
         "documentation": {}
     },
@@ -2552,7 +2552,7 @@
         "kind": 5,
         "importPath": "app.scripts.diseaseFetchDB",
         "description": "app.scripts.diseaseFetchDB",
-        "peekOfCode": "_range = 200\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:1'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')",
+        "peekOfCode": "_range = 200\nTxD = TxData(data_folder_path='/home/dev_admin/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:1'\n                )\n# TxG.load_pretrained_graphmask('/home/dev_admin/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')",
         "detail": "app.scripts.diseaseFetchDB",
         "documentation": {}
     },
@@ -2561,7 +2561,7 @@
         "kind": 5,
         "importPath": "app.scripts.diseaseFetchDB",
         "description": "app.scripts.diseaseFetchDB",
-        "peekOfCode": "TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:1'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')\nTxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/model/model_ckpt')",
+        "peekOfCode": "TxD = TxData(data_folder_path='/home/dev_admin/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:1'\n                )\n# TxG.load_pretrained_graphmask('/home/dev_admin/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')\nTxG.load_pretrained('/home/dev_admin/dgx_irkg_be/TxGNN/model/model_ckpt')",
         "detail": "app.scripts.diseaseFetchDB",
         "documentation": {}
     },
@@ -2570,7 +2570,7 @@
         "kind": 5,
         "importPath": "app.scripts.diseaseFetchDB",
         "description": "app.scripts.diseaseFetchDB",
-        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:1'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')\nTxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/model/model_ckpt')\nTxE = TxEval(model=TxG)\ndef txgnn_get(disease) -> DiseaseResponse:",
+        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:1'\n                )\n# TxG.load_pretrained_graphmask('/home/dev_admin/dgx_irkg_be/TxGNN/data/rare_disease_model_ckpt')\nTxG.load_pretrained('/home/dev_admin/dgx_irkg_be/TxGNN/model/model_ckpt')\nTxE = TxEval(model=TxG)\ndef txgnn_get(disease) -> DiseaseResponse:",
         "detail": "app.scripts.diseaseFetchDB",
         "documentation": {}
     },
@@ -2588,7 +2588,7 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def get_node_id_by_name(input_name):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/disease_sorted_nodes.csv', delimiter='\\t', dtype=str)\n    df = df.apply(lambda x: x.str.strip() if x.dtype == \"object\" else x)\n    df['id'] = pd.to_numeric(df['id'], errors='coerce')  # This turns invalid values into NaN\n    df['id'] = df['id'].fillna(0)\n    df['id'] = df['id'].astype(float)\n    match = df[df['node_name'] == input_name]\n    if not match.empty:\n        # Return all node_ids in a list if there are multiple matches\n        return match['id'].tolist()",
+        "peekOfCode": "def get_node_id_by_name(input_name):\n    df = pd.read_csv('/home/dev_admin/dgx_irkg_be/TxGNN/data/disease_sorted_nodes.csv', delimiter='\\t', dtype=str)\n    df = df.apply(lambda x: x.str.strip() if x.dtype == \"object\" else x)\n    df['id'] = pd.to_numeric(df['id'], errors='coerce')  # This turns invalid values into NaN\n    df['id'] = df['id'].fillna(0)\n    df['id'] = df['id'].astype(float)\n    match = df[df['node_name'] == input_name]\n    if not match.empty:\n        # Return all node_ids in a list if there are multiple matches\n        return match['id'].tolist()",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -2597,7 +2597,7 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def get_drug_name(node_id):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_id'] == node_id]\n    if not result.empty:\n        return result['node_name'].iloc[0]\n    else:\n        return None\ndef get_drug_id(node_name):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_name'] == node_name]",
+        "peekOfCode": "def get_drug_name(node_id):\n    df = pd.read_csv('/home/dev_admin/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_id'] == node_id]\n    if not result.empty:\n        return result['node_name'].iloc[0]\n    else:\n        return None\ndef get_drug_id(node_name):\n    df = pd.read_csv('/home/dev_admin/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_name'] == node_name]",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -2606,7 +2606,7 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def get_drug_id(node_name):\n    df = pd.read_csv('/home/dgx/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_name'] == node_name]\n    if not result.empty:\n        return result['node_id'].iloc[0]\n    else:\n        return None\nTxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, ",
+        "peekOfCode": "def get_drug_id(node_name):\n    df = pd.read_csv('/home/dev_admin/dgx_irkg_be/TxGNN/data/drug_nodes.csv')\n    result = df[df['node_name'] == node_name]\n    if not result.empty:\n        return result['node_id'].iloc[0]\n    else:\n        return None\nTxD = TxData(data_folder_path='/home/dev_admin/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, ",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -2615,7 +2615,7 @@
         "kind": 2,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "def txgnn_query(\n        selectModel: str,\n        disease_name: List[str], \n        relation: str, \n        _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    # save_path = '/home/dgx/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    if selectModel == 'new_model':\n        print('new model selected')",
+        "peekOfCode": "def txgnn_query(\n        selectModel: str,\n        disease_name: List[str], \n        relation: str, \n        _range: int) -> DiseaseResponse:\n    disease_idx = get_node_id_by_name(disease_name)\n    # if relation != 'auto':\n    # save_path = '/home/dev_admin/dgx_irkg_be/TxGNN/disease_centric_eval.pkl'\n    if selectModel == 'new_model':\n        print('new model selected')",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -2624,7 +2624,7 @@
         "kind": 5,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "TxD = TxData(data_folder_path='/home/dgx/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:2'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\n# TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')",
+        "peekOfCode": "TxD = TxData(data_folder_path='/home/dev_admin/dgx_irkg_be/TxGNN/data')\nTxD.prepare_split(split='full_graph', seed=42)\nTxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:2'\n                )\n# TxG.load_pretrained_graphmask('/home/dev_admin/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\n# TxG.load_pretrained('/home/dev_admin/dgx_irkg_be/TxGNN/New_model')",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -2633,7 +2633,7 @@
         "kind": 5,
         "importPath": "app.scripts.txgnn_query",
         "description": "app.scripts.txgnn_query",
-        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:2'\n                )\n# TxG.load_pretrained_graphmask('/home/dgx/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\n# TxG.load_pretrained('/home/dgx/dgx_irkg_be/TxGNN/New_model')\n# TxE = TxEval(model=TxG)\ndef txgnn_query(",
+        "peekOfCode": "TxG = TxGNN(data=TxD, \n                weight_bias_track=False,\n                proj_name='TxGNN',\n                exp_name='TxGNN',\n                device='cuda:2'\n                )\n# TxG.load_pretrained_graphmask('/home/dev_admin/dgx_irkg_be/TxGNN/graphmask_model_ckpt')\n# TxG.load_pretrained('/home/dev_admin/dgx_irkg_be/TxGNN/New_model')\n# TxE = TxEval(model=TxG)\ndef txgnn_query(",
         "detail": "app.scripts.txgnn_query",
         "documentation": {}
     },
@@ -2642,7 +2642,7 @@
         "kind": 5,
         "importPath": "app.scripts.uploadVariants2DB",
         "description": "app.scripts.uploadVariants2DB",
-        "peekOfCode": "CSV_FILE_PATH = \"/home/dgx/dgx_irkg_be/app/input/gene_list.csv\"\nasync def process_csv_and_store_variants(gene: str, db: AsyncSession)  -> VariantSchema:\n    try:\n        response = await fetch_clinvar_variations(gene)\n        print('<================== printing response data ==================>')\n        print(response)\n        print('<================== printing response type ==================>')\n        print(type(response))\n        if 'ClinVarSet' in response:\n            for variation_entry in response['ClinVarSet']['ReferenceClinVarAssertion']:",
+        "peekOfCode": "CSV_FILE_PATH = \"/home/dev_admin/dgx_irkg_be/app/input/gene_list.csv\"\nasync def process_csv_and_store_variants(gene: str, db: AsyncSession)  -> VariantSchema:\n    try:\n        response = await fetch_clinvar_variations(gene)\n        print('<================== printing response data ==================>')\n        print(response)\n        print('<================== printing response type ==================>')\n        print(type(response))\n        if 'ClinVarSet' in response:\n            for variation_entry in response['ClinVarSet']['ReferenceClinVarAssertion']:",
         "detail": "app.scripts.uploadVariants2DB",
         "documentation": {}
     },
@@ -2651,7 +2651,7 @@
         "kind": 5,
         "importPath": "app.services.lam_decision_layer",
         "description": "app.services.lam_decision_layer",
-        "peekOfCode": "client = OpenAI()\nload_dotenv('/home/dgx/dgx_irkg_be/.env')\nOPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\nasync def decision_making_layer(query: str):\n    \"\"\" Uses LLM with retrieved feedback to decide an action \"\"\"\n    # Retrieve relevant past feedback\n    past_feedbacks = retrieve_relevant_context(query)\n    context = \"\\n\".join(past_feedbacks)\n    prompt = f\"\"\"\n    You are an AI Scientist designed to support Drug Discovery, Precision Medicine, and Laboratory Automation.",
+        "peekOfCode": "client = OpenAI()\nload_dotenv('/home/dev_admin/dgx_irkg_be/.env')\nOPEN_AI_KEY = os.getenv('OPENAI_API_KEY')\nasync def decision_making_layer(query: str):\n    \"\"\" Uses LLM with retrieved feedback to decide an action \"\"\"\n    # Retrieve relevant past feedback\n    past_feedbacks = retrieve_relevant_context(query)\n    context = \"\\n\".join(past_feedbacks)\n    prompt = f\"\"\"\n    You are an AI Scientist designed to support Drug Discovery, Precision Medicine, and Laboratory Automation.",
         "detail": "app.services.lam_decision_layer",
         "documentation": {}
     },
@@ -2705,7 +2705,7 @@
         "kind": 5,
         "importPath": "app.services.lam_feedback_layer",
         "description": "app.services.lam_feedback_layer",
-        "peekOfCode": "embeddings = OpenAIEmbeddings()\n# FAISS Index File\nINDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nDATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):",
+        "peekOfCode": "embeddings = OpenAIEmbeddings()\n# FAISS Index File\nINDEX_FILE = \"/home/dev_admin/dgx_irkg_be/feedback/feedback_index.faiss\"\nDATA_FILE = \"/home/dev_admin/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):",
         "detail": "app.services.lam_feedback_layer",
         "documentation": {}
     },
@@ -2714,7 +2714,7 @@
         "kind": 5,
         "importPath": "app.services.lam_feedback_layer",
         "description": "app.services.lam_feedback_layer",
-        "peekOfCode": "INDEX_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss\"\nDATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):",
+        "peekOfCode": "INDEX_FILE = \"/home/dev_admin/dgx_irkg_be/feedback/feedback_index.faiss\"\nDATA_FILE = \"/home/dev_admin/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):",
         "detail": "app.services.lam_feedback_layer",
         "documentation": {}
     },
@@ -2723,7 +2723,7 @@
         "kind": 5,
         "importPath": "app.services.lam_feedback_layer",
         "description": "app.services.lam_feedback_layer",
-        "peekOfCode": "DATA_FILE = \"/home/dgx/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):\n    with open(DATA_FILE, \"r\") as f:",
+        "peekOfCode": "DATA_FILE = \"/home/dev_admin/dgx_irkg_be/feedback/feedback_data.json\"\n# Create FAISS index (dimension = 1536 for OpenAI embeddings)\ndimension = 1536\nindex = faiss.IndexFlatL2(dimension)\n# Load previous stored data\ndocument_data = {}\nif os.path.exists(INDEX_FILE):\n    faiss.read_index(INDEX_FILE)\nif os.path.exists(DATA_FILE):\n    with open(DATA_FILE, \"r\") as f:",
         "detail": "app.services.lam_feedback_layer",
         "documentation": {}
     },

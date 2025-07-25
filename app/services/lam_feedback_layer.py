@@ -15,8 +15,8 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 embeddings = OpenAIEmbeddings()
 
 # FAISS Index File
-INDEX_FILE = "/home/dgx/dgx_irkg_be/feedback/feedback_index.faiss"
-DATA_FILE = "/home/dgx/dgx_irkg_be/feedback/feedback_data.json"
+INDEX_FILE = "/home/dev_admin/dgx_irkg_be/feedback/feedback_index.faiss"
+DATA_FILE = "/home/dev_admin/dgx_irkg_be/feedback/feedback_data.json"
 
 # Create FAISS index (dimension = 1536 for OpenAI embeddings)
 dimension = 1536
