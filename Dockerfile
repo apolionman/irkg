@@ -41,6 +41,11 @@ RUN pip install  dgl -f https://data.dgl.ai/wheels/torch-2.1/cu121/repo.html
 COPY requirements.txt ./
 RUN pip install --no-cache-dir --prefer-binary -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu117
 
+RUN git clone https://github.com/mims-harvard/TxGNN.git /tmp/TxGNN \
+ && cd /tmp/TxGNN \
+ && pip install --no-cache-dir . \
+ && rm -rf /tmp/TxGNN
+
 # -------------------------------
 # Copy rest of the app
 # -------------------------------

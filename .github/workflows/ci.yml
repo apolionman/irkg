@@ -147,8 +147,7 @@ jobs:
             -e DATABASE_URL="$DATABASE_URL" \
             -p 8001:8000 \
             --name irkg \
-            irkg:dev \
-            bash -c "pip install -e /app/TxGNN && uvicorn main:app --host 0.0.0.0 --port 8000"
+            irkg:dev
 
     environment:
       name: development
