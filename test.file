@@ -67,3 +67,5 @@ docker run -d \
   postgres:15
 
 esearch -db clinvar -query "((SLC24A3-AS1[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])"
+
+postgresql://admin_dgx:password123@localhost:5432/irkg_db
