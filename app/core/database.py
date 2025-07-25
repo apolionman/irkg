@@ -8,7 +8,7 @@ load_dotenv('.env')
 # Load database URL from .env or use default
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql+asyncpg://admin_dgx:password123@localhost:5432/irkg_db"
+    "postgresql+asyncpg://admin_dgx:password123@pg_dgx:5432/irkg_db"
 )
 
 # Create async engine

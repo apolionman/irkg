@@ -139,6 +139,7 @@ jobs:
           DATABASE_URL: ${{ vars.DATABASE_URL }}
         run: |
           docker run -d --gpus all \
+            --network irkg_net \
             -v "/home/dev_admin/dgx_irkg_be/TxGNN:/app/TxGNN" \
             -v "/home/dev_admin/dgx_irkg_be/feedback:/app/feedback" \
             -e SECRET_KEY="$SECRET_KEY" \

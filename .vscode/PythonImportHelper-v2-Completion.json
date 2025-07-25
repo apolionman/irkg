@@ -2039,7 +2039,7 @@
         "kind": 5,
         "importPath": "app.core.database",
         "description": "app.core.database",
-        "peekOfCode": "DATABASE_URL = os.getenv(\n    \"DATABASE_URL\",\n    \"postgresql+asyncpg://admin_dgx:password123@localhost:5432/irkg_db\"\n)\n# Create async engine\nengine = create_async_engine(\n    DATABASE_URL,\n    echo=True,  # Enable SQL query logging (optional, useful for debugging)\n    pool_pre_ping=True,\n    pool_size=10,       # Adjust based on concurrency needs",
+        "peekOfCode": "DATABASE_URL = os.getenv(\n    \"DATABASE_URL\",\n    \"postgresql+asyncpg://admin_dgx:password123@pg_dgx:5432/irkg_db\"\n)\n# Create async engine\nengine = create_async_engine(\n    DATABASE_URL,\n    echo=True,  # Enable SQL query logging (optional, useful for debugging)\n    pool_pre_ping=True,\n    pool_size=10,       # Adjust based on concurrency needs",
         "detail": "app.core.database",
         "documentation": {}
     },
