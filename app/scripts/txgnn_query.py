@@ -79,7 +79,7 @@ def txgnn_query(
     elif selectModel == 'rare_model':
         TxG.load_pretrained_graphmask('/app/TxGNN/data/rare_disease_model_ckpt')
     elif selectModel == 'full_graph_model':
-        TxG.load_pretrained_graphmask('/app/TxGNN/model/model_ckpt')
+        TxG.load_pretrained_graphmask('/app/TxGNN/model/full_graphmask_model_ckpt')
     TxE = TxEval(model=TxG)
     results = TxE.eval_disease_centric(disease_idxs=disease_idx, 
                                 relation=relation,
