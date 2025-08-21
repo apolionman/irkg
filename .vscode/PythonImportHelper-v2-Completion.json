@@ -1863,6 +1863,30 @@
         "documentation": {}
     },
     {
+        "label": "HttpUser",
+        "importPath": "locust",
+        "description": "locust",
+        "isExtraImport": true,
+        "detail": "locust",
+        "documentation": {}
+    },
+    {
+        "label": "task",
+        "importPath": "locust",
+        "description": "locust",
+        "isExtraImport": true,
+        "detail": "locust",
+        "documentation": {}
+    },
+    {
+        "label": "between",
+        "importPath": "locust",
+        "description": "locust",
+        "isExtraImport": true,
+        "detail": "locust",
+        "documentation": {}
+    },
+    {
         "label": "CORSMiddleware",
         "importPath": "fastapi.middleware.cors",
         "description": "fastapi.middleware.cors",
@@ -6262,6 +6286,15 @@
         "description": "venv.share.doc.networkx-3.1.examples.subclass.plot_printgraph",
         "peekOfCode": "pos = nx.spring_layout(G, seed=225)  # Seed for reproducible layout\nnx.draw(G, pos)\nplt.show()",
         "detail": "venv.share.doc.networkx-3.1.examples.subclass.plot_printgraph",
+        "documentation": {}
+    },
+    {
+        "label": "VLLMUser",
+        "kind": 6,
+        "importPath": "locustfile",
+        "description": "locustfile",
+        "peekOfCode": "class VLLMUser(HttpUser):\n    wait_time = between(1, 3)\n    @task\n    def complete(self):\n        self.client.post(\"/v1/completions\", json={\n            \"model\": \"meta-llama/Llama-3.2-1B-Instruct\",\n            \"prompt\": \"Stress test this prompt.\",\n            \"max_tokens\": 100\n        }, headers={\n            \"Authorization\": f\"Bearer {os.getenv('VLLM_API_KEY')}\",",
+        "detail": "locustfile",
         "documentation": {}
     },
     {

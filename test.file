@@ -69,3 +69,40 @@ docker run -d \
 esearch -db clinvar -query "((SLC24A3-AS1[Gene Name]) AND mol cons missense[Filter]) OR (({gene_name}[Gene Name]) AND mol cons nonsense[Filter])"
 
 postgresql://admin_dgx:password123@localhost:5432/irkg_db
+
+
+curl -sS "http://192.168.1.102:7000/v1/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $VLLM_API_KEY" \
+    -d "{
+    \"model\": \"meta-llama/$MODEL\",
+    \"prompt\": \"San Francisco is a\",
+    \"max_tokens\": 50,
+    \"temperature\": 0
+  }" | jq
+
+
+check_server_health(){ code=$(curl -s -o /dev/null -w "%{http_code}" http://192.168.1.102:7000/health); exit_code=$?; if [[ $exit_code -ne 0 ]]; then echo "❌ Error: Unable to connect to server at 192.168.1.102:7000"; elif [[ $code -eq 200 ]]; then echo "✅ Server is ready (HTTP 200)"; else echo "⚠️ Server responded with status: $code"; fi; }; check_server_health
+
+
+
+curl -sS "http://192.168.1.102:7000/v1/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $VLLM_API_KEY" \
+  -d "{
+    \"model\": \"meta-llama/$MODEL\",
+    \"prompt\": \"San Francisco is a\",
+    \"max_tokens\": 50,
+    \"temperature\": 0
+  }" | jq
+
+
+  curl -sS "http://localhost:7000/v1/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $VLLM_API_KEY" \
+  -d "{
+    \"model\": \"meta-llama/$MODEL\",
+    \"prompt\": \"San Francisco is a\",
+    \"max_tokens\": 50,
+    \"temperature\": 0
+  }" | jq

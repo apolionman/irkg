@@ -116,7 +116,7 @@ on:
 
 jobs:
   deploy_to_local:
-    runs-on: [mas-dgx-s2]
+    runs-on: [mas-dgx-s2, tt-runs]
 
     steps:
       - name: Checkout latest code
