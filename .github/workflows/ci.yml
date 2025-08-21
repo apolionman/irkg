@@ -134,6 +134,11 @@ jobs:
           docker stop irkg || true
           docker rm irkg || true
 
+      - name: Create network if not exists
+        run: |
+          docker network inspect irkg_net >/dev/null 2>&1 || \
+          docker network create irkg_net
+
       - name: Run Docker container
         env:
           SECRET_KEY: ${{ vars.SECRET_KEY }}
