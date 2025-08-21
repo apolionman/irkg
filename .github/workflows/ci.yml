@@ -141,7 +141,7 @@ jobs:
           OPENAI_API_KEY: ${{ vars.OPENAI_API_KEY }}
           DATABASE_URL: ${{ vars.DATABASE_URL }}
         run: |
-          docker run -d --gpus all \
+          docker run -d \
             --network irkg_net \
             -v "/home/dev_admin/dgx_irkg_be/TxGNN:/app/TxGNN" \
             -v "/home/dev_admin/dgx_irkg_be/feedback:/app/feedback" \
