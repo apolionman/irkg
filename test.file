@@ -90,9 +90,9 @@ curl -sS "http://192.168.1.102:7000/v1/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $VLLM_API_KEY" \
   -d "{
-    \"model\": \"meta-llama/$MODEL\",
-    \"prompt\": \"San Francisco is a\",
-    \"max_tokens\": 50,
+    \"model\": \"meta-llama/Llama-3.2-1B-Instruct\",
+    \"prompt\": \"Explain the theory of relativity.\",
+    \"max_tokens\": 1500,
     \"temperature\": 0
   }" | jq
 
@@ -106,3 +106,28 @@ curl -sS "http://192.168.1.102:7000/v1/completions" \
     \"max_tokens\": 50,
     \"temperature\": 0
   }" | jq
+
+
+for i in {1..10000000}; do
+    curl -s "http://192.168.1.102:7000/v1/completions" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $VLLM_API_KEY" \
+    -d '{
+        "model": "meta-llama/Llama-3.2-1B-Instruct",
+        "prompt": "Repeat the word test",
+        "max_tokens": 50
+    }' >/dev/null &
+done
+wait
+
+class VLLMUser(HttpUser):
+    wait_time = between(0.5, 2)
+    @task
+    def generate(self):
+        self.client.post("/v1/completions", json={
+            "model": "meta-llama/Llama-3.2-1B-Instruct",
+            "prompt": "Stress test this prompt.",
+            "max_tokens": 100
+        }, headers={
+            "Authorization": f"Bearer {os.environ['VLLM_API_KEY']}"
+        })
