@@ -59,7 +59,7 @@ TxG = TxGNN(data=TxD,
                 weight_bias_track=False,
                 proj_name='TxGNN',
                 exp_name='TxGNN',
-                device='cuda:2'
+                device='cpu'
                 )
 # TxG.load_pretrained_graphmask('/app/TxGNN/graphmask_model_ckpt')
 # TxG.load_pretrained('/app/TxGNN/New_model')
